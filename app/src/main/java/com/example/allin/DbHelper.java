@@ -109,13 +109,14 @@ public class DbHelper extends SQLiteOpenHelper {
             "FOREIGN KEY (OrderID) REFERENCES Orders(OrderID), " +
             "FOREIGN KEY (ItemID) REFERENCES Item(ItemID))";
 
-    //Sale table
 
+    //Sale table
     private static final String CREATE_SALE = "CREATE TABLE Sale("+
             "SaleID INTEGER PRIMARY KEY AUTOINCREMENT, "+
             "StartDate TEXT ,"+
             "EndDate TEXT ," +
             "DiscountPercentage REAL )";
+
 
     @Override
     public void onCreate(SQLiteDatabase db) {
