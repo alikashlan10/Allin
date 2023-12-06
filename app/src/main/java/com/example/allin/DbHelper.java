@@ -118,6 +118,8 @@ public class DbHelper extends SQLiteOpenHelper {
             "DiscountPercentage REAL )";
 
 
+
+
     @Override
     public void onCreate(SQLiteDatabase db) {
 
