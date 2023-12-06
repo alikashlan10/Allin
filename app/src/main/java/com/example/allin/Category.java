@@ -10,6 +10,7 @@ package com.example.allin;
  * @author Ali
  */
 public class Category {
+    //bismillah
     private int categoryId;
     private String categoryName;
 
