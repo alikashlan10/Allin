@@ -9,49 +9,87 @@ package com.example.allin;
  *
  * @author Ali
  */
-public class User {
-    private int userId;
-    private String username;
-    private String password;
+public class User extends Person {
+
+
+    private String fullName;
+    private String SSN;
+    private String Email;
+    private int AddressID;
     private String creditCard;
+    private UserAddress userAddress;
 
-    public User(int userId, String username, String password, String creditCard) {
-        this.userId = userId;
-        this.username = username;
-        this.password = password;
-        this.creditCard = creditCard;
+
+    @Override
+    public void login() {
+
     }
 
-    public int getUserId() {
-        return userId;
+    ////////////////////////// Setters and Getters //////////////////////////
+    //----------------------------------------------------------------------
+
+    public String getFullName() {
+        return fullName;
+    }
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
     }
 
-    public void setUserId(int userId) {
-        this.userId = userId;
+    public String getSSN() {
+        return SSN;
+    }
+    public void setSSN(String SSN) {
+        this.SSN = SSN;
     }
 
-    public String getUsername() {
-        return username;
+    public String getEmail() {
+        return Email;
+    }
+    public void setEmail(String email) {
+        Email = email;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public int getAddressID() {
+        return AddressID;
+    }
+    public void setAddressID(int addressID) {
+        AddressID = addressID;
     }
 
-    public String getPassword() {
-        return password;
+    public UserAddress getUserAddress() {
+        return userAddress;
     }
-
-    public void setPassword(String password) {
-        this.password = password;
+    public void setUserAddress(UserAddress userAddress) {
+        this.userAddress = userAddress;
     }
 
     public String getCreditCard() {
         return creditCard;
     }
-
     public void setCreditCard(String creditCard) {
         this.creditCard = creditCard;
     }
+
+    //----------------------------------------------------------------------
+    ////////////////////////////////////////////////////////////////////////
+
+
+
+    public void Register(){}
+
+    public void AddItemsToCart(){}
+
+    public void CancelItem(){}
+
+    public void PlaceOrder(){}
+
+    public void CancelOrder(){}
+
+    public void UpdatePersonalInfo(){}
+
+    public void AddFeedBack(){}
+
+
+
 }
 
