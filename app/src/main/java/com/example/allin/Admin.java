@@ -2,10 +2,7 @@ package com.example.allin;
 
 public class Admin extends Person {
 
-    @Override
-    public void login() {
 
-    }
 
     public void AddItem(){}
     public void AddSale(){}
@@ -14,4 +11,10 @@ public class Admin extends Person {
     public void DeleteCategory(){}
     public void ShowOrdersInPeriod(){}
 
+
+    @Override
+    public int login(String username, String password) {
+
+        return 0;
+    }
 }

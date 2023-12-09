@@ -5,12 +5,12 @@
  */
 package com.example.allin;
 
+
 /**
  *
  * @author Ali
  */
-public class User extends Person {
-
+public class User extends Person{
 
     private String fullName;
     private String SSN;
@@ -20,10 +20,16 @@ public class User extends Person {
     private UserAddress userAddress;
 
 
-    @Override
-    public void login() {
 
+    @Override
+    public int login(String username, String password) {
+
+        //instance of the DbHelper
+        //use loginUser function form DbHelper to return user ID if found
+        return 0;
     }
+
+
 
     ////////////////////////// Setters and Getters //////////////////////////
     //----------------------------------------------------------------------

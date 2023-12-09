@@ -1,6 +1,9 @@
 package com.example.allin;
 
+import android.annotation.SuppressLint;
+import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
@@ -12,6 +15,9 @@ public class DbHelper extends SQLiteOpenHelper {
     public DbHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
+
+    private static DbHelper instance;
+
 
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -129,6 +135,7 @@ public class DbHelper extends SQLiteOpenHelper {
 
 
 
+
     @Override
     public void onCreate(SQLiteDatabase db) {
 
@@ -144,6 +151,7 @@ public class DbHelper extends SQLiteOpenHelper {
         db.execSQL(CREATE_SALE);
         db.execSQL(CREATE_ITEM_IMAGES);
 
+
     }
 
     @Override
@@ -151,4 +159,58 @@ public class DbHelper extends SQLiteOpenHelper {
 
 
     }
+
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////
+    //Initialized data for testing
+    public void insertDummyUserData() {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put("Username", "testuser");
+        values.put("Password", "testpassword");
+        values.put("FullName", "Test User");
+        values.put("SSN", "123-45-6789");
+        values.put("CreditCardNumber", "1234-5678-9012-3456");
+        values.put("Email", "testuser@example.com");
+        values.put("AddressID", 1); // Assuming you have an AddressID of 1 for testing
+
+        db.insert("User", null, values);
+        db.close();
+    }
+
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////// Custom functions ///////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+    // User login query that returns the ID if the user from the database if found and return -1 else
+    @SuppressLint("Range")
+    public long loginUser(String email, String password) {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String query = "SELECT id FROM Users WHERE email = ? AND password = ?";
+        String[] selectionArgs = {email, password};
+
+        Cursor cursor = db.rawQuery(query, selectionArgs);
+
+        int userId = -1; // Default value if login fails
+
+        if (cursor.moveToFirst()) {
+            // User authentication successful
+            userId = cursor.getInt(cursor.getColumnIndex("id"));
+        }
+
+        cursor.close();
+        db.close();
+
+        return userId;
+    }
+
+
+
+
+
+
 }

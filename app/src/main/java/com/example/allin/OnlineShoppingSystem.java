@@ -9,7 +9,6 @@ import java.util.List;
  *
  * @author Ali
  */
-
 public class OnlineShoppingSystem {
     private List<Category> categories;
     private List<User> users;
