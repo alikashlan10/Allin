@@ -6,7 +6,7 @@ public abstract class Person {
     String password;
     int PersonID;
 
-    public abstract void login();
+    public abstract int login(String username, String password);
 
 
     ////////////////////////// Setters and Getters //////////////////////////
@@ -34,6 +34,8 @@ public abstract class Person {
     public void setPersonID(int personID) {
         PersonID = personID;
     }
+
+
 
     /////////////////////////////////////////////////////////////////////////
     //----------------------------------------------------------------------
