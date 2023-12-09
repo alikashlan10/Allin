@@ -9,6 +9,8 @@ package com.example.allin;
  *
  * @author Ali
  */
+
+// el helly belly
 // bta3t ali sayed
 public class Item {
     private int itemId;
@@ -54,8 +56,9 @@ public class Item {
         return price;
     }
 
-    public void setPrice(double price) {
+    public double setPrice(double price) {
         this.price = price;
+        return price;
     }
 
     public int getStockQuantity() {

@@ -70,6 +70,15 @@ public class DbHelper extends SQLiteOpenHelper {
             "FOREIGN KEY (CategoryID) REFERENCES Category(CategoryID))";
 
 
+    //ItemImages table
+    private static final String CREATE_ITEM_IMAGES = "CREATE TABLE ItemImages(" +
+            "ItemImageID INTEGER PRIMARY KEY AUTOINCREMENT, " +
+            "ItemID INTEGER, "+
+            "Image BLOB, "+
+            "FOREIGN KEY (ItemId) REFERENCES Item(ItemId))";
+
+
+
     // CartItem
     private static final String CREATE_CART_ITEM = "CREATE TABLE CartItem (" +
             "CartItemID INTEGER PRIMARY KEY AUTOINCREMENT, " +
@@ -133,6 +142,7 @@ public class DbHelper extends SQLiteOpenHelper {
         db.execSQL(CREATE_ADMIN);
         db.execSQL(CREATE_FEEDBACK);
         db.execSQL(CREATE_SALE);
+        db.execSQL(CREATE_ITEM_IMAGES);
 
     }
 
