@@ -8,10 +8,12 @@ public class UserAddress {
     private String BuildingNum;
     private String FlatNum;
 
+    ////////////////////////// Setters and Getters //////////////////////////
+    //----------------------------------------------------------------------
+
     public String getCountry() {
         return Country;
     }
-
     public void setCountry(String country) {
         Country = country;
     }
@@ -19,7 +21,6 @@ public class UserAddress {
     public String getCity() {
         return City;
     }
-
     public void setCity(String city) {
         City = city;
     }
@@ -27,7 +28,6 @@ public class UserAddress {
     public String getStreet() {
         return Street;
     }
-
     public void setStreet(String street) {
         Street = street;
     }
@@ -35,7 +35,6 @@ public class UserAddress {
     public String getBuildingNum() {
         return BuildingNum;
     }
-
     public void setBuildingNum(String buildingNum) {
         BuildingNum = buildingNum;
     }
@@ -43,8 +42,12 @@ public class UserAddress {
     public String getFlatNum() {
         return FlatNum;
     }
-
     public void setFlatNum(String flatNum) {
         FlatNum = flatNum;
     }
+
+    /////////////////////////////////////////////////////////////////////////
+    //----------------------------------------------------------------------
+
+
 }
