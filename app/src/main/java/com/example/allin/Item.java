@@ -16,6 +16,7 @@ public class Item {
     private String description;
     private double price;
     private int stockQuantity;
+    private Sale sale;
 
     public Item(int itemId, String itemName, String description, double price, int stockQuantity) {
         this.itemId = itemId;
@@ -64,6 +65,13 @@ public class Item {
     public void setStockQuantity(int stockQuantity) {
         this.stockQuantity = stockQuantity;
     }
-}
 
+    public Sale getSale() {
+        return sale;
+    }
+
+    public void setSale(Sale sale) {
+        this.sale = sale;
+    }
+}
 
