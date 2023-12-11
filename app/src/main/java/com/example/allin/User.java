@@ -6,6 +6,8 @@
 package com.example.allin;
 
 
+import java.util.List;
+
 /**
  *
  * @author Ali
@@ -18,16 +20,43 @@ public class User extends Person{
     private int AddressID;
     private String creditCard;
     private UserAddress userAddress;
+    private OnlineShoppingSystem system;
 
 
 
+
+
+    //login function
     @Override
-    public int login(String username, String password) {
+    public boolean login(String enteredUsername, String enteredPassword) {
+        List<User> userList = system.users;
 
-        //instance of the DbHelper
-        //use loginUser function form DbHelper to return user ID if found
-        return  0;
+        for (User user : userList) {
+            if (user!=null && user.getUserName().equals(enteredUsername) && user.getPassword().equals(enteredPassword)) {
+                // Login successful
+                this.loadUserData(user);
+                return true;
+            }
+        }
+
+        // Login failed
+        return false;
     }
+
+
+    // helper function to set all users data
+    private void loadUserData(User user) {
+        // Load user data into the current instance
+        this.UserName = user.getUserName();
+        this.SSN = user.getSSN();
+        this.fullName=user.getFullName();
+        this.userAddress=user.getUserAddress();
+        this.creditCard=user.getCreditCard();
+        this.Email=user.getEmail();
+        this.PersonID = user.getPersonID();
+        // Avoid storing the password in the instance variables
+    }
+
 
 
 

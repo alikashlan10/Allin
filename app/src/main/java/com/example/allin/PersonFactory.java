@@ -2,7 +2,7 @@ package com.example.allin;
 
 public class PersonFactory {
 
-    public Person GetPerson(String PersonType)
+    public static Person GetPerson(String PersonType)
     {
         if (PersonType.equalsIgnoreCase("user"))
             return new User();

@@ -6,7 +6,7 @@ public abstract class Person {
     String password;
     int PersonID;
 
-    public abstract int login(String username, String password);
+    public abstract boolean login(String username, String password);
 
 
     ////////////////////////// Setters and Getters //////////////////////////

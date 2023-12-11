@@ -19,7 +19,9 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
 
 
-
+        DbHelper dbHelper=new DbHelper(this);
+        Person u = PersonFactory.GetPerson("user");
+        u.login("a","b");
 
 
     }

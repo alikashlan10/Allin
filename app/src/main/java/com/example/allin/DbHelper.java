@@ -7,6 +7,9 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class DbHelper extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "ALl_In_DB";
@@ -199,7 +202,7 @@ public class DbHelper extends SQLiteOpenHelper {
 
         if (cursor.moveToFirst()) {
             // User authentication successful
-            userId = cursor.getInt(cursor.getColumnIndex("id"));
+            userId = cursor.getInt(cursor.getColumnIndex("UserID"));
         }
 
         cursor.close();
@@ -207,6 +210,7 @@ public class DbHelper extends SQLiteOpenHelper {
 
         return userId;
     }
+
 
     @SuppressLint("Range")
     public int loginAdmin(String username, String password) {
@@ -221,7 +225,7 @@ public class DbHelper extends SQLiteOpenHelper {
 
         if (cursor.moveToFirst()) {
             // User authentication successful
-            userId = cursor.getInt(cursor.getColumnIndex("id"));
+            userId = cursor.getInt(cursor.getColumnIndex("AdminID"));
         }
 
         cursor.close();
@@ -230,6 +234,76 @@ public class DbHelper extends SQLiteOpenHelper {
         return userId;
     }
 
+
+    // load all users
+    @SuppressLint("Range")
+    public List<User> getAllUsers() {
+        List<User> userList = new ArrayList<>();
+        SQLiteDatabase db = getReadableDatabase();
+
+        //raw query to select all users
+        String Query = "SELECT * FROM User";
+
+        //Executing the raw query
+        Cursor cursor = db.rawQuery(Query, null);
+
+        // Iterating through the table and add users(all their info) to the list
+        while (cursor.moveToNext()) {
+
+            User user = new User();
+
+            user.setPersonID(cursor.getInt(cursor.getColumnIndex("UserID")));
+            user.setUserName(cursor.getString(cursor.getColumnIndex("Username")));
+            user.setPassword(cursor.getString(cursor.getColumnIndex("Password")));
+            user.setAddressID(cursor.getInt(cursor.getColumnIndex("AddressID")));
+            user.setCreditCard(cursor.getString(cursor.getColumnIndex("CreditCardNumber")));
+            user.setEmail(cursor.getString(cursor.getColumnIndex("Email")));
+            user.setSSN(cursor.getString(cursor.getColumnIndex("SSN")));
+            user.setFullName(cursor.getString(cursor.getColumnIndex("FullName")));
+
+            userList.add(user);
+        }
+
+        // Close the cursor and database
+        cursor.close();
+        db.close();
+
+        return userList;
+    }
+
+
+    // load all categories
+    @SuppressLint("Range")
+    public List<Category> getAllCategories()
+    {
+        List<Category> CategoriesList = new ArrayList<>();
+        SQLiteDatabase db = getReadableDatabase();
+
+        //raw query to select all categories
+        String Query="SELECT * FROM Category";
+
+        //Executing the raw query
+        Cursor cursor = db.rawQuery(Query, null);
+
+        // Iterate through the table and add categories to the list
+        while (cursor.moveToNext()) {
+
+            Category cat = new Category();
+
+            cat.setCategoryId(cursor.getInt(cursor.getColumnIndex("CategoryID")));
+            cat.setCategoryName(cursor.getString(cursor.getColumnIndex("CategoryName")));
+
+
+            CategoriesList.add(cat);
+        }
+
+        // Close the cursor and database
+        cursor.close();
+        db.close();
+
+        return CategoriesList;
+
+    }
 
 
 

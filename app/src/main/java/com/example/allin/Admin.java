@@ -13,8 +13,8 @@ public class Admin extends Person {
 
 
     @Override
-    public int login(String username, String password) {
+    public boolean login(String username, String password) {
 
-        return 0;
+        return true;
     }
 }

@@ -11,21 +11,43 @@ import java.util.List;
  */
 public class OnlineShoppingSystem {
     private List<Category> categories;
-    private List<User> users;
+    public List<User> users;
+    private List<Admin> admins;
     private List<Order> orders;
 
 
 
-    //da elsingleton aho
     private static OnlineShoppingSystem instance = new OnlineShoppingSystem();
     private OnlineShoppingSystem(){}
+
+    public void loadCategoriesDatabase(DbHelper dbHelper) {
+        // Call the getAllUsers method from DbHelper to get all users from the database
+        List<Category> CategoriesFromDatabase = dbHelper.getAllCategories();
+
+        // Clear the existing list and add users from the database
+        categories.clear();
+        categories.addAll(CategoriesFromDatabase);
+    }
+
+
+    //load all users from database into the Users list
+    public void loadUsersFromDatabase(DbHelper dbHelper) {
+        // Call the getAllUsers method from DbHelper to get all users from the database
+        List<User> usersFromDatabase = dbHelper.getAllUsers();
+
+        // Clear the existing list and add users from the database
+        users.clear();
+        users.addAll(usersFromDatabase);
+    }
+
+    //Singelton pattern for instances creation
     public static OnlineShoppingSystem getInstance(){
         if(instance ==null){
             instance=new OnlineShoppingSystem();
         }
         return instance;
-    }
 
+    }
 
 
     public List<Category> getCategories() {
@@ -100,10 +122,10 @@ public class OnlineShoppingSystem {
 
     // hna ghayart el parameter hwa kan object mn Order
     //3shan Class order mfihosh quantity wla price
-    public double calculateTotalReceipt(OrderedItem orderedItem,Item item) {
+    public double calculateTotalReceipt(OrderedItem orderedItem) {
 
         int quantity=orderedItem.getQuantity();
-        double price=item.getPrice();
+        double price=orderedItem.getItem().getPrice();
 
         return quantity*price;
     }
