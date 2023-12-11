@@ -187,11 +187,33 @@ public class DbHelper extends SQLiteOpenHelper {
 
     // User login query that returns the ID if the user from the database if found and return -1 else
     @SuppressLint("Range")
-    public long loginUser(String email, String password) {
+    public int loginUser(String username, String password) {
         SQLiteDatabase db = this.getReadableDatabase();
 
-        String query = "SELECT id FROM Users WHERE email = ? AND password = ?";
-        String[] selectionArgs = {email, password};
+        String query = "SELECT UserID FROM User WHERE Username = ? AND password = ?";
+        String[] selectionArgs = {username, password};
+
+        Cursor cursor = db.rawQuery(query, selectionArgs);
+
+        int userId = -1; // Default value if login fails
+
+        if (cursor.moveToFirst()) {
+            // User authentication successful
+            userId = cursor.getInt(cursor.getColumnIndex("id"));
+        }
+
+        cursor.close();
+        db.close();
+
+        return userId;
+    }
+
+    @SuppressLint("Range")
+    public int loginAdmin(String username, String password) {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String query = "SELECT AdminID FROM Admin WHERE Username = ? AND password = ?";
+        String[] selectionArgs = {username, password};
 
         Cursor cursor = db.rawQuery(query, selectionArgs);
 
