@@ -10,16 +10,35 @@ import java.util.List;
  * @author Ali
  */
 public class OnlineShoppingSystem {
+
     private List<Category> categories;
-    public List<User> users;
+    public  List<User> users;
     private List<Admin> admins;
     private List<Order> orders;
 
 
 
     private static OnlineShoppingSystem instance = new OnlineShoppingSystem();
-    private OnlineShoppingSystem(){}
+    public OnlineShoppingSystem(){}
 
+    //Singelton pattern for instances creation
+    public static OnlineShoppingSystem getInstance(){
+        if(instance ==null){
+            instance=new OnlineShoppingSystem();
+        }
+        return instance;
+
+    }
+
+
+    //helper function to add a new user to the usersList
+    public void AddUserToTheList(User user)
+    {
+        users.add(user);
+    }
+
+
+    //load all categories from database to the categories list
     public void loadCategoriesDatabase(DbHelper dbHelper) {
         // Call the getAllUsers method from DbHelper to get all users from the database
         List<Category> CategoriesFromDatabase = dbHelper.getAllCategories();
@@ -32,6 +51,7 @@ public class OnlineShoppingSystem {
 
     //load all users from database into the Users list
     public void loadUsersFromDatabase(DbHelper dbHelper) {
+
         // Call the getAllUsers method from DbHelper to get all users from the database
         List<User> usersFromDatabase = dbHelper.getAllUsers();
 
@@ -40,23 +60,16 @@ public class OnlineShoppingSystem {
         users.addAll(usersFromDatabase);
     }
 
-    //Singelton pattern for instances creation
-    public static OnlineShoppingSystem getInstance(){
-        if(instance ==null){
-            instance=new OnlineShoppingSystem();
-        }
-        return instance;
 
-    }
-
-
+    //get categories list
     public List<Category> getCategories() {
         return categories;
     }
 
+
+    //helper function to add a new category to the categories list
     public void addCategory(Category category) {
         categories.add(category);
-        System.out.println("Category: "+category+" is Added");
     }
 
 
