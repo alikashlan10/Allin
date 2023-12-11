@@ -212,6 +212,7 @@ public class DbHelper extends SQLiteOpenHelper {
     }
 
 
+    // admin login query
     @SuppressLint("Range")
     public int loginAdmin(String username, String password) {
         SQLiteDatabase db = this.getReadableDatabase();
@@ -306,7 +307,44 @@ public class DbHelper extends SQLiteOpenHelper {
     }
 
 
+    // Insertion of new user
+    public long InsertNewUser(User user) {
+        SQLiteDatabase db = getWritableDatabase();
+        long userId = -1; // To store the ID of the inserted user
 
+        try {
+            db.beginTransaction();
+
+            // Insert into UserAddress table
+            ContentValues addressValues = new ContentValues();
+            addressValues.put("Country", user.getUserAddress().getCountry());
+            addressValues.put("City", user.getUserAddress().getCity());
+            addressValues.put("Street", user.getUserAddress().getStreet());
+            addressValues.put("BuildingNum", user.getUserAddress().getBuildingNum());
+            addressValues.put("FlatNum", user.getUserAddress().getFlatNum());
+
+            long addressId = db.insert("UserAddress", null, addressValues);
+
+            // Insert into User table
+            ContentValues userValues = new ContentValues();
+            userValues.put("Username", user.getUserName());
+            userValues.put("Password", user.getPassword());
+            userValues.put("FullName", user.getFullName());
+            userValues.put("SSN", user.getSSN());
+            userValues.put("CreditCardNumber", user.getCreditCard());
+            userValues.put("Email", user.getEmail());
+            userValues.put("AddressID", addressId); // Foreign key reference
+
+            userId = db.insert("User", null, userValues);
+
+            db.setTransactionSuccessful();
+        } finally {
+            db.endTransaction();
+            db.close();
+        }
+
+        return userId;
+    }
 
 
 }

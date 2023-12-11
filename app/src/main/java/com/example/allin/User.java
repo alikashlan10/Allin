@@ -108,9 +108,39 @@ public class User extends Person{
     //----------------------------------------------------------------------
     ////////////////////////////////////////////////////////////////////////
 
+    //register function that takes user info and return userID after creation
+    public int Register(String username,String pass,String name,String email,String creditCardNum,String ssn,String country
+                       ,String City,String street,String buildingNum,String flatNum,DbHelper dbHelper)
+    {
+        //Building UserAddress object
+        UserAddress address=new UserAddress();
+        address.setCountry(country);
+        address.setCity(City);
+        address.setStreet(street);
+        address.setBuildingNum(buildingNum);
+        address.setFlatNum(flatNum);
 
+        //Building User object
+        User user=new User();
+        user.setUserName(username);
+        user.setPassword(pass);
+        user.setSSN(ssn);
+        user.setFullName(name);
+        user.setEmail(email);
+        user.setCreditCard(creditCardNum);
+        user.setUserAddress(address);
 
-    public void Register(){}
+        //insert user in Users list
+        OnlineShoppingSystem system=new OnlineShoppingSystem();
+        system.AddUserToTheList(user);
+
+        //insert user in database
+        int ID=(int)dbHelper.InsertNewUser(user);
+
+        //return the user id
+        return ID;
+
+    }
 
     public void AddItemsToCart(){}
 
