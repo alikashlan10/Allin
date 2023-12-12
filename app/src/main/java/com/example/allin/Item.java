@@ -18,20 +18,21 @@ public class Item {
     private String description;
     private double price;
     private int stockQuantity;
+    private Category category;
     private Sale sale;
 
-    public Item(int itemId, String itemName, String description, double price, int stockQuantity) {
+    public Item(int itemId, String itemName, String description, double price, int stockQuantity,Category category) {
         this.itemId = itemId;
         this.itemName = itemName;
         this.description = description;
         this.price = price;
         this.stockQuantity = stockQuantity;
+        this.category=category;
     }
 
     public int getItemId() {
         return itemId;
     }
-
     public void setItemId(int itemId) {
         this.itemId = itemId;
     }
@@ -39,7 +40,6 @@ public class Item {
     public String getItemName() {
         return itemName;
     }
-
     public void setItemName(String itemName) {
         this.itemName = itemName;
     }
@@ -47,7 +47,6 @@ public class Item {
     public String getDescription() {
         return description;
     }
-
     public void setDescription(String description) {
         this.description = description;
     }
@@ -55,7 +54,6 @@ public class Item {
     public double getPrice() {
         return price;
     }
-
     public double setPrice(double price) {
         this.price = price;
         return price;
@@ -64,7 +62,6 @@ public class Item {
     public int getStockQuantity() {
         return stockQuantity;
     }
-
     public void setStockQuantity(int stockQuantity) {
         this.stockQuantity = stockQuantity;
     }
@@ -72,9 +69,17 @@ public class Item {
     public Sale getSale() {
         return sale;
     }
-
     public void setSale(Sale sale) {
         this.sale = sale;
     }
+
+
+    public Category getCategory() {
+        return category;
+    }
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
 }
 

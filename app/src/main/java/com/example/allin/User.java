@@ -110,6 +110,8 @@ public class User extends Person{
     //----------------------------------------------------------------------
     ////////////////////////////////////////////////////////////////////////
 
+
+
     //register function that takes user info and return userID after creation
     public int Register(String username,String pass,String name,String email,String creditCardNum,String ssn,String country
                        ,String City,String street,String buildingNum,String flatNum,DbHelper dbHelper)
