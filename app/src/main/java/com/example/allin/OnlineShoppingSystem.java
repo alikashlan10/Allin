@@ -15,6 +15,7 @@ public class OnlineShoppingSystem {
     public  List<User> users;
     private List<Admin> admins;
     private List<Order> orders;
+    private List<Item> items;
 
 
 
@@ -61,6 +62,8 @@ public class OnlineShoppingSystem {
     }
 
 
+    //Category helpers
+    //------------------------------------------------------------------------------------
     //get categories list
     public List<Category> getCategories() {
         return categories;
@@ -71,6 +74,38 @@ public class OnlineShoppingSystem {
     public void addCategory(Category category) {
         categories.add(category);
     }
+
+    //helper function to get a category object by its ID
+    public Category getCategoryIdByName(String categoryName) {
+
+        //search the list
+        for (Category category : categories) {
+            if (category.getCategoryName().equals(categoryName)) {
+                return category;
+            }
+        }
+
+        // if not found
+        return null;
+    }
+    //------------------------------------------------------------------------------------
+
+
+
+    // get items list
+    public List<Item> getItemsList() {
+        return items;
+    }
+
+
+
+
+    //-----------------------------------------------------------------------------------------------------
+    //-----------------------------------------------------------------------------------------------------
+    //-----------------------------------------------------------------------------------------------------
+    //-----------------------------------------------------------------------------------------------------
+    //-----------------------------------------------------------------------------------------------------
+
 
 
     //In the edit Category you should put the original category and replace it with edited category

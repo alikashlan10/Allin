@@ -70,7 +70,7 @@ public class DbHelper extends SQLiteOpenHelper {
     private static final String CREATE_ITEM = "CREATE TABLE Item (" +
             "ItemID INTEGER PRIMARY KEY AUTOINCREMENT, " +
             "Label TEXT, " +
-            "Iteminfo TEXT, " +
+            "ItemInfo TEXT, " +
             "Price REAL, " +
             "StockQuantity INTEGER, " +
             "CategoryID INTEGER, " +
@@ -414,6 +414,27 @@ public class DbHelper extends SQLiteOpenHelper {
             db.endTransaction();
             db.close();
         }
+    }
+
+
+    //Add new item
+    public Long insertNewItem(Item item) {
+        SQLiteDatabase db = getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put("Label", item.getItemName());
+        values.put("ItemInfo", item.getDescription());
+        values.put("Price", item.getPrice());
+        values.put("StockQuantity", item.getStockQuantity());
+        values.put("CategoryID", item.getCategory().getCategoryId());
+        values.put("SaleID", item.getSale() != null ? item.getSale().getSaleId() : null);  // Assuming SaleID is a foreign key in the Item table
+
+        // Insert the values into the Item table
+        long ItemID = db.insert("Item", null, values);
+
+        db.close();  // Close the database after insertion
+
+        return ItemID;
     }
 
 
