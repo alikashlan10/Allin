@@ -14,7 +14,11 @@ public class Category {
     private int categoryId;
     private String categoryName;
 
-    public Category(){}
+    public Category(){
+    }
+    public Category(String categoryName){
+        this.categoryName = categoryName;
+    }
 
     public int getCategoryId() {
         return categoryId;

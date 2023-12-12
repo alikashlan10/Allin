@@ -48,7 +48,6 @@ public class Sale {
     public void setDiscountPercentage(double discountPercentage) {
         this.discountPercentage = discountPercentage;
     }
-
     public Date getStartDate() {
         return startDate;
     }
