@@ -20,7 +20,8 @@ public class User extends Person{
     private int AddressID;
     private String creditCard;
     private UserAddress userAddress;
-    private OnlineShoppingSystem system;
+    private List<CartItem> Cart;
+
 
 
 
@@ -29,6 +30,7 @@ public class User extends Person{
     //login function
     @Override
     public boolean login(String enteredUsername, String enteredPassword) {
+        OnlineShoppingSystem system=new OnlineShoppingSystem();
         List<User> userList = system.users;
 
         for (User user : userList) {
@@ -142,9 +144,71 @@ public class User extends Person{
 
     }
 
-    public void AddItemsToCart(){}
 
-    public void CancelItem(){}
+    // AddItemsToCart
+    public int AddItemsToCart(Item item,int quantity,int userID,DbHelper dbHelper)
+    {
+        //int variable to save ID
+        int CartItemID;
+
+        //instance of Cart item
+        CartItem cartItem=new CartItem();
+
+        //set Cart info
+        cartItem.setItem(item);
+        cartItem.setUserID(userID);
+        cartItem.setQuantity(quantity);
+
+        //---> add item to database
+        CartItemID =(int)dbHelper.InsertNewCartItem(cartItem);
+
+        //set cart Item iD
+        cartItem.setCartItemID(CartItemID);
+
+        //---> add the item to the Cart list
+        Cart.add(cartItem);
+
+
+        return CartItemID;
+    }
+
+    // Edit item quantity in cart
+    public void EditCartItem(int CartItemID,int newQuantity,DbHelper dbHelper)
+    {
+        //Update the item quantity in the Cart list
+        for (CartItem cartItem : Cart) {
+            if (cartItem.getCartItemID() == CartItemID) {
+
+                // Update the quantity
+                cartItem.setQuantity(newQuantity);
+
+                break;
+            }
+        }
+
+        //Update the item quantity in the database
+        dbHelper.UpdateItemQuantityInCart(CartItemID,newQuantity);
+
+    }
+
+    // Cancel item from Cart
+    public void CancelItem(int CartItemID,DbHelper dbHelper)
+    {
+        // Remove item from cart list
+        for (CartItem cartItem : Cart) {
+            if (cartItem.getCartItemID() == CartItemID) {
+
+                // Update the quantity
+                Cart.remove(cartItem);
+
+                break;
+            }
+        }
+
+        // Remove CartItem from database
+
+
+    }
 
     public void PlaceOrder(){}
 
