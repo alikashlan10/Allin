@@ -347,4 +347,74 @@ public class DbHelper extends SQLiteOpenHelper {
     }
 
 
+    // Insertion of new Cart Item
+    public long InsertNewCartItem(CartItem item) {
+        SQLiteDatabase db = getWritableDatabase();
+        long CartItemID = -1; // To store the ID of the inserted CartItem
+
+        try {
+            db.beginTransaction();
+
+            // Insert into CartItem table
+            ContentValues CartItemValues = new ContentValues();
+
+            CartItemValues.put("UserID", item.getUserID());
+            CartItemValues.put("ItemID", item.getItem().getItemId());
+            CartItemValues.put("Quantity", item.getQuantity());
+
+
+            CartItemID = db.insert("CartItem", null, CartItemValues);
+
+
+            db.setTransactionSuccessful();
+        } finally {
+            db.endTransaction();
+            db.close();
+        }
+
+        return CartItemID;
+    }
+
+
+    // Update CartItem item quantity
+    public void UpdateItemQuantityInCart(int cartItemID, int newQuantity) {
+        SQLiteDatabase db = getWritableDatabase();
+
+        try {
+            db.beginTransaction();
+
+            // Raw SQL query to update CartItems table
+            String Query = "UPDATE CartItem SET Quantity = ? WHERE CartItemID = ?";
+            db.execSQL(Query, new Object[]{newQuantity, cartItemID});
+
+            db.setTransactionSuccessful();
+
+
+        } finally {
+            db.endTransaction();
+            db.close();
+        }
+    }
+
+
+    // Delete Cart item
+    public void DeleteCartItem(int CartItemID) {
+        SQLiteDatabase db = getWritableDatabase();
+
+        try {
+            db.beginTransaction();
+
+            // Raw SQL query to delete the item by ID
+            String deleteQuery = "DELETE FROM CartItem WHERE ID = ?";
+            db.execSQL(deleteQuery, new Object[]{CartItemID});
+
+            db.setTransactionSuccessful();
+
+        } finally {
+            db.endTransaction();
+            db.close();
+        }
+    }
+
+
 }
