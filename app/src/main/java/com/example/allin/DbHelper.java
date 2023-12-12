@@ -1,8 +1,14 @@
 package com.example.allin;
 
+import android.annotation.SuppressLint;
+import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class DbHelper extends SQLiteOpenHelper {
 
@@ -12,6 +18,9 @@ public class DbHelper extends SQLiteOpenHelper {
     public DbHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
+
+    private static DbHelper instance;
+
 
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -61,13 +70,22 @@ public class DbHelper extends SQLiteOpenHelper {
     private static final String CREATE_ITEM = "CREATE TABLE Item (" +
             "ItemID INTEGER PRIMARY KEY AUTOINCREMENT, " +
             "Label TEXT, " +
-            "Iteminfo TEXT, " +
+            "ItemInfo TEXT, " +
             "Price REAL, " +
             "StockQuantity INTEGER, " +
             "CategoryID INTEGER, " +
             "SaleID INTEGER ,"+
             "FOREIGN KEY (SaleID) REFERENCES Sale(SaleID),"+
             "FOREIGN KEY (CategoryID) REFERENCES Category(CategoryID))";
+
+
+    //ItemImages table
+    private static final String CREATE_ITEM_IMAGES = "CREATE TABLE ItemImages(" +
+            "ItemImageID INTEGER PRIMARY KEY AUTOINCREMENT, " +
+            "ItemID INTEGER, "+
+            "Image BLOB, "+
+            "FOREIGN KEY (ItemId) REFERENCES Item(ItemId))";
+
 
 
     // CartItem
@@ -120,6 +138,7 @@ public class DbHelper extends SQLiteOpenHelper {
 
 
 
+
     @Override
     public void onCreate(SQLiteDatabase db) {
 
@@ -133,6 +152,8 @@ public class DbHelper extends SQLiteOpenHelper {
         db.execSQL(CREATE_ADMIN);
         db.execSQL(CREATE_FEEDBACK);
         db.execSQL(CREATE_SALE);
+        db.execSQL(CREATE_ITEM_IMAGES);
+
 
     }
 
@@ -141,4 +162,303 @@ public class DbHelper extends SQLiteOpenHelper {
 
 
     }
+
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////
+    //Initialized data for testing
+    public void insertDummyUserData() {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put("Username", "testuser");
+        values.put("Password", "testpassword");
+        values.put("FullName", "Test User");
+        values.put("SSN", "123-45-6789");
+        values.put("CreditCardNumber", "1234-5678-9012-3456");
+        values.put("Email", "testuser@example.com");
+        values.put("AddressID", 1); // Assuming you have an AddressID of 1 for testing
+
+        db.insert("User", null, values);
+
+        ContentValues adValues = new ContentValues();
+        adValues.put("Username", "testadmin");
+        adValues.put("Password", "testadmin");
+
+        db.insert("Admin", null, adValues);
+        db.close();
+    }
+
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////// Custom functions ///////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+    // User login query that returns the ID if the user from the database if found and return -1 else
+    @SuppressLint("Range")
+    public int loginUser(String username, String password) {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String query = "SELECT UserID FROM User WHERE Username = ? AND password = ?";
+        String[] selectionArgs = {username, password};
+
+        Cursor cursor = db.rawQuery(query, selectionArgs);
+
+        int userId = -1; // Default value if login fails
+
+        if (cursor.moveToFirst()) {
+            // User authentication successful
+            userId = cursor.getInt(cursor.getColumnIndex("UserID"));
+        }
+
+        cursor.close();
+        db.close();
+
+        return userId;
+    }
+
+
+    // admin login query
+    @SuppressLint("Range")
+    public boolean loginAdmin(String username, String password) {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String query = "SELECT AdminID FROM Admin WHERE Username = ? AND password = ?";
+        String[] selectionArgs = {username, password};
+
+        Cursor cursor = db.rawQuery(query, selectionArgs);
+
+        int userId = -1; // Default value if login fails
+
+        if (cursor.moveToFirst()) {
+            // User authentication successful
+            userId = cursor.getInt(cursor.getColumnIndex("AdminID"));
+        }
+
+        cursor.close();
+        db.close();
+        if(userId != -1)
+            return true;
+
+        return false;
+    }
+
+
+    // load all users
+    @SuppressLint("Range")
+    public List<User> getAllUsers() {
+        List<User> userList = new ArrayList<>();
+        SQLiteDatabase db = getReadableDatabase();
+
+        //raw query to select all users
+        String Query = "SELECT * FROM User";
+
+        //Executing the raw query
+        Cursor cursor = db.rawQuery(Query, null);
+
+        // Iterating through the table and add users(all their info) to the list
+        while (cursor.moveToNext()) {
+
+            User user = new User();
+
+            user.setPersonID(cursor.getInt(cursor.getColumnIndex("UserID")));
+            user.setUserName(cursor.getString(cursor.getColumnIndex("Username")));
+            user.setPassword(cursor.getString(cursor.getColumnIndex("Password")));
+            user.setAddressID(cursor.getInt(cursor.getColumnIndex("AddressID")));
+            user.setCreditCard(cursor.getString(cursor.getColumnIndex("CreditCardNumber")));
+            user.setEmail(cursor.getString(cursor.getColumnIndex("Email")));
+            user.setSSN(cursor.getString(cursor.getColumnIndex("SSN")));
+            user.setFullName(cursor.getString(cursor.getColumnIndex("FullName")));
+
+            userList.add(user);
+        }
+
+        // Close the cursor and database
+        cursor.close();
+        db.close();
+
+        return userList;
+    }
+
+
+    // load all categories
+    @SuppressLint("Range")
+    public List<Category> getAllCategories()
+    {
+        List<Category> CategoriesList = new ArrayList<>();
+        SQLiteDatabase db = getReadableDatabase();
+
+        //raw query to select all categories
+        String Query="SELECT * FROM Category";
+
+        //Executing the raw query
+        Cursor cursor = db.rawQuery(Query, null);
+
+        // Iterate through the table and add categories to the list
+        while (cursor.moveToNext()) {
+
+            Category cat = new Category();
+
+            cat.setCategoryId(cursor.getInt(cursor.getColumnIndex("CategoryID")));
+            cat.setCategoryName(cursor.getString(cursor.getColumnIndex("CategoryName")));
+
+
+            CategoriesList.add(cat);
+        }
+
+        // Close the cursor and database
+        cursor.close();
+        db.close();
+
+        return CategoriesList;
+
+    }
+
+
+    // Insertion of new user
+    public long InsertNewUser(User user) {
+        SQLiteDatabase db = getWritableDatabase();
+        long userId = -1; // To store the ID of the inserted user
+
+        try {
+            db.beginTransaction();
+
+            // Insert into UserAddress table
+            ContentValues addressValues = new ContentValues();
+            addressValues.put("Country", user.getUserAddress().getCountry());
+            addressValues.put("City", user.getUserAddress().getCity());
+            addressValues.put("Street", user.getUserAddress().getStreet());
+            addressValues.put("BuildingNum", user.getUserAddress().getBuildingNum());
+            addressValues.put("FlatNum", user.getUserAddress().getFlatNum());
+
+            long addressId = db.insert("UserAddress", null, addressValues);
+
+            // Insert into User table
+            ContentValues userValues = new ContentValues();
+            userValues.put("Username", user.getUserName());
+            userValues.put("Password", user.getPassword());
+            userValues.put("FullName", user.getFullName());
+            userValues.put("SSN", user.getSSN());
+            userValues.put("CreditCardNumber", user.getCreditCard());
+            userValues.put("Email", user.getEmail());
+            userValues.put("AddressID", addressId); // Foreign key reference
+
+            userId = db.insert("User", null, userValues);
+
+            db.setTransactionSuccessful();
+        } finally {
+            db.endTransaction();
+            db.close();
+        }
+
+        return userId;
+    }
+
+
+    // Insertion of new Cart Item
+    public long InsertNewCartItem(CartItem item) {
+        SQLiteDatabase db = getWritableDatabase();
+        long CartItemID = -1; // To store the ID of the inserted CartItem
+
+        try {
+            db.beginTransaction();
+
+            // Insert into CartItem table
+            ContentValues CartItemValues = new ContentValues();
+
+            CartItemValues.put("UserID", item.getUserID());
+            CartItemValues.put("ItemID", item.getItem().getItemId());
+            CartItemValues.put("Quantity", item.getQuantity());
+
+
+            CartItemID = db.insert("CartItem", null, CartItemValues);
+
+
+            db.setTransactionSuccessful();
+        } finally {
+            db.endTransaction();
+            db.close();
+        }
+
+        return CartItemID;
+    }
+
+
+    // Update CartItem item quantity
+    public void UpdateItemQuantityInCart(int cartItemID, int newQuantity) {
+        SQLiteDatabase db = getWritableDatabase();
+
+        try {
+            db.beginTransaction();
+
+            // Raw SQL query to update CartItems table
+            String Query = "UPDATE CartItem SET Quantity = ? WHERE CartItemID = ?";
+            db.execSQL(Query, new Object[]{newQuantity, cartItemID});
+
+            db.setTransactionSuccessful();
+
+
+        } finally {
+            db.endTransaction();
+            db.close();
+        }
+    }
+
+
+    // Delete Cart item
+    public void DeleteCartItem(int CartItemID) {
+        SQLiteDatabase db = getWritableDatabase();
+
+        try {
+            db.beginTransaction();
+
+            // Raw SQL query to delete the item by ID
+            String deleteQuery = "DELETE FROM CartItem WHERE ID = ?";
+            db.execSQL(deleteQuery, new Object[]{CartItemID});
+
+            db.setTransactionSuccessful();
+
+        } finally {
+            db.endTransaction();
+            db.close();
+        }
+    }
+
+
+    //Add new item (with images)
+    public Long insertNewItem(Item item) {
+        SQLiteDatabase db = getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put("Label", item.getItemName());
+        values.put("ItemInfo", item.getDescription());
+        values.put("Price", item.getPrice());
+        values.put("StockQuantity", item.getStockQuantity());
+        values.put("CategoryID", item.getCategory().getCategoryId());
+        values.put("SaleID", item.getSale() != null ? item.getSale().getSaleId() : null);  // Assuming SaleID is a foreign key in the Item table
+
+        // Insert the values into the Item table
+        long ItemID = db.insert("Item", null, values);
+
+
+        // Handling images insertion
+        if (ItemID != -1) {
+            List<byte[]> images = item.getImages();
+            for (byte[] image : images) {
+                ContentValues valuesImage = new ContentValues();
+                valuesImage.put("ItemID", ItemID);
+                valuesImage.put("Image", image);
+
+                // Insert the values into the ItemImages table for each image
+                db.insert("ItemImages", null, valuesImage);
+            }
+        }
+
+
+        db.close();  // Close the database after insertion
+
+        return ItemID;
+    }
+
+
 }

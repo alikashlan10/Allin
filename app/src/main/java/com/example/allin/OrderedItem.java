@@ -15,11 +15,11 @@ public class OrderedItem {
     private int quantity;
     private double subtotal;
 
-    public OrderedItem(int orderedItemId, Item item, int quantity, double subtotal) {
+    public OrderedItem(int orderedItemId, Item item, int quantity) {
         this.orderedItemId = orderedItemId;
         this.item = item;
         this.quantity = quantity;
-        this.subtotal = subtotal;
+        calculateSubtotal();
     }
 
     public int getOrderedItemId() {
@@ -36,6 +36,7 @@ public class OrderedItem {
 
     public void setItem(Item item) {
         this.item = item;
+        calculateSubtotal();
     }
 
     public int getQuantity() {
@@ -44,13 +45,32 @@ public class OrderedItem {
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
+        calculateSubtotal();
     }
 
     public double getSubtotal() {
         return subtotal;
     }
 
-    public void setSubtotal(double subtotal) {
-        this.subtotal = subtotal;
+    private void calculateSubtotal() {
+        Sale sale = item.getSale();
+        double itemPrice = item.getPrice();
+
+        if (sale != null) {
+            double discountedPrice = itemPrice - (itemPrice * sale.getDiscountPercentage() / 100);
+            this.subtotal = quantity * discountedPrice;
+        } else {
+            this.subtotal = quantity * itemPrice;
+        }
+    }
+
+    public void updateQuantity(int newQuantity) {
+        this.quantity = newQuantity;
+        calculateSubtotal();
+    }
+
+    public void updateItem(Item newItem) {
+        this.item = newItem;
+        calculateSubtotal();
     }
 }
