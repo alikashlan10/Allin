@@ -179,6 +179,12 @@ public class DbHelper extends SQLiteOpenHelper {
         values.put("AddressID", 1); // Assuming you have an AddressID of 1 for testing
 
         db.insert("User", null, values);
+
+        ContentValues adValues = new ContentValues();
+        adValues.put("Username", "testadmin");
+        adValues.put("Password", "testadmin");
+
+        db.insert("Admin", null, adValues);
         db.close();
     }
 
@@ -214,7 +220,7 @@ public class DbHelper extends SQLiteOpenHelper {
 
     // admin login query
     @SuppressLint("Range")
-    public int loginAdmin(String username, String password) {
+    public boolean loginAdmin(String username, String password) {
         SQLiteDatabase db = this.getReadableDatabase();
 
         String query = "SELECT AdminID FROM Admin WHERE Username = ? AND password = ?";
@@ -231,8 +237,10 @@ public class DbHelper extends SQLiteOpenHelper {
 
         cursor.close();
         db.close();
+        if(userId != -1)
+            return true;
 
-        return userId;
+        return false;
     }
 
 

@@ -6,6 +6,7 @@
 package com.example.allin;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -20,19 +21,13 @@ public class User extends Person{
     private int AddressID;
     private String creditCard;
     private UserAddress userAddress;
-    private List<CartItem> Cart;
-
-
-
-
-
+    private List<CartItem> Cart  = new ArrayList<>();
 
     //login function depends on user List in the System class
     @Override
-    public boolean login(String enteredUsername, String enteredPassword) {
-        OnlineShoppingSystem system=new OnlineShoppingSystem();
+    public boolean login(String enteredUsername, String enteredPassword,DbHelper db) {
+        OnlineShoppingSystem system = OnlineShoppingSystem.getInstance();
         List<User> userList = system.users;
-
         for (User user : userList) {
             if (user!=null && user.getUserName().equals(enteredUsername) && user.getPassword().equals(enteredPassword)) {
                 // Login successful
@@ -40,11 +35,9 @@ public class User extends Person{
                 return true;
             }
         }
-
         // Login failed
         return false;
     }
-
 
     // helper function to set all users data
     private void loadUserData(User user) {
@@ -143,7 +136,7 @@ public class User extends Person{
         user.setPersonID(userID);
 
         //---> insert user in Users list
-        OnlineShoppingSystem system=new OnlineShoppingSystem();
+        OnlineShoppingSystem system = OnlineShoppingSystem.getInstance();
         system.AddUserToTheList(user);
 
 

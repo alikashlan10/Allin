@@ -17,6 +17,7 @@
         android:text="login"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout" />
 
@@ -60,32 +61,30 @@
             android:hint="Password" />
     </com.google.android.material.textfield.TextInputLayout>
 
-    <RadioButton
-        android:id="@+id/UserradioButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="62dp"
-        android:layout_marginEnd="320dp"
-        android:layout_marginBottom="19dp"
-        android:text="User"
-        app:layout_constraintBottom_toTopOf="@+id/AdminradioButton2"
+    <RadioGroup
+        android:id="@+id/radioGroup"
+        android:layout_width="203dp"
+        android:layout_height="125dp"
+        android:layout_marginStart="155dp"
+        android:layout_marginTop="80dp"
+        android:layout_marginEnd="53dp"
+        android:layout_marginBottom="182dp"
+        app:layout_constraintBottom_toTopOf="@+id/login_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayout" />
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout">
 
-    <RadioButton
-        android:id="@+id/AdminradioButton2"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="19dp"
-        android:layout_marginEnd="309dp"
-        android:layout_marginBottom="258dp"
-        android:text="Admin"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/UserradioButton" />
+        <RadioButton
+            android:id="@+id/UserradioButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="User" />
+
+        <RadioButton
+            android:id="@+id/AdminradioButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Admin" />
+    </RadioGroup>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
