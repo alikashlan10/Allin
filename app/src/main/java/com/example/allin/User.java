@@ -132,15 +132,21 @@ public class User extends Person{
         user.setCreditCard(creditCardNum);
         user.setUserAddress(address);
 
-        //insert user in Users list
+
+        //---> insert user in database
+        int userID=(int)dbHelper.InsertNewUser(user);
+
+
+        //set User ID
+        user.setPersonID(userID);
+
+        //---> insert user in Users list
         OnlineShoppingSystem system=new OnlineShoppingSystem();
         system.AddUserToTheList(user);
 
-        //insert user in database
-        int ID=(int)dbHelper.InsertNewUser(user);
 
         //return the user id
-        return ID;
+        return userID;
 
     }
 
@@ -209,6 +215,8 @@ public class User extends Person{
         dbHelper.DeleteCartItem(CartItemID);
 
     }
+
+
 
     public void PlaceOrder(){}
 
