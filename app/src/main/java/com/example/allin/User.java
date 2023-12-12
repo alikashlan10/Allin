@@ -206,7 +206,7 @@ public class User extends Person{
         }
 
         // Remove CartItem from database
-
+        dbHelper.DeleteCartItem(CartItemID);
 
     }
 
