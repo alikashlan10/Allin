@@ -417,7 +417,7 @@ public class DbHelper extends SQLiteOpenHelper {
     }
 
 
-    //Add new item
+    //Add new item (with images)
     public Long insertNewItem(Item item) {
         SQLiteDatabase db = getWritableDatabase();
 
@@ -431,6 +431,21 @@ public class DbHelper extends SQLiteOpenHelper {
 
         // Insert the values into the Item table
         long ItemID = db.insert("Item", null, values);
+
+
+        // Handling images insertion
+        if (ItemID != -1) {
+            List<byte[]> images = item.getImages();
+            for (byte[] image : images) {
+                ContentValues valuesImage = new ContentValues();
+                valuesImage.put("ItemID", ItemID);
+                valuesImage.put("Image", image);
+
+                // Insert the values into the ItemImages table for each image
+                db.insert("ItemImages", null, valuesImage);
+            }
+        }
+
 
         db.close();  // Close the database after insertion
 

@@ -27,7 +27,7 @@ public class User extends Person{
 
 
 
-    //login function
+    //login function depends on user List in the System class
     @Override
     public boolean login(String enteredUsername, String enteredPassword) {
         OnlineShoppingSystem system=new OnlineShoppingSystem();

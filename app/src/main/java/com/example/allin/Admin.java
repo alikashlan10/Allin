@@ -1,10 +1,12 @@
 package com.example.allin;
 
+import java.util.List;
+
 public class Admin extends Person {
 
 
 
-    public void addItem(int itemId, String itemName, String description, double price, int stockQuantity, Sale sale,String CatName,DbHelper dbHelper) {
+    public void addItem(int itemId, String itemName, String description, double price, int stockQuantity, Sale sale, String CatName, DbHelper dbHelper, List<byte[]> images) {
 
         //instance of System
         OnlineShoppingSystem system=new OnlineShoppingSystem();
@@ -13,7 +15,7 @@ public class Admin extends Person {
         Category category= system.getCategoryIdByName(CatName);
 
         //setting item info
-        Item newItem = new Item(itemId, itemName, description, price, stockQuantity,category);
+        Item newItem = new Item(itemId, itemName, description, price, stockQuantity,category,images);
         newItem.setSale(sale);
 
         //---> Add item to the database

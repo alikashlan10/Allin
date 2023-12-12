@@ -5,6 +5,8 @@
  */
 package com.example.allin;
 
+import java.util.List;
+
 /**
  *
  * @author Ali
@@ -20,14 +22,23 @@ public class Item {
     private int stockQuantity;
     private Category category;
     private Sale sale;
+    private List<byte[]> images;
 
-    public Item(int itemId, String itemName, String description, double price, int stockQuantity,Category category) {
+    public Item(int itemId, String itemName, String description, double price, int stockQuantity,Category category,List<byte[]> images) {
         this.itemId = itemId;
         this.itemName = itemName;
         this.description = description;
         this.price = price;
         this.stockQuantity = stockQuantity;
         this.category=category;
+        this.images= images;
+    }
+
+    public List<byte[]> getImages() {
+        return images;
+    }
+    public void setImages(List<byte[]> images) {
+        this.images = images;
     }
 
     public int getItemId() {
