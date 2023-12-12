@@ -9,7 +9,7 @@ public class Admin extends Person {
     public void addItem(int itemId, String itemName, String description, double price, int stockQuantity, Sale sale, String CatName, DbHelper dbHelper, List<byte[]> images) {
 
         //instance of System
-        OnlineShoppingSystem system=new OnlineShoppingSystem();
+        OnlineShoppingSystem system = OnlineShoppingSystem.getInstance();
 
         //getting category object corresponding to its name
         Category category= system.getCategoryIdByName(CatName);
@@ -36,8 +36,7 @@ public class Admin extends Person {
 
 
     @Override
-    public boolean login(String username, String password) {
-
-        return true;
+    public boolean login(String username, String password, DbHelper db) {
+        return db.loginAdmin(username, password);
     }
 }

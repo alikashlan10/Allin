@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package com.example.allin;
+import java.util.ArrayList;
 import java.util.List;
 /**
  *
@@ -12,15 +13,12 @@ import java.util.List;
 public class OnlineShoppingSystem {
 
     private List<Category> categories;
-    public  List<User> users;
-    private List<Admin> admins;
-    private List<Order> orders;
-    private List<Item> items;
-
-
-
+    public  List<User> users = new ArrayList<>();
+    private List<Admin> admins = new ArrayList<>();
+    private List<Order> orders  = new ArrayList<>();
+    private List<Item> items  = new ArrayList<>();
     private static OnlineShoppingSystem instance = new OnlineShoppingSystem();
-    public OnlineShoppingSystem(){}
+    private OnlineShoppingSystem(){}
 
     //Singelton pattern for instances creation
     public static OnlineShoppingSystem getInstance(){
@@ -55,7 +53,6 @@ public class OnlineShoppingSystem {
 
         // Call the getAllUsers method from DbHelper to get all users from the database
         List<User> usersFromDatabase = dbHelper.getAllUsers();
-
         // Clear the existing list and add users from the database
         users.clear();
         users.addAll(usersFromDatabase);

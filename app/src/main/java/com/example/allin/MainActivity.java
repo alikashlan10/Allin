@@ -13,17 +13,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        DbHelper dbHelper = new DbHelper(this);
+        dbHelper.insertDummyUserData();
+        OnlineShoppingSystem system = OnlineShoppingSystem.getInstance();
+        system.loadUsersFromDatabase(dbHelper);
+
         Intent intent = new Intent(MainActivity.this, login.class);
         startActivity(intent);
-
-
-        DbHelper dbHelper=new DbHelper(this);
-        Person u = PersonFactory.GetPerson("user");
-        u.login("a","b");
-        Person k=new User();
-
-
-
-
     }
 }

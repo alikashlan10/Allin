@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package com.example.allin;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -14,7 +15,7 @@ import java.util.List;
 public class Order {
     private int orderId;
     private User user;
-    private List<OrderedItem> items;
+    private List<OrderedItem> items = new ArrayList<>();
     private String orderDate;
     private String status;
     private String deliveryDate;
