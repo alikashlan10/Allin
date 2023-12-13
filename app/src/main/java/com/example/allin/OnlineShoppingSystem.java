@@ -5,7 +5,9 @@
  */
 package com.example.allin;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.text.SimpleDateFormat;
 /**
  *
  * @author Ali
@@ -115,12 +117,50 @@ public class OnlineShoppingSystem {
 
 
 
+    // Helper function to place an order
+    public void placeOrder(User user, DbHelper dbHelper) {
+        List<CartItem> userCart = user.getCart();
 
+        if (userCart.isEmpty()) {
+            System.out.println("Empty cart");
+        }
 
+        Order order = new Order(
+                OrderId(),
+                user,
+                userCart,
+                getDate(),
+                "Placed",
+                null,
+                calculateTotalAmount(userCart)
+        );
+        //add to sys
+        orders.add(order);
+        //Clear cart
+        user.clearCart();
+    }
 
+    //orderId
+    private int OrderId() {
+        return orders.size() + 1;
+    }
 
+    //Total
+    private double calculateTotalAmount(List<CartItem> cartItems) {
+        // Replace this with your logic to calculate the total amount
+        double Total = 0.0;
+        for (CartItem cartItem : cartItems) {
+            Total += cartItem.CalculateSubTotal();
+        }
+        return Total;
+    }
 
-
+    //Date
+    private String getDate() {
+        // Replace this with your logic to get the current date and time
+        SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        return date.format(new Date());
+    }
 
 }
 

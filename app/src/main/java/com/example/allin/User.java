@@ -6,6 +6,8 @@
 package com.example.allin;
 
 
+import android.content.ContentValues;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,6 +24,13 @@ public class User extends Person{
     private String creditCard;
     private UserAddress userAddress;
     private List<CartItem> Cart  = new ArrayList<>();
+    public List<CartItem> getCart() {
+        return Cart;
+    }
+    public void clearCart() {
+        Cart.clear();
+    }
+
 
     //login function depends on user List in the System class
     @Override
@@ -227,7 +236,44 @@ public class User extends Person{
     }
 
 
-    public void UpdatePersonalInfo(){}
+    public void UpdatePersonalInfo(String newName, String newEmail, String newCity,
+                                   String newStreet, String newBuildingNum, String newFlatNum, DbHelper dbHelper) {
+        //New Info
+        this.fullName = newName;
+        this.Email = newEmail;
+        this.userAddress.setCity(newCity);
+        this.userAddress.setStreet(newStreet);
+        this.userAddress.setBuildingNum(newBuildingNum);
+        this.userAddress.setFlatNum(newFlatNum);
+
+        //Send to user
+        OnlineShoppingSystem system = OnlineShoppingSystem.getInstance();
+        for (User user : system.users) {
+            if (user != null && user.getPersonID() == this.getPersonID()) {
+                // Update user information
+                user.setFullName(newName);
+                user.setEmail(newEmail);
+                user.getUserAddress().setCity(newCity);
+                user.getUserAddress().setStreet(newStreet);
+                user.getUserAddress().setBuildingNum(newBuildingNum);
+                user.getUserAddress().setFlatNum(newFlatNum);
+                break;
+            }
+        }
+
+        //ContentValues
+        ContentValues values = new ContentValues();
+        values.put("FullName", newName);
+        values.put("Email", newEmail);
+        values.put("City", newCity);
+        values.put("Street", newStreet);
+        values.put("BuildingNum", newBuildingNum);
+        values.put("FlatNum", newFlatNum);
+
+        //Update DB
+        dbHelper.getWritableDatabase().update("User", values, "UserID = ?",
+                new String[]{String.valueOf(this.getPersonID())});
+    }
 
 
 
