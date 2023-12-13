@@ -6,4 +6,151 @@
     android:layout_height="match_parent"
     tools:context=".Register">
 
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/RegFullName"
+        android:layout_width="318dp"
+        android:layout_height="49dp"
+        android:layout_marginBottom="17dp"
+        android:hint="Full name"
+        android:textColorHint="#9E9E9E"
+        app:layout_constraintBottom_toTopOf="@+id/RegEmail"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.505"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/RegEmail"
+        android:layout_width="318dp"
+        android:layout_height="41dp"
+        android:layout_marginBottom="20dp"
+        android:ems="10"
+        android:hint="Email"
+        android:inputType="textEmailAddress"
+        android:textColorHint="#9E9E9E"
+        app:layout_constraintBottom_toTopOf="@+id/RegPassword"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.505"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/RegRePassword"
+        android:layout_width="318dp"
+        android:layout_height="40dp"
+        android:layout_marginBottom="19dp"
+        android:ems="10"
+        android:hint="Re-Password"
+        android:inputType="textPassword"
+        android:textColorHint="#9E9E9E"
+        app:layout_constraintBottom_toTopOf="@+id/RegSSN"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.505"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/RegSSN"
+        android:layout_width="318dp"
+        android:layout_height="49dp"
+        android:layout_marginBottom="24dp"
+        android:hint="SSN"
+        android:textColorHint="#9E9E9E"
+        app:layout_constraintBottom_toTopOf="@+id/RegCity"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.505"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/RegBuilding"
+        android:layout_width="150dp"
+        android:layout_height="49dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginBottom="124dp"
+        android:hint="Building No."
+        android:textColorHint="#9E9E9E"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/RegApartment"
+        android:layout_width="150dp"
+        android:layout_height="49dp"
+        android:layout_marginEnd="44dp"
+        android:layout_marginBottom="124dp"
+        android:hint="Apt No."
+        android:textColorHint="#9E9E9E"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/RegCity"
+        android:layout_width="150dp"
+        android:layout_height="49dp"
+        android:layout_marginStart="17dp"
+        android:layout_marginEnd="46dp"
+        android:layout_marginBottom="22dp"
+        android:hint="City"
+        android:textColorHint="#9E9E9E"
+        app:layout_constraintBottom_toTopOf="@+id/RegStreet"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/RegCountry" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/RegCountry"
+        android:layout_width="150dp"
+        android:layout_height="49dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginBottom="22dp"
+        android:hint="Country"
+        android:textColorHint="#9E9E9E"
+        app:layout_constraintBottom_toTopOf="@+id/RegStreet"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/RegStreet"
+        android:layout_width="318dp"
+        android:layout_height="49dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginEnd="45dp"
+        android:layout_marginBottom="192dp"
+        android:hint="Street"
+        android:textColorHint="#9E9E9E"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/RegPassword"
+        android:layout_width="318dp"
+        android:layout_height="40dp"
+        android:layout_marginBottom="17dp"
+        android:ems="10"
+        android:hint="Password"
+        android:inputType="textPassword"
+        android:textColorHint="#9E9E9E"
+        app:layout_constraintBottom_toTopOf="@+id/RegRePassword"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.505"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/RegTitle"
+        android:layout_width="191dp"
+        android:layout_height="28dp"
+        android:layout_marginTop="57dp"
+        android:text="Registeration Form"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/Regsubmitbtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="38dp"
+        android:text="Submit"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
