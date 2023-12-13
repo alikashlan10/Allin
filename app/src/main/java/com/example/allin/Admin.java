@@ -4,6 +4,21 @@ import java.util.List;
 
 public class Admin extends Person {
 
+    @Override
+    public boolean login(String username, String password, DbHelper db) {
+        OnlineShoppingSystem system = OnlineShoppingSystem.getInstance();
+        int adminID = db.loginAdmin(username, password);
+        for (Admin admin:
+                system.admins) {
+            if (admin!=null && admin.getUserName().equals(username) && admin.getPassword().equals(password)) {
+                // Login successful
+                system.setCurrentPerson(admin);
+                return true;
+            }
+        }
+        return false;
+    }
+
     public void addItem(int itemId, String itemName, String description, double price, int stockQuantity, float sale, String CatName, DbHelper dbHelper, List<byte[]> images) {
         //instance of System
         OnlineShoppingSystem system = OnlineShoppingSystem.getInstance();
@@ -27,7 +42,6 @@ public class Admin extends Person {
         system.getItemsList().remove(item);
     }
 
-
     public void AddCategory(String categoryName,DbHelper dbHelper){
         //instance of System
         OnlineShoppingSystem system = OnlineShoppingSystem.getInstance();
@@ -45,26 +59,25 @@ public class Admin extends Person {
         //---> delete item from the database
         dbHelper.DeleteCategory(category.getCategoryId());
         //---> delete item from the list
-        system.getItemsList().remove(category);
+        system.getCategories().remove(category);
     }
 
+
+    public void DeleteUser(User user)
+    {
+        //Instance of system
+        OnlineShoppingSystem system=OnlineShoppingSystem.getInstance();
+
+        //Delete user from user list
+        system.users.remove(user);
+
+        //Delete user from database
+
+
+    }
 
     public void ShowOrdersInPeriod(){}
     public void AddSale(){
 
-    }
-    @Override
-    public boolean login(String username, String password, DbHelper db) {
-        OnlineShoppingSystem system = OnlineShoppingSystem.getInstance();
-        int adminID = db.loginAdmin(username, password);
-        for (Admin admin:
-             system.admins) {
-            if (admin!=null && admin.getUserName().equals(username) && admin.getPassword().equals(password)) {
-                // Login successful
-                system.setCurrentPerson(admin);
-                return true;
-            }
-        }
-        return false;
     }
 }

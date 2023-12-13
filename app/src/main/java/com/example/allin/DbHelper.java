@@ -190,50 +190,8 @@ public class DbHelper extends SQLiteOpenHelper {
     ////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-    // User login query that returns the ID if the user from the database if found and return -1 else
-    @SuppressLint("Range")
-    public int loginUser(String username, String password) {
-        SQLiteDatabase db = this.getReadableDatabase();
-
-        String query = "SELECT UserID FROM User WHERE Username = ? AND password = ?";
-        String[] selectionArgs = {username, password};
-
-        Cursor cursor = db.rawQuery(query, selectionArgs);
-
-        int userId = -1; // Default value if login fails
-
-        if (cursor.moveToFirst()) {
-            // User authentication successful
-            userId = cursor.getInt(cursor.getColumnIndex("UserID"));
-        }
-
-        cursor.close();
-        db.close();
-
-        return userId;
-    }
 
 
-    // admin login query
-    @SuppressLint("Range")
-    public int loginAdmin(String username, String password) {
-        SQLiteDatabase db = this.getReadableDatabase();
-
-        String query = "SELECT AdminID FROM Admin WHERE Username = ? AND password = ?";
-        String[] selectionArgs = {username, password};
-
-        Cursor cursor = db.rawQuery(query, selectionArgs);
-
-        int userId = -1; // Default value if login fails
-
-        if (cursor.moveToFirst()) {
-            // User authentication successful
-            userId = cursor.getInt(cursor.getColumnIndex("AdminID"));
-        }
-        cursor.close();
-        db.close();
-        return userId;
-    }
 
 
     // load all users
@@ -358,6 +316,21 @@ public class DbHelper extends SQLiteOpenHelper {
 
         return userId;
     }
+    // Deletion of new user
+    public void DeleteUser(User user)
+    {
+        SQLiteDatabase db = getWritableDatabase();
+        try {
+            db.beginTransaction();
+            // Raw SQL query to delete the item by ID
+            String deleteQuery = "DELETE FROM User WHERE UserID = ?";
+            db.execSQL(deleteQuery, new Object[]{user.getPersonID()});
+            db.setTransactionSuccessful();
+        } finally {
+            db.endTransaction();
+            db.close();
+        }
+    }
 
 
 
@@ -388,8 +361,6 @@ public class DbHelper extends SQLiteOpenHelper {
 
         return CartItemID;
     }
-
-
     // Update CartItem item quantity
     public void UpdateItemQuantityInCart(int cartItemID, int newQuantity) {
         SQLiteDatabase db = getWritableDatabase();
@@ -409,8 +380,6 @@ public class DbHelper extends SQLiteOpenHelper {
             db.close();
         }
     }
-
-
     // Delete Cart item
     public void DeleteCartItem(int CartItemID) {
         SQLiteDatabase db = getWritableDatabase();
@@ -478,6 +447,7 @@ public class DbHelper extends SQLiteOpenHelper {
         }
     }
 
+
     // Add new Feedback
     long insertNewFeedback(String comment,int rating,int userID,int ItemID)
     {
@@ -496,6 +466,7 @@ public class DbHelper extends SQLiteOpenHelper {
 
     }
 
+
     // Add New category
     public long insertNewCategory(Category newCategory) {
         SQLiteDatabase db = getWritableDatabase();
@@ -506,14 +477,13 @@ public class DbHelper extends SQLiteOpenHelper {
         db.close();  // Close the database after insertion
         return CategoryID;
     }
-
     // Delete category
     public void DeleteCategory(int categoryId) {
         SQLiteDatabase db = getWritableDatabase();
         try {
             db.beginTransaction();
             // Raw SQL query to delete the item by ID
-            String deleteQuery = "DELETE FROM Category WHERE ID = ?";
+            String deleteQuery = "DELETE FROM Category WHERE CategoryID = ?";
             db.execSQL(deleteQuery, new Object[]{categoryId});
             db.setTransactionSuccessful();
         } finally {
@@ -523,4 +493,70 @@ public class DbHelper extends SQLiteOpenHelper {
     }
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    ////////////////// Not used
+
+    // User login query that returns the ID if the user from the database if found and return -1 else
+    @SuppressLint("Range")
+    public int loginUser(String username, String password) {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String query = "SELECT UserID FROM User WHERE Username = ? AND password = ?";
+        String[] selectionArgs = {username, password};
+
+        Cursor cursor = db.rawQuery(query, selectionArgs);
+
+        int userId = -1; // Default value if login fails
+
+        if (cursor.moveToFirst()) {
+            // User authentication successful
+            userId = cursor.getInt(cursor.getColumnIndex("UserID"));
+        }
+
+        cursor.close();
+        db.close();
+
+        return userId;
+    }
+    // admin login query
+    @SuppressLint("Range")
+    public int loginAdmin(String username, String password) {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String query = "SELECT AdminID FROM Admin WHERE Username = ? AND password = ?";
+        String[] selectionArgs = {username, password};
+
+        Cursor cursor = db.rawQuery(query, selectionArgs);
+
+        int userId = -1; // Default value if login fails
+
+        if (cursor.moveToFirst()) {
+            // User authentication successful
+            userId = cursor.getInt(cursor.getColumnIndex("AdminID"));
+        }
+        cursor.close();
+        db.close();
+        return userId;
+    }
 }
