@@ -18,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
         OnlineShoppingSystem system = OnlineShoppingSystem.getInstance();
         system.loadUsersFromDatabase(dbHelper);
 
-        Intent intent = new Intent(MainActivity.this, login.class);
+        Intent intent = new Intent(MainActivity.this, LoginActivity.class);
         startActivity(intent);
     }
 }

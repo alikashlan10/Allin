@@ -3,15 +3,10 @@ package com.example.allin;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
-import android.widget.Toast;
-
+import android.widget.*;
 import androidx.appcompat.app.AppCompatActivity;
 
-public class login extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,6 +14,7 @@ public class login extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         Button loginbtn=findViewById(R.id.login_button);
+        Button regbtn=findViewById(R.id.reg_button);
 
         DbHelper dbHelper=new DbHelper(this);
         EditText username=findViewById(R.id.un_tb);
@@ -27,8 +23,6 @@ public class login extends AppCompatActivity {
         RadioButton userbutton=findViewById(R.id.UserradioButton);
         RadioButton Adminbutton=findViewById(R.id.AdminradioButton);
         userbutton.setChecked(true);
-
-
 
         loginbtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -43,8 +37,15 @@ public class login extends AppCompatActivity {
                 if(person.login(username.getText().toString(),pass.getText().toString(),dbHelper))
                     loginbtn.setText("ALOOOO");
                 else
-                    loginbtn.setText("ad5looo");
+                    loginbtn.setText("ad5555looo");
 
+            }
+        });
+        regbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
+                startActivity(intent);
             }
         });
 
