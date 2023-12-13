@@ -355,6 +355,7 @@ public class DbHelper extends SQLiteOpenHelper {
     }
 
 
+
     // Insertion of new Cart Item
     public long InsertNewCartItem(CartItem item) {
         SQLiteDatabase db = getWritableDatabase();
@@ -453,12 +454,47 @@ public class DbHelper extends SQLiteOpenHelper {
                 db.insert("ItemImages", null, valuesImage);
             }
         }
-
-
         db.close();  // Close the database after insertion
 
         return ItemID;
     }
+    // Delete item
+    public void DeleteItem(int ItemID) {
+        SQLiteDatabase db = getWritableDatabase();
+        try {
+            db.beginTransaction();
+            // Raw SQL query to delete the item by ID
+            String deleteQuery = "DELETE FROM Item WHERE ID = ?";
+            db.execSQL(deleteQuery, new Object[]{ItemID});
+            db.setTransactionSuccessful();
+        } finally {
+            db.endTransaction();
+            db.close();
+        }
+    }
 
 
+    public long insertNewCategory(Category newCategory) {
+        SQLiteDatabase db = getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("CategoryName", newCategory.getCategoryName());
+        // Insert the values into the Item table
+        long CategoryID = db.insert("Category", null, values);
+        db.close();  // Close the database after insertion
+        return CategoryID;
+    }
+
+    public void DeleteCategory(int categoryId) {
+        SQLiteDatabase db = getWritableDatabase();
+        try {
+            db.beginTransaction();
+            // Raw SQL query to delete the item by ID
+            String deleteQuery = "DELETE FROM Category WHERE ID = ?";
+            db.execSQL(deleteQuery, new Object[]{categoryId});
+            db.setTransactionSuccessful();
+        } finally {
+            db.endTransaction();
+            db.close();
+        }
+    }
 }
