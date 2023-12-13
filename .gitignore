@@ -1,4 +1,5 @@
 .gradle
+.idea/
 .idea/caches
 .idea/libraries
 .idea/modules.xml
@@ -31,8 +32,6 @@ output.json
 
 # IntelliJ
 *.iml
-.idea/
-misc.xml
 deploymentTargetDropDown.xml
 render.experimental.xml
 
