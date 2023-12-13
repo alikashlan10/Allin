@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".RegisterActivity">
+    tools:context=".Register">
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/RegFullName"
@@ -14,6 +14,18 @@
         android:hint="Full name"
         android:textColorHint="#9E9E9E"
         app:layout_constraintBottom_toTopOf="@+id/RegEmail"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.505"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/RegUsername"
+        android:layout_width="318dp"
+        android:layout_height="49dp"
+        android:layout_marginBottom="21dp"
+        android:hint="User name"
+        android:textColorHint="#9E9E9E"
+        app:layout_constraintBottom_toTopOf="@+id/RegFullName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.505"
         app:layout_constraintStart_toStartOf="parent" />
@@ -59,26 +71,26 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/RegBuilding"
-        android:layout_width="150dp"
-        android:layout_height="49dp"
-        android:layout_marginStart="48dp"
-        android:layout_marginBottom="124dp"
-        android:hint="Building No."
-        android:textColorHint="#9E9E9E"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/RegApartment"
         android:layout_width="150dp"
         android:layout_height="49dp"
         android:layout_marginEnd="44dp"
-        android:layout_marginBottom="124dp"
+        android:layout_marginBottom="84dp"
         android:hint="Apt No."
         android:textColorHint="#9E9E9E"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/RegBuilding"
+        android:layout_width="150dp"
+        android:layout_height="49dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginBottom="84dp"
+        android:hint="Building No."
+        android:textColorHint="#9E9E9E"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/RegCity"
@@ -110,7 +122,7 @@
         android:layout_height="49dp"
         android:layout_marginStart="48dp"
         android:layout_marginEnd="45dp"
-        android:layout_marginBottom="192dp"
+        android:layout_marginBottom="144dp"
         android:hint="Street"
         android:textColorHint="#9E9E9E"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -136,7 +148,7 @@
         android:id="@+id/RegTitle"
         android:layout_width="191dp"
         android:layout_height="28dp"
-        android:layout_marginTop="57dp"
+        android:layout_marginTop="36dp"
         android:text="Registeration Form"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         app:layout_constraintEnd_toEndOf="parent"
@@ -147,7 +159,7 @@
         android:id="@+id/Regsubmitbtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="38dp"
+        android:layout_marginBottom="24dp"
         android:text="Submit"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
