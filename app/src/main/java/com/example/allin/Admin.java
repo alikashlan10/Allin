@@ -3,6 +3,7 @@ package com.example.allin;
 import java.util.List;
 
 public class Admin extends Person {
+
     public void addItem(int itemId, String itemName, String description, double price, int stockQuantity, Sale sale, String CatName, DbHelper dbHelper, List<byte[]> images) {
         //instance of System
         OnlineShoppingSystem system = OnlineShoppingSystem.getInstance();
@@ -18,9 +19,6 @@ public class Admin extends Person {
         system.getItemsList().add(newItem);
     }
 
-    public void AddSale(){
-
-    }
     public void DeleteItem(Item item,DbHelper dbHelper){
         //instance of System
         OnlineShoppingSystem system = OnlineShoppingSystem.getInstance();
@@ -48,8 +46,12 @@ public class Admin extends Person {
         //---> delete item from the list
         system.getItemsList().remove(category);
     }
-    public void ShowOrdersInPeriod(){}
 
+
+    public void ShowOrdersInPeriod(){}
+    public void AddSale(){
+
+    }
 
     @Override
     public boolean login(String username, String password, DbHelper db) {

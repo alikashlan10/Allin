@@ -106,7 +106,7 @@ public class User extends Person{
 
 
     //register function that takes user info and return userID after creation
-    public int Register(String username,String pass,String name,String email,String creditCardNum,String ssn,String country
+    public int Register(String username,String pass,String name,String email,String ssn,String country
                        ,String City,String street,String buildingNum,String flatNum,DbHelper dbHelper)
     {
         //Building UserAddress object
@@ -124,7 +124,7 @@ public class User extends Person{
         user.setSSN(ssn);
         user.setFullName(name);
         user.setEmail(email);
-        user.setCreditCard(creditCardNum);
+        //user.setCreditCard(creditCardNum);
         user.setUserAddress(address);
 
 

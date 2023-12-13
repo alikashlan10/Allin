@@ -339,7 +339,7 @@ public class DbHelper extends SQLiteOpenHelper {
             userValues.put("Password", user.getPassword());
             userValues.put("FullName", user.getFullName());
             userValues.put("SSN", user.getSSN());
-            userValues.put("CreditCardNumber", user.getCreditCard());
+            //userValues.put("CreditCardNumber", user.getCreditCard());
             userValues.put("Email", user.getEmail());
             userValues.put("AddressID", addressId); // Foreign key reference
 
