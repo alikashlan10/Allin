@@ -212,14 +212,26 @@ public class User extends Person{
     }
 
 
+    // Add feedback
+    public void AddFeedBack(User user,Item item,String comment,int rating,DbHelper dbhelper)
+    {
+        OnlineShoppingSystem system=OnlineShoppingSystem.getInstance();
 
-    public void PlaceOrder(){}
+        int FeedbackID;
 
-    public void CancelOrder(){}
+        //Add feedback to database
+        FeedbackID=(int)dbhelper.insertNewFeedback(comment,rating,user.getPersonID(), item.getItemId());
+
+        //Add Feedback to feedback list
+        system.getFeedbacks().add(new Feedback(FeedbackID,user,item,comment,rating));
+
+        //system.getFeedbacks().add(new Feedback())
+
+    }
+
 
     public void UpdatePersonalInfo(){}
 
-    public void AddFeedBack(){}
 
 
 
