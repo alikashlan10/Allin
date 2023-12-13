@@ -4,7 +4,7 @@ import java.util.List;
 
 public class Admin extends Person {
 
-    public void addItem(int itemId, String itemName, String description, double price, int stockQuantity, Sale sale, String CatName, DbHelper dbHelper, List<byte[]> images) {
+    public void addItem(int itemId, String itemName, String description, double price, int stockQuantity, float sale, String CatName, DbHelper dbHelper, List<byte[]> images) {
         //instance of System
         OnlineShoppingSystem system = OnlineShoppingSystem.getInstance();
         //getting category object corresponding to its name
@@ -52,9 +52,18 @@ public class Admin extends Person {
     public void AddSale(){
 
     }
-
     @Override
     public boolean login(String username, String password, DbHelper db) {
-        return db.loginAdmin(username, password);
+        OnlineShoppingSystem system = OnlineShoppingSystem.getInstance();
+        int adminID = db.loginAdmin(username, password);
+        for (Admin admin:
+             system.admins) {
+            if (admin!=null && admin.getUserName().equals(username) && admin.getPassword().equals(password)) {
+                // Login successful
+                system.setCurrentPerson(admin);
+                return true;
+            }
+        }
+        return false;
     }
 }

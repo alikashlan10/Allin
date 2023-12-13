@@ -32,6 +32,7 @@ public class User extends Person{
             if (user!=null && user.getUserName().equals(enteredUsername) && user.getPassword().equals(enteredPassword)) {
                 // Login successful
                 this.loadUserData(user);
+                system.setCurrentPerson(user);
                 return true;
             }
         }
@@ -51,8 +52,6 @@ public class User extends Person{
         this.PersonID = user.getPersonID();
         // Avoid storing the password in the instance variables
     }
-
-
 
 
     ////////////////////////// Setters and Getters //////////////////////////
@@ -102,8 +101,6 @@ public class User extends Person{
 
     //----------------------------------------------------------------------
     ////////////////////////////////////////////////////////////////////////
-
-
 
     //register function that takes user info and return userID after creation
     public int Register(String username,String pass,String name,String email,String ssn,String country

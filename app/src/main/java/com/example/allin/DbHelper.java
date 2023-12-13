@@ -14,14 +14,10 @@ public class DbHelper extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "ALl_In_DB";
     private static final int DATABASE_VERSION = 1;
-
     public DbHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
-
     private static DbHelper instance;
-
-
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////
     ////////////////////////////////// Creation strings (sql statements) //////////////////////////////////
@@ -220,7 +216,7 @@ public class DbHelper extends SQLiteOpenHelper {
 
     // admin login query
     @SuppressLint("Range")
-    public boolean loginAdmin(String username, String password) {
+    public int loginAdmin(String username, String password) {
         SQLiteDatabase db = this.getReadableDatabase();
 
         String query = "SELECT AdminID FROM Admin WHERE Username = ? AND password = ?";
@@ -234,13 +230,9 @@ public class DbHelper extends SQLiteOpenHelper {
             // User authentication successful
             userId = cursor.getInt(cursor.getColumnIndex("AdminID"));
         }
-
         cursor.close();
         db.close();
-        if(userId != -1)
-            return true;
-
-        return false;
+        return userId;
     }
 
 
@@ -249,18 +241,13 @@ public class DbHelper extends SQLiteOpenHelper {
     public List<User> getAllUsers() {
         List<User> userList = new ArrayList<>();
         SQLiteDatabase db = getReadableDatabase();
-
         //raw query to select all users
         String Query = "SELECT * FROM User";
-
         //Executing the raw query
         Cursor cursor = db.rawQuery(Query, null);
-
         // Iterating through the table and add users(all their info) to the list
         while (cursor.moveToNext()) {
-
             User user = new User();
-
             user.setPersonID(cursor.getInt(cursor.getColumnIndex("UserID")));
             user.setUserName(cursor.getString(cursor.getColumnIndex("Username")));
             user.setPassword(cursor.getString(cursor.getColumnIndex("Password")));
@@ -269,15 +256,33 @@ public class DbHelper extends SQLiteOpenHelper {
             user.setEmail(cursor.getString(cursor.getColumnIndex("Email")));
             user.setSSN(cursor.getString(cursor.getColumnIndex("SSN")));
             user.setFullName(cursor.getString(cursor.getColumnIndex("FullName")));
-
             userList.add(user);
         }
-
         // Close the cursor and database
         cursor.close();
         db.close();
-
         return userList;
+    }
+    @SuppressLint("Range")
+    public List<Admin> getAllAdmins() {
+        List<Admin> adminList = new ArrayList<>();
+        SQLiteDatabase db = getReadableDatabase();
+        //raw query to select all users
+        String Query = "SELECT * FROM Admin";
+        //Executing the raw query
+        Cursor cursor = db.rawQuery(Query, null);
+        // Iterating through the table and add users(all their info) to the list
+        while (cursor.moveToNext()) {
+            Admin admin = new Admin();
+            admin.setPersonID(cursor.getInt(cursor.getColumnIndex("AdminID")));
+            admin.setUserName(cursor.getString(cursor.getColumnIndex("Username")));
+            admin.setPassword(cursor.getString(cursor.getColumnIndex("Password")));
+            adminList.add(admin);
+        }
+        // Close the cursor and database
+        cursor.close();
+        db.close();
+        return adminList;
     }
 
 
@@ -436,7 +441,7 @@ public class DbHelper extends SQLiteOpenHelper {
         values.put("Price", item.getPrice());
         values.put("StockQuantity", item.getStockQuantity());
         values.put("CategoryID", item.getCategory().getCategoryId());
-        values.put("SaleID", item.getSale() != null ? item.getSale().getSaleId() : null);  // Assuming SaleID is a foreign key in the Item table
+        values.put("SaleID", item.getSale());  // Assuming SaleID is a foreign key in the Item table
 
         // Insert the values into the Item table
         long ItemID = db.insert("Item", null, values);
@@ -516,4 +521,6 @@ public class DbHelper extends SQLiteOpenHelper {
             db.close();
         }
     }
+
+
 }

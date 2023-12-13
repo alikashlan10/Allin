@@ -21,7 +21,7 @@ public class Item {
     private double price;
     private int stockQuantity;
     private Category category;
-    private Sale sale;
+    private float sale;
     private List<byte[]> images;
 
     public Item(int itemId, String itemName, String description, double price, int stockQuantity,Category category,List<byte[]> images) {
@@ -77,10 +77,10 @@ public class Item {
         this.stockQuantity = stockQuantity;
     }
 
-    public Sale getSale() {
+    public float getSale() {
         return sale;
     }
-    public void setSale(Sale sale) {
+    public void setSale(float sale) {
         this.sale = sale;
     }
 
