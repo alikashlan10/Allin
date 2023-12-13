@@ -126,7 +126,7 @@ public class OnlineShoppingSystem {
     //w da apply sale
     public void applySale(Item item, Sale sale) {
         System.out.println("Sale is applied");
-        double price_after_discount=item.setPrice(item.getPrice()*sale.getDiscountPercentage());
+        double price_after_discount=(item.getPrice()*sale.getDiscountPercentage());
         System.out.println("The new price after discount is: "+ price_after_discount);
     }
 }

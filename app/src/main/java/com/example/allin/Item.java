@@ -53,10 +53,7 @@ public class Item {
         return price;
     }
 
-    public double setPrice(double price) {
-        this.price = price;
-        return price;
-    }
+    public void setPrice(double price) {this.price = price;}
 
     public int getStockQuantity() {
         return stockQuantity;
