@@ -426,7 +426,7 @@ public class DbHelper extends SQLiteOpenHelper {
     }
 
 
-    //Add new item (with images)
+    // Add new item (with images)
     public Long insertNewItem(Item item) {
         SQLiteDatabase db = getWritableDatabase();
 
@@ -473,7 +473,25 @@ public class DbHelper extends SQLiteOpenHelper {
         }
     }
 
+    // Add new Feedback
+    long insertNewFeedback(String comment,int rating,int userID,int ItemID)
+    {
+        SQLiteDatabase db = getWritableDatabase();
 
+        ContentValues values = new ContentValues();
+        values.put("Comment", comment);
+        values.put("Rating", rating);
+        values.put("UserID",userID);
+        values.put("ItemID",ItemID);
+
+        //Insert values into the Feedback table
+        long ID=db.insert("Feedback",null,values);
+
+        return ID;
+
+    }
+
+    // Add New category
     public long insertNewCategory(Category newCategory) {
         SQLiteDatabase db = getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -484,6 +502,7 @@ public class DbHelper extends SQLiteOpenHelper {
         return CategoryID;
     }
 
+    // Delete category
     public void DeleteCategory(int categoryId) {
         SQLiteDatabase db = getWritableDatabase();
         try {

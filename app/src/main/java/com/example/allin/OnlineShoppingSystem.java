@@ -12,11 +12,13 @@ import java.util.List;
  */
 public class OnlineShoppingSystem {
 
-    private List<Category> categories;
+
+    private List<Category> categories = new ArrayList<>();
     public  List<User> users = new ArrayList<>();
     private List<Admin> admins = new ArrayList<>();
     private List<Order> orders  = new ArrayList<>();
     private List<Item> items  = new ArrayList<>();
+    private List<Feedback> feedbacks= new ArrayList<>();
     private static OnlineShoppingSystem instance = new OnlineShoppingSystem();
     private OnlineShoppingSystem(){}
 
@@ -95,6 +97,13 @@ public class OnlineShoppingSystem {
     }
 
 
+    // get and set Feedbacks list
+    public List<Feedback> getFeedbacks() {
+        return feedbacks;
+    }
+    public void setFeedbacks(List<Feedback> feedbacks) {
+        this.feedbacks = feedbacks;
+    }
 
 
     //-----------------------------------------------------------------------------------------------------
@@ -112,16 +121,7 @@ public class OnlineShoppingSystem {
         System.out.println("Category after edit: "+ category);
     }
 
-    //Deleting category
-    public void deleteCategory(Category category) {
-        System.out.println("Categories Before Deletion: "+ categories);
-        System.out.println("Category deleted is : "+ category);
-        if(!categories.isEmpty()){
-            categories.remove(category);
-        }
-        System.out.println("Categories after deletion: "+ categories);
 
-    }
 
     //adding user
     public void addUser(User user) {
@@ -141,14 +141,17 @@ public class OnlineShoppingSystem {
     // !!!!!    rakezo hna 3shan mmkn akon 3akek     !!!!!!
     public Order placeOrder(User user, List<OrderedItem> items) {
         Order order=null;
+
         int orderId=order.getOrderId();
         String orderDate= order.getOrderDate();
         String status=order.getStatus();
         String deliveryDate=order.getDeliveryDate();
         double totalAmount=order.getTotalAmount();
+
+
         order=new Order(orderId,user, items,orderDate,status,deliveryDate,totalAmount);
-       System.out.println("The order you just placed is: ");
-       return order;
+        System.out.println("The order you just placed is: ");
+        return order;
     }
 
     // w hna b3ml cancelling ll order 3n taree2 kol haga brg3ha lnull
