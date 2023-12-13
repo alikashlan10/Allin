@@ -1,19 +1,17 @@
-*.iml
 .gradle
-/local.properties
-/.idea/caches
-/.idea/libraries
-/.idea/modules.xml
-/.idea/workspace.xml
-/.idea/navEditor.xml
-/.idea/misc.xml
-/.idea/assetWizardSettings.xml
+.idea/
+.idea/caches
+.idea/libraries
+.idea/modules.xml
+.idea/workspace.xml
+.idea/navEditor.xml
+.idea/misc.xml
+.idea/assetWizardSettings.xml
 .DS_Store
 /build
 /captures
 .externalNativeBuild
 .cxx
-local.properties
 
 # Gradle files
 .gradle/
@@ -26,16 +24,13 @@ local.properties
 *.log
 
 # Android Studio generated files and folders
-captures/
+captures
 .externalNativeBuild/
-.cxx/
 *.apk
 output.json
 
 # IntelliJ
 *.iml
-.idea/
-misc.xml
 deploymentTargetDropDown.xml
 render.experimental.xml
 
