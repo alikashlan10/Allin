@@ -18,7 +18,6 @@ public class Admin extends Person {
         newItem.setItemId((int)ItemID);
         system.getItemsList().add(newItem);
     }
-
     public void DeleteItem(Item item,DbHelper dbHelper){
         //instance of System
         OnlineShoppingSystem system = OnlineShoppingSystem.getInstance();
@@ -27,6 +26,8 @@ public class Admin extends Person {
         //---> delete item from the list
         system.getItemsList().remove(item);
     }
+
+
     public void AddCategory(String categoryName,DbHelper dbHelper){
         //instance of System
         OnlineShoppingSystem system = OnlineShoppingSystem.getInstance();
