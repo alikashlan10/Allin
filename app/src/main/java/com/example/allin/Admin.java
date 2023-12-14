@@ -4,17 +4,22 @@ import java.util.List;
 
 public class Admin extends Person {
 
+    private Admin(int adminID, String username, String password) {
+        this.PersonID = adminID;
+        this.UserName = username;
+        this.password = password;
+    }
+    public Admin() {
+    }
+
     @Override
     public boolean login(String username, String password, DbHelper db) {
         OnlineShoppingSystem system = OnlineShoppingSystem.getInstance();
         int adminID = db.loginAdmin(username, password);
-        for (Admin admin:
-                system.admins) {
-            if (admin!=null && admin.getUserName().equals(username) && admin.getPassword().equals(password)) {
-                // Login successful
-                system.setCurrentPerson(admin);
-                return true;
-            }
+        if(adminID != -1) {
+            Admin admin = new Admin(adminID, username, password);
+            system.setCurrentPerson(admin);
+            return true;
         }
         return false;
     }
