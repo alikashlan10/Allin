@@ -233,6 +233,25 @@ public class User extends Person{
 
     }
 
+    // Cancel Order
+    public void CancelOrder(int orderID,DbHelper dbHelper)
+    {
+        OnlineShoppingSystem system=OnlineShoppingSystem.getInstance();
+
+        //Update Status in Order list
+        for (Order order:system.getOrders()) {
+            if (order.getOrderId()==orderID){
+                order.setStatus("Canceled");
+                break;
+            }
+
+        }
+
+        //Update status in database
+        dbHelper.cancelOrder(orderID);
+
+    }
+
 
     public void UpdatePersonalInfo(String newName, String newEmail, String newCity,
                                    String newStreet, String newBuildingNum, String newFlatNum, DbHelper dbHelper) {

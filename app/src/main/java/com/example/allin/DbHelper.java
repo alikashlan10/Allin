@@ -423,7 +423,6 @@ public class DbHelper extends SQLiteOpenHelper {
 
         return category;
     }
-    ////////////////////////////////////
 
 
     // load all items
@@ -462,15 +461,19 @@ public class DbHelper extends SQLiteOpenHelper {
 
         return itemList;
     }
-
-
-
     //////////////////////////////////////////////////////////////////////////////
 
 
 
 
 
+
+
+
+
+
+
+    ////////////////////////////////////
     // Insertion of new user
     public long InsertNewUser(User user) {
         SQLiteDatabase db = getWritableDatabase();
@@ -755,6 +758,29 @@ public class DbHelper extends SQLiteOpenHelper {
         //////////////////////////////////////////////////////////////////////////////
 
         return orderid;
+    }
+    // Function to cancel an order by updating its status using rawQuery
+    public void cancelOrder(int orderId) {
+        SQLiteDatabase db = getWritableDatabase();
+
+        // Construct the SQL UPDATE statement
+
+
+        try {
+
+            db.beginTransaction();
+
+            // Raw SQL query to update order status in Order table
+            String updateQuery = "UPDATE Orders SET Status = 'Canceled' WHERE OrderID = " + orderId;
+            db.execSQL(updateQuery, new Object[]{orderId});
+
+            db.setTransactionSuccessful();
+
+
+        } finally {
+            db.endTransaction();
+            db.close();
+        }
     }
 
 

@@ -32,6 +32,7 @@ public class OnlineShoppingSystem {
     private static OnlineShoppingSystem instance = new OnlineShoppingSystem();
     private OnlineShoppingSystem(){}
 
+
     //Singelton pattern for instances creation
     public static OnlineShoppingSystem getInstance(){
         if(instance ==null){
@@ -61,6 +62,13 @@ public class OnlineShoppingSystem {
         categories.addAll(CategoriesFromDatabase);
     }
 
+    public List<Order> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(List<Order> orders) {
+        this.orders = orders;
+    }
 
     //load all users from database into the Users list
     public void loadUsersFromDatabase(DbHelper dbHelper) {
