@@ -69,6 +69,7 @@ public class DbHelper extends SQLiteOpenHelper {
             "ItemInfo TEXT, " +
             "Price REAL, " +
             "StockQuantity INTEGER, " +
+            "SoldQuantity INTEGER,"+
             "CategoryID INTEGER, " +
             "SaleID INTEGER ,"+
             "FOREIGN KEY (SaleID) REFERENCES Sale(SaleID),"+
@@ -185,7 +186,7 @@ public class DbHelper extends SQLiteOpenHelper {
 
 
     //////////////////////////////////////////////////////////////////////////////
-    //functions to load tables int lists
+    //functions to load tables into lists
     //////////////////////////////////////////////////////////////////////////////
     // load all users
     @SuppressLint("Range")
@@ -303,7 +304,6 @@ public class DbHelper extends SQLiteOpenHelper {
     }
 
     ////////////////// load orders
-
     @SuppressLint("Range")
     public List<Order> getAllOrders() {
         List<Order> orderList = new ArrayList<>();
@@ -388,6 +388,7 @@ public class DbHelper extends SQLiteOpenHelper {
                     cursor.getString(cursor.getColumnIndex("ItemInfo")),
                     cursor.getDouble(cursor.getColumnIndex("Price")),
                     cursor.getInt(cursor.getColumnIndex("StockQuantity")),
+                    cursor.getInt(cursor.getColumnIndex("SoldQuantity")),
                     category,
                     null // Images are not fetched in this example; you may modify it to fetch images
             );
@@ -422,6 +423,46 @@ public class DbHelper extends SQLiteOpenHelper {
 
         return category;
     }
+    ////////////////////////////////////
+
+
+    // load all items
+    @SuppressLint("Range")
+    public List<Item> getAllItems() {
+        List<Item> itemList = new ArrayList<>();
+        SQLiteDatabase db = getReadableDatabase();
+
+        // Raw query to select all items
+        String query = "SELECT * FROM Item";
+        Cursor cursor = db.rawQuery(query, null);
+
+        // Iterate through the table and add items to the list
+        while (cursor.moveToNext()) {
+            int itemId = cursor.getInt(cursor.getColumnIndex("ItemID"));
+            String itemName = cursor.getString(cursor.getColumnIndex("Label"));
+            String description = cursor.getString(cursor.getColumnIndex("ItemInfo"));
+            double price = cursor.getDouble(cursor.getColumnIndex("Price"));
+            int stockQuantity = cursor.getInt(cursor.getColumnIndex("StockQuantity"));
+            int soldQuantity = cursor.getInt(cursor.getColumnIndex("SoldQuantity"));
+            int categoryId = cursor.getInt(cursor.getColumnIndex("CategoryID"));
+
+            // Fetch the associated Category for this Item
+            Category category = getCategoryById(categoryId);
+
+            // Create the Item object
+            Item item = new Item(itemId, itemName, description, price, stockQuantity,soldQuantity, category, null);
+
+            // Add the Item to the list
+            itemList.add(item);
+        }
+
+        // Close the cursor and database
+        cursor.close();
+        db.close();
+
+        return itemList;
+    }
+
 
 
     //////////////////////////////////////////////////////////////////////////////
@@ -561,6 +602,7 @@ public class DbHelper extends SQLiteOpenHelper {
         values.put("ItemInfo", item.getDescription());
         values.put("Price", item.getPrice());
         values.put("StockQuantity", item.getStockQuantity());
+        values.put("SoldQuantity",item.getSoldQuantity());
         values.put("CategoryID", item.getCategory().getCategoryId());
         values.put("SaleID", item.getSale());  // Assuming SaleID is a foreign key in the Item table
 

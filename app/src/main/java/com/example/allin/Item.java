@@ -20,16 +20,18 @@ public class Item {
     private String description;
     private double price;
     private int stockQuantity;
+    private int soldQuantity;
     private Category category;
     private float sale;
     private List<byte[]> images;
 
-    public Item(int itemId, String itemName, String description, double price, int stockQuantity,Category category,List<byte[]> images) {
+    public Item(int itemId, String itemName, String description, double price, int stockQuantity,int soldQuantity,Category category,List<byte[]> images) {
         this.itemId = itemId;
         this.itemName = itemName;
         this.description = description;
         this.price = price;
         this.stockQuantity = stockQuantity;
+        this.soldQuantity=soldQuantity;
         this.category=category;
         this.images= images;
     }
@@ -90,6 +92,13 @@ public class Item {
     }
     public void setCategory(Category category) {
         this.category = category;
+    }
+
+    public int getSoldQuantity() {
+        return soldQuantity;
+    }
+    public void setSoldQuantity(int soldQuantity) {
+        this.soldQuantity = soldQuantity;
     }
 
 }

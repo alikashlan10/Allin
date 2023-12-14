@@ -30,7 +30,7 @@ public class Admin extends Person {
         //getting category object corresponding to its name
         Category category= system.getCategoryIdByName(CatName);
         //setting item info
-        Item newItem = new Item(itemId, itemName, description, price, stockQuantity,category,images);
+        Item newItem = new Item(itemId, itemName, description, price, stockQuantity,0,category,images);
         newItem.setSale(sale);
         //---> Add item to the database
         long ItemID=dbHelper.insertNewItem(newItem);

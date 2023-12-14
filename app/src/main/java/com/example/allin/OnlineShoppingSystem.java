@@ -41,7 +41,8 @@ public class OnlineShoppingSystem {
         users.add(user);
     }
 
-    ///////////////////////////////// Load Lists
+
+    // ------------- Load Lists
     ////////////////////////////////////////////////////////////////////////
     //load all categories from database to the categories list
     public void loadCategoriesDatabase(DbHelper dbHelper) {
@@ -73,10 +74,16 @@ public class OnlineShoppingSystem {
         orders.clear();
         orders.addAll(ordersFromDatabase);
     }
+
+    //laod all items from database into the items list
+    public void loadItemsFromDatabase(DbHelper dbHelper)
+    {
+        List<Item> ItemsFromDatabase = dbHelper.getAllItems();
+
+        items.clear();
+        items.addAll(ItemsFromDatabase);
+    }
     ////////////////////////////////////////////////////////////////////////
-
-
-
 
 
 
@@ -86,7 +93,6 @@ public class OnlineShoppingSystem {
     public List<Category> getCategories() {
         return categories;
     }
-
 
     //helper function to add a new category to the categories list
     public void addCategory(Category category) {
@@ -109,8 +115,8 @@ public class OnlineShoppingSystem {
     //------------------------------------------------------------------------------------
 
 
-
-    // get items list
+    // ------------- setters and getters
+    ////////////////////////////////////////////////////////////////////////
     public List<Item> getItemsList() {
         return items;
     }
@@ -130,9 +136,11 @@ public class OnlineShoppingSystem {
     public void setCurrentPerson(Person currentPerson) {
         CurrentPerson = currentPerson;
     }
+    ////////////////////////////////////////////////////////////////////////
 
 
-    // Helper function to place an order
+
+    // Place an Order
     public void placeOrder(User user, DbHelper dbHelper) {
 
         List<CartItem> userCart = user.getCart();
@@ -149,24 +157,18 @@ public class OnlineShoppingSystem {
 
         //Remove cart
         //Delete cart items from database
-        DeleteCartfromDatabase(user.getCart(),dbHelper);
+        DeleteCartFromDatabase(user.getCart(),dbHelper);
         //Clear cart
         user.getCart().clear();
     }
 
     //Delete cart from database
-    public void DeleteCartfromDatabase(List<CartItem> cartitems,DbHelper dbHelper)
+    public void DeleteCartFromDatabase(List<CartItem> cartitems,DbHelper dbHelper)
     {
         for (CartItem item : cartitems) {
             dbHelper.DeleteCartItem(item.getCartItemID());
         }
 
-    }
-
-
-    //orderId
-    private int OrderId() {
-        return orders.size() + 1;
     }
 
 
