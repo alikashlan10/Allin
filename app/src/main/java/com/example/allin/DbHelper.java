@@ -118,18 +118,12 @@ public class DbHelper extends SQLiteOpenHelper {
             "Quantity INTEGER, " +
             "OrderID INTEGER, " +
             "ItemID INTEGER, " +
-            "SaleID INTEGER, "+
             "FOREIGN KEY (SaleID) REFERENCES Sale(SaleID),"+
             "FOREIGN KEY (OrderID) REFERENCES Orders(OrderID), " +
             "FOREIGN KEY (ItemID) REFERENCES Item(ItemID))";
 
 
-    //Sale table
-    private static final String CREATE_SALE = "CREATE TABLE Sale("+
-            "SaleID INTEGER PRIMARY KEY AUTOINCREMENT, "+
-            "StartDate TEXT ,"+
-            "EndDate TEXT ," +
-            "DiscountPercentage REAL )";
+
 
 
 
@@ -147,7 +141,6 @@ public class DbHelper extends SQLiteOpenHelper {
         db.execSQL(CREATE_ORDER_ITEM);
         db.execSQL(CREATE_ADMIN);
         db.execSQL(CREATE_FEEDBACK);
-        db.execSQL(CREATE_SALE);
         db.execSQL(CREATE_ITEM_IMAGES);
 
 
@@ -494,10 +487,50 @@ public class DbHelper extends SQLiteOpenHelper {
 
 
 
+    // Add order
+    public long InsertNewOrder(int userID,String date,double total,String deliveryDate,String status,List<CartItem> items)
+    {
+
+        SQLiteDatabase db = getWritableDatabase();
+        ContentValues values = new ContentValues();
+
+        //set values of order
+        values.put("UserID", userID );
+        values.put("OrderDate",date);
+        values.put("TotalAmount",total);
+        values.put("DeliveryDate",deliveryDate);
+        values.put("Status",status);
+
+        //isert order in Order table
+        long orderid = db.insert("ORDERS", null, values);
 
 
+        //Insert All cart items in ordered items
+        //////////////////////////////////////////////////////////////////////////////
+        for (CartItem item : items)
+        {
+            InsertOrderedItem(item,(int)orderid);
+        }
+        //////////////////////////////////////////////////////////////////////////////
+
+        return orderid;
+    }
 
 
+    // Add OrderItem
+    public void InsertOrderedItem(CartItem item,int OrderID)
+    {
+        SQLiteDatabase db = getWritableDatabase();
+        ContentValues values = new ContentValues();
+
+        //set values of order
+        values.put("Quantity" , item.getQuantity() );
+        values.put("OrderID " , OrderID);
+        values.put("ItemID"   , item.getItem().getItemId());
+
+        //isert orderitem in OrderItem table
+        db.insert("OrderItem", null, values);
+    }
 
 
 

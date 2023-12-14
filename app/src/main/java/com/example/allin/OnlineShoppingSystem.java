@@ -119,31 +119,30 @@ public class OnlineShoppingSystem {
 
     // Helper function to place an order
     public void placeOrder(User user, DbHelper dbHelper) {
+
         List<CartItem> userCart = user.getCart();
 
-        if (userCart.isEmpty()) {
-            System.out.println("Empty cart");
-        }
+        long OrderID;
 
-        Order order = new Order(
-                OrderId(),
-                user,
-                userCart,
-                getDate(),
-                "Placed",
-                null,
-                calculateTotalAmount(userCart)
-        );
+        // Add order in database
+        OrderID = dbHelper.InsertNewOrder(user.getPersonID(),getDate(),calculateTotalAmount(user.getCart()),getDate(),"in progress",user.getCart());
+
+        //create object of Order
+        Order order=new Order((int)OrderID,user,user.getCart(),getDate(),"in progress",getDate(),calculateTotalAmount(user.getCart()));
+
         //add to sys
         orders.add(order);
+
         //Clear cart
-        user.clearCart();
+        user.getCart().clear();
     }
+
 
     //orderId
     private int OrderId() {
         return orders.size() + 1;
     }
+
 
     //Total
     private double calculateTotalAmount(List<CartItem> cartItems) {
@@ -155,9 +154,9 @@ public class OnlineShoppingSystem {
         return Total;
     }
 
+
     //Date
     private String getDate() {
-        // Replace this with your logic to get the current date and time
         SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         return date.format(new Date());
     }

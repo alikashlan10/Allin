@@ -27,9 +27,7 @@ public class User extends Person{
     public List<CartItem> getCart() {
         return Cart;
     }
-    public void clearCart() {
-        Cart.clear();
-    }
+
 
 
     //login function depends on user List in the System class
