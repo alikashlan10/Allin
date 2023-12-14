@@ -640,6 +640,46 @@ public class DbHelper extends SQLiteOpenHelper {
             db.close();
         }
     }
+    // Update item quantities
+    public void updateItemQuantities(int itemIdToUpdate, int quantity) {
+        SQLiteDatabase db = getWritableDatabase();
+
+        // Fetch the current values from the database
+        int currentSoldQuantity = getCurrentItemValue(db, itemIdToUpdate,"SoldQuantity");
+        int currentStockQuantity = getCurrentItemValue(db, itemIdToUpdate,"StockQuantity");
+
+        // Calculate the new values by adding the increments
+        int newSoldQuantity  = currentSoldQuantity  + quantity;
+        int newStockQuantity = currentStockQuantity - quantity;
+
+        ContentValues values = new ContentValues();
+        values.put("SoldQuantity", newSoldQuantity);
+        values.put("StockQuantity", newStockQuantity);
+
+        // Update the item in the database
+        db.update("Item", values, "ItemID = ?", new String[]{String.valueOf(itemIdToUpdate)});
+
+        // Close the database
+        db.close();
+    }
+    // get the value of any Item attribute (helper function to get the current Stock and sold quantities)
+    @SuppressLint("Range")
+    private int getCurrentItemValue(SQLiteDatabase db, int itemId, String attributeName) {
+        String query = "SELECT " + attributeName + " FROM Item WHERE ItemID = ?";
+        String[] selectionArgs = {String.valueOf(itemId)};
+        Cursor cursor = db.rawQuery(query, selectionArgs);
+
+        int currentValue = 0;
+
+        if (cursor.moveToFirst()) {
+            currentValue = cursor.getInt(cursor.getColumnIndex(attributeName));
+        }
+
+        // Close the cursor
+        cursor.close();
+
+        return currentValue;
+    }
 
 
     // Add new Feedback

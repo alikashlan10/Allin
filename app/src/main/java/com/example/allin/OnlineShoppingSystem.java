@@ -4,7 +4,13 @@
  * and open the template in the editor.
  */
 package com.example.allin;
+import android.os.Build;
+
+import androidx.annotation.RequiresApi;
+
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 import java.text.SimpleDateFormat;
@@ -21,6 +27,7 @@ public class OnlineShoppingSystem {
     private List<Order> orders  = new ArrayList<>();
     private List<Item> items  = new ArrayList<>();
     private List<Feedback> feedbacks= new ArrayList<>();
+    private List<Item> bestSellers =new ArrayList<>();
     private Person CurrentPerson;
     private static OnlineShoppingSystem instance = new OnlineShoppingSystem();
     private OnlineShoppingSystem(){}
@@ -87,8 +94,21 @@ public class OnlineShoppingSystem {
 
 
 
-    //Category helpers
-    //------------------------------------------------------------------------------------
+    // ------------- Initialize App data
+    ////////////////////////////////////////////////////////////////////////
+    public void InitializeAppData(DbHelper dbHelper)
+    {
+        loadUsersFromDatabase(dbHelper);
+        loadCategoriesDatabase(dbHelper);
+        loadItemsFromDatabase(dbHelper);
+        loadOrdersFromDatabase(dbHelper);
+    }
+    ////////////////////////////////////////////////////////////////////////
+
+
+
+    // ------------- Category helpers
+    ////////////////////////////////////////////////////////////////////////
     //get categories list
     public List<Category> getCategories() {
         return categories;
@@ -112,7 +132,8 @@ public class OnlineShoppingSystem {
         // if not found
         return null;
     }
-    //------------------------------------------------------------------------------------
+    ////////////////////////////////////////////////////////////////////////
+
 
 
     // ------------- setters and getters
@@ -140,19 +161,30 @@ public class OnlineShoppingSystem {
 
 
 
-    // Place an Order
+    // ------------- Custom functions
+    ////////////////////////////////////////////////////////////////////////
+    //Place an Order
     public void placeOrder(User user, DbHelper dbHelper) {
 
         List<CartItem> userCart = user.getCart();
 
         long OrderID;
 
-        // Add order in database
+        //Add order in database
         OrderID = dbHelper.InsertNewOrder(user.getPersonID(),getDate(),calculateTotalAmount(user.getCart()),getDate(),"in progress",user.getCart());
-        //create object of Order
+        //Create object of Order
         Order order=new Order((int)OrderID,user.getPersonID(),user.getCart(),getDate(),"in progress",getDate(),calculateTotalAmount(user.getCart()));
-        //add to sys
+        //Add to sys
         orders.add(order);
+
+
+        //Update sold and stock quantities in items list and database
+        for (CartItem item  :user.getCart()) {
+
+                UpdateItemQuantities(item.getItem().getItemId(), item.getQuantity());
+                dbHelper.updateItemQuantities(item.getItem().getItemId(), item.getQuantity());
+
+        }
 
 
         //Remove cart
@@ -160,6 +192,31 @@ public class OnlineShoppingSystem {
         DeleteCartFromDatabase(user.getCart(),dbHelper);
         //Clear cart
         user.getCart().clear();
+    }
+
+    //Set bestSellers
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    public static void setTopSoldItems(List<Item> itemList, List<Item> bestSellers, int topN) {
+        // Sort the list based on SoldQuantity in descending order
+        Collections.sort(itemList, Comparator.comparingInt(Item::getSoldQuantity).reversed());
+
+        // Set the top N items into the target list
+        bestSellers.clear();
+        bestSellers.addAll(itemList.subList(0, Math.min(topN, itemList.size())));
+    }
+
+    //Update item (helper function to update all items quantities according to the Order)
+    public void UpdateItemQuantities(int itemID,int quantity)
+    {
+        for (Item item: items) {
+
+            if(item.getItemId()==itemID)
+            {
+                item.setSoldQuantity(item.getSoldQuantity()+quantity);
+                item.setStockQuantity(item.getStockQuantity()-quantity);
+            }
+
+        }
     }
 
     //Delete cart from database
@@ -171,7 +228,6 @@ public class OnlineShoppingSystem {
 
     }
 
-
     //Total
     private double calculateTotalAmount(List<CartItem> cartItems) {
         // Replace this with your logic to calculate the total amount
@@ -182,12 +238,12 @@ public class OnlineShoppingSystem {
         return Total;
     }
 
-
     //Date
     private String getDate() {
         SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         return date.format(new Date());
     }
+    ////////////////////////////////////////////////////////////////////////
 
 }
 
