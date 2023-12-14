@@ -67,7 +67,6 @@ public class Admin extends Person {
         system.getCategories().remove(category);
     }
 
-
     public void DeleteUser(User user)
     {
         //Instance of system
