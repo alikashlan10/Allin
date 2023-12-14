@@ -194,6 +194,15 @@ public class OnlineShoppingSystem {
         user.getCart().clear();
     }
 
+    //Delete cart from database
+    public void DeleteCartFromDatabase(List<CartItem> cartitems,DbHelper dbHelper)
+    {
+        for (CartItem item : cartitems) {
+            dbHelper.DeleteCartItem(item.getCartItemID());
+        }
+
+    }
+
     //Set bestSellers
     @RequiresApi(api = Build.VERSION_CODES.N)
     public static void setTopSoldItems(List<Item> itemList, List<Item> bestSellers, int topN) {
@@ -219,13 +228,17 @@ public class OnlineShoppingSystem {
         }
     }
 
-    //Delete cart from database
-    public void DeleteCartFromDatabase(List<CartItem> cartitems,DbHelper dbHelper)
+    //Get Items by specific Category
+    public List<Item> getItemByCategory(String CategoryName)
     {
-        for (CartItem item : cartitems) {
-            dbHelper.DeleteCartItem(item.getCartItemID());
-        }
+        List<Item> CatItems =new ArrayList<>();
 
+        for (Item item:items) {
+
+        if (item.getCategory().getCategoryName().equals(CategoryName))
+            CatItems.add(item);
+        }
+        return CatItems;
     }
 
     //Total
