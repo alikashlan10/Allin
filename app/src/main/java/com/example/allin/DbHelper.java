@@ -301,7 +301,128 @@ public class DbHelper extends SQLiteOpenHelper {
 
         return Feedbackslist;
     }
-    // load orders
+
+    ////////////////// load orders
+
+    @SuppressLint("Range")
+    public List<Order> getAllOrders() {
+        List<Order> orderList = new ArrayList<>();
+        SQLiteDatabase db = getReadableDatabase();
+
+        // Raw query to select all orders
+        String query = "SELECT * FROM ORDERS";
+        Cursor cursor = db.rawQuery(query, null);
+
+        // Iterate through the table and add orders to the list
+        while (cursor.moveToNext()) {
+            Order order = new Order();
+            order.setOrderId(cursor.getInt(cursor.getColumnIndex("OrderID")));
+            order.setUserID(cursor.getInt(cursor.getColumnIndex("UserID")));
+            order.setOrderDate(cursor.getString(cursor.getColumnIndex("OrderDate")));
+            order.setTotalAmount(cursor.getDouble(cursor.getColumnIndex("TotalAmount")));
+            order.setDeliveryDate(cursor.getString(cursor.getColumnIndex("DeliveryDate")));
+            order.setStatus(cursor.getString(cursor.getColumnIndex("Status")));
+
+            // Fetch the associated CartItems for this order
+            List<CartItem> cartItems = getCartItemsForOrder(order.getOrderId());
+            order.setItems(cartItems);
+
+            // Add the order to the list
+            orderList.add(order);
+        }
+
+        // Close the cursor and database
+        cursor.close();
+        db.close();
+
+        return orderList;
+    }
+    // Helper method to get CartItems for a specific order
+    @SuppressLint("Range")
+    private List<CartItem> getCartItemsForOrder(int orderId) {
+        List<CartItem> cartItems = new ArrayList<>();
+        SQLiteDatabase db = getReadableDatabase();
+
+        // Raw query to select CartItems for the given OrderID
+        String query = "SELECT * FROM OrderItem JOIN CartItem ON OrderItem.ItemID = CartItem.ItemID WHERE OrderItem.OrderID = ?";
+        String[] selectionArgs = {String.valueOf(orderId)};
+        Cursor cursor = db.rawQuery(query, selectionArgs);
+
+        // Iterate through the table and add CartItems to the list
+        while (cursor.moveToNext()) {
+            CartItem cartItem = new CartItem();
+            cartItem.setCartItemID(cursor.getInt(cursor.getColumnIndex("CartItemID")));
+            cartItem.setUserID(cursor.getInt(cursor.getColumnIndex("UserID")));
+            cartItem.setQuantity(cursor.getInt(cursor.getColumnIndex("Quantity")));
+
+            // Fetch the associated Item data for this CartItem
+            Item item = getItemById(cursor.getInt(cursor.getColumnIndex("ItemID")));
+            cartItem.setItem(item);
+
+            // Add the CartItem to the list
+            cartItems.add(cartItem);
+        }
+
+        // Close the cursor
+        cursor.close();
+
+        return cartItems;
+    }
+    // Helper method to get Item by ID
+    @SuppressLint("Range")
+    private Item getItemById(int itemId) {
+        SQLiteDatabase db = getReadableDatabase();
+
+        // Raw query to select Item by ID
+        String query = "SELECT * FROM Item WHERE ItemID = ?";
+        String[] selectionArgs = {String.valueOf(itemId)};
+        Cursor cursor = db.rawQuery(query, selectionArgs);
+
+        Item item = null;
+        // Fetch the Item data
+        if (cursor.moveToFirst()) {
+            Category category = getCategoryById(cursor.getInt(cursor.getColumnIndex("CategoryID")));
+            item = new Item(
+                    cursor.getInt(cursor.getColumnIndex("ItemID")),
+                    cursor.getString(cursor.getColumnIndex("Label")),
+                    cursor.getString(cursor.getColumnIndex("ItemInfo")),
+                    cursor.getDouble(cursor.getColumnIndex("Price")),
+                    cursor.getInt(cursor.getColumnIndex("StockQuantity")),
+                    category,
+                    null // Images are not fetched in this example; you may modify it to fetch images
+            );
+        }
+
+        // Close the cursor
+        cursor.close();
+
+        return item;
+    }
+    // Helper method to get Category by ID
+    @SuppressLint("Range")
+    private Category getCategoryById(int categoryId) {
+        SQLiteDatabase db = getReadableDatabase();
+
+        // Raw query to select Category by ID
+        String query = "SELECT * FROM Category WHERE CategoryID = ?";
+        String[] selectionArgs = {String.valueOf(categoryId)};
+        Cursor cursor = db.rawQuery(query, selectionArgs);
+
+
+        Category category = null;
+        // Fetch the Category data
+        if (cursor.moveToFirst()) {
+            category = new Category();
+            category.setCategoryId(cursor.getInt(cursor.getColumnIndex("CategoryID")));
+            category.setCategoryName(cursor.getString(cursor.getColumnIndex("CategoryName")));
+        }
+
+        // Close the cursor
+        cursor.close();
+
+        return category;
+    }
+
 
     //////////////////////////////////////////////////////////////////////////////
 

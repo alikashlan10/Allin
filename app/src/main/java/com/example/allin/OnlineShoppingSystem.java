@@ -41,7 +41,8 @@ public class OnlineShoppingSystem {
         users.add(user);
     }
 
-
+    ///////////////////////////////// Load Lists
+    ////////////////////////////////////////////////////////////////////////
     //load all categories from database to the categories list
     public void loadCategoriesDatabase(DbHelper dbHelper) {
         // Call the getAllUsers method from DbHelper to get all users from the database
@@ -62,6 +63,21 @@ public class OnlineShoppingSystem {
         users.clear();
         users.addAll(usersFromDatabase);
     }
+
+
+    //load all orders from database into the Orders list
+    public void loadOrdersFromDatabase(DbHelper dbHelper)
+    {
+        List<Order> ordersFromDatabase = dbHelper.getAllOrders();
+
+        orders.clear();
+        orders.addAll(ordersFromDatabase);
+    }
+    ////////////////////////////////////////////////////////////////////////
+
+
+
+
 
 
     //Category helpers
@@ -126,7 +142,7 @@ public class OnlineShoppingSystem {
         // Add order in database
         OrderID = dbHelper.InsertNewOrder(user.getPersonID(),getDate(),calculateTotalAmount(user.getCart()),getDate(),"in progress",user.getCart());
         //create object of Order
-        Order order=new Order((int)OrderID,user,user.getCart(),getDate(),"in progress",getDate(),calculateTotalAmount(user.getCart()));
+        Order order=new Order((int)OrderID,user.getPersonID(),user.getCart(),getDate(),"in progress",getDate(),calculateTotalAmount(user.getCart()));
         //add to sys
         orders.add(order);
 

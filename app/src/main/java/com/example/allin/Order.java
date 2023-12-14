@@ -14,17 +14,17 @@ import java.util.List;
  */
 public class Order {
     private int orderId;
-    private User user;
+    private int userID;
     private List<CartItem> items = new ArrayList<>();
     private String orderDate;
     private String status;
     private String deliveryDate;
     private double totalAmount;
 
-    public Order(int orderId, User user, List<CartItem> items, String orderDate, String status,
+    public Order(int orderId, int user, List<CartItem> items, String orderDate, String status,
                  String deliveryDate, double totalAmount) {
         this.orderId = orderId;
-        this.user = user;
+        this.userID = user;
         this.items = items;
         this.status=status;
         this.orderDate = orderDate;
@@ -42,12 +42,12 @@ public class Order {
         this.orderId = orderId;
     }
 
-    public User getUser() {
-        return user;
+    public int getUser() {
+        return userID;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUserID(int user) {
+        this.userID = user;
     }
 
     public List<CartItem> getItems() {
