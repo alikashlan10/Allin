@@ -184,9 +184,9 @@ public class DbHelper extends SQLiteOpenHelper {
 
 
 
-
-
-
+    //////////////////////////////////////////////////////////////////////////////
+    //functions to load tables int lists
+    //////////////////////////////////////////////////////////////////////////////
     // load all users
     @SuppressLint("Range")
     public List<User> getAllUsers() {
@@ -235,8 +235,6 @@ public class DbHelper extends SQLiteOpenHelper {
         db.close();
         return adminList;
     }
-
-
     // load all categories
     @SuppressLint("Range")
     public List<Category> getAllCategories()
@@ -269,6 +267,46 @@ public class DbHelper extends SQLiteOpenHelper {
         return CategoriesList;
 
     }
+    // load all feedbacks
+    @SuppressLint("Range")
+    public List<Feedback> getAllFeedbacks()
+    {
+        List<Feedback> Feedbackslist = new ArrayList<>();
+        SQLiteDatabase db = getReadableDatabase();
+
+        //raw query to select all categories
+        String Query="SELECT * FROM Feedback";
+
+        //Executing the raw query
+        Cursor cursor = db.rawQuery(Query, null);
+
+        // Iterate through the table and add categories to the list
+        while (cursor.moveToNext()) {
+
+            Feedback feedback = new Feedback();
+
+            feedback.setFeedbackId(cursor.getInt(cursor.getColumnIndex("FeedbackID")));
+            feedback.setComment(cursor.getString(cursor.getColumnIndex("Comment")));
+            feedback.setRating(cursor.getInt(cursor.getColumnIndex("Rating")));
+            feedback.setItem(cursor.getInt(cursor.getColumnIndex("ItemID")));
+            feedback.setUser(cursor.getInt(cursor.getColumnIndex("UserID")));
+
+
+            Feedbackslist.add(feedback);
+        }
+
+        // Close the cursor and database
+        cursor.close();
+        db.close();
+
+        return Feedbackslist;
+    }
+    // load orders
+
+    //////////////////////////////////////////////////////////////////////////////
+
+
+
 
 
     // Insertion of new user
@@ -531,20 +569,6 @@ public class DbHelper extends SQLiteOpenHelper {
         //isert orderitem in OrderItem table
         db.insert("OrderItem", null, values);
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

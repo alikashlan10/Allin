@@ -227,7 +227,7 @@ public class User extends Person{
         FeedbackID=(int)dbhelper.insertNewFeedback(comment,rating,user.getPersonID(), item.getItemId());
 
         //Add Feedback to feedback list
-        system.getFeedbacks().add(new Feedback(FeedbackID,user,item,comment,rating));
+        system.getFeedbacks().add(new Feedback(FeedbackID,user.getPersonID(),item.getItemId(),comment,rating));
 
         //system.getFeedbacks().add(new Feedback())
 
@@ -236,28 +236,13 @@ public class User extends Person{
 
     public void UpdatePersonalInfo(String newName, String newEmail, String newCity,
                                    String newStreet, String newBuildingNum, String newFlatNum, DbHelper dbHelper) {
-        //New Info
+        //set New Info
         this.fullName = newName;
         this.Email = newEmail;
         this.userAddress.setCity(newCity);
         this.userAddress.setStreet(newStreet);
         this.userAddress.setBuildingNum(newBuildingNum);
         this.userAddress.setFlatNum(newFlatNum);
-
-        //Send to user
-        OnlineShoppingSystem system = OnlineShoppingSystem.getInstance();
-        for (User user : system.users) {
-            if (user != null && user.getPersonID() == this.getPersonID()) {
-                // Update user information
-                user.setFullName(newName);
-                user.setEmail(newEmail);
-                user.getUserAddress().setCity(newCity);
-                user.getUserAddress().setStreet(newStreet);
-                user.getUserAddress().setBuildingNum(newBuildingNum);
-                user.getUserAddress().setFlatNum(newFlatNum);
-                break;
-            }
-        }
 
         //ContentValues
         ContentValues values = new ContentValues();

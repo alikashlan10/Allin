@@ -11,18 +11,20 @@ package com.example.allin;
  */
 public class Feedback {
     private int feedbackId;
-    private User user;
-    private Item item;
+    private int userID;
+    private int itemID;
     private String comment;
     private int rating;
 
-    public Feedback(int feedbackId, User user, Item item, String comment, int rating) {
+    public Feedback(int feedbackId, int user, int item, String comment, int rating) {
         this.feedbackId = feedbackId;
-        this.user = user;
-        this.item = item;
+        this.userID = user;
+        this.itemID = item;
         this.comment = comment;
         this.rating = rating;
     }
+
+    public Feedback() {}
 
     public int getFeedbackId() {
         return feedbackId;
@@ -32,20 +34,20 @@ public class Feedback {
         this.feedbackId = feedbackId;
     }
 
-    public User getUser() {
-        return user;
+    public int getUser() {
+        return userID;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUser(int user) {
+        this.userID = user;
     }
 
-    public Item getItem() {
-        return item;
+    public int getItem() {
+        return itemID;
     }
 
-    public void setItem(Item item) {
-        this.item = item;
+    public void setItem(int item) {
+        this.itemID = item;
     }
 
     public String getComment() {

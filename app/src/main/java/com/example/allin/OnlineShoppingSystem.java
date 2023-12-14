@@ -116,7 +116,6 @@ public class OnlineShoppingSystem {
     }
 
 
-
     // Helper function to place an order
     public void placeOrder(User user, DbHelper dbHelper) {
 
