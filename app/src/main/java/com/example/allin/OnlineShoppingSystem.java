@@ -125,15 +125,26 @@ public class OnlineShoppingSystem {
 
         // Add order in database
         OrderID = dbHelper.InsertNewOrder(user.getPersonID(),getDate(),calculateTotalAmount(user.getCart()),getDate(),"in progress",user.getCart());
-
         //create object of Order
         Order order=new Order((int)OrderID,user,user.getCart(),getDate(),"in progress",getDate(),calculateTotalAmount(user.getCart()));
-
         //add to sys
         orders.add(order);
 
+
+        //Remove cart
+        //Delete cart items from database
+        DeleteCartfromDatabase(user.getCart(),dbHelper);
         //Clear cart
         user.getCart().clear();
+    }
+
+    //Delete cart from database
+    public void DeleteCartfromDatabase(List<CartItem> cartitems,DbHelper dbHelper)
+    {
+        for (CartItem item : cartitems) {
+            dbHelper.DeleteCartItem(item.getCartItemID());
+        }
+
     }
 
 
