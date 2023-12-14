@@ -42,7 +42,7 @@ public class Order {
         this.orderId = orderId;
     }
 
-    public int getUser() {
+    public int getUserID() {
         return userID;
     }
 

@@ -176,7 +176,6 @@ public class User extends Person{
 
         return CartItemID;
     }
-
     // Edit item quantity in cart
     public void EditCartItem(int CartItemID,int newQuantity,DbHelper dbHelper)
     {
@@ -195,7 +194,6 @@ public class User extends Person{
         dbHelper.UpdateItemQuantityInCart(CartItemID,newQuantity);
 
     }
-
     // Cancel item from Cart
     public void CancelItem(int CartItemID,DbHelper dbHelper)
     {
@@ -250,6 +248,22 @@ public class User extends Person{
         //Update status in database
         dbHelper.cancelOrder(orderID);
 
+    }
+
+
+    // Get the user Orders
+    public List<Order> GetMyOrders()
+    {
+        OnlineShoppingSystem sys=OnlineShoppingSystem.getInstance();
+        List<Order> myOrders=new ArrayList<>();
+
+        for (Order order: sys.getOrders()) {
+            if(order.getUserID() == this.getPersonID())
+                myOrders.add(order);
+
+        }
+
+        return myOrders;
     }
 
 
