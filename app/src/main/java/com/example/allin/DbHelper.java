@@ -179,6 +179,26 @@ public class DbHelper extends SQLiteOpenHelper {
     }
 
 
+    void insertDummyItem() {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put("Label", "Mobile");
+        values.put("ItemInfo", "this is a mobile");
+        values.put("Price", 10000);
+        values.put("StockQuantity", 20);
+        values.put("SoldQuantity", 10);
+        values.put("CategoryID", 1000);
+        values.put("SaleID", 122); //
+
+        db.insert("Item",null,values);
+        db.close();
+
+    }
+
+
+
+
     ////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////// Custom functions ///////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////////////////////
