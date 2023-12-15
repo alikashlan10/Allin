@@ -22,13 +22,10 @@ public class TestList extends AppCompatActivity {
         dbHelper.insertDummyItem();
         OnlineShoppingSystem system = OnlineShoppingSystem.getInstance();
         system.loadUsersFromDatabase(dbHelper);
-        system.loadItemsFromDatabase(dbHelper);
         system.InitializeAppData(dbHelper);
         system.loadItemsFromDatabase(dbHelper);
 
         List<Item> testing = new ArrayList<>();
-        system.getItemsList().add(new Item(0, "Sameh", "el btats el m7mra bshola", 9999999, 0,0,null,null));
-        system.getItemsList().add(new Item(0, "Sameh", "el btats el m7mra bshola", 9999999, 0,0,null,null));
         ItemAdapter2 testadapter = new ItemAdapter2(this,R.layout.itemdesign,system.getItemsList());
         lv.setAdapter(testadapter);
     }

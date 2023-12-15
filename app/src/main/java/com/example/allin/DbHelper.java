@@ -119,7 +119,6 @@ public class DbHelper extends SQLiteOpenHelper {
             "Quantity INTEGER, " +
             "OrderID INTEGER, " +
             "ItemID INTEGER, " +
-            "FOREIGN KEY (SaleID) REFERENCES Sale(SaleID),"+
             "FOREIGN KEY (OrderID) REFERENCES Orders(OrderID), " +
             "FOREIGN KEY (ItemID) REFERENCES Item(ItemID))";
 
@@ -142,7 +141,7 @@ public class DbHelper extends SQLiteOpenHelper {
         db.execSQL(CREATE_ORDER_ITEM);
         db.execSQL(CREATE_ADMIN);
         db.execSQL(CREATE_FEEDBACK);
-        db.execSQL(CREATE_ITEM_IMAGES);
+
 
 
     }
