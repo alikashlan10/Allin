@@ -3,8 +3,6 @@ package com.example.allin;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.Adapter;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import androidx.annotation.NonNull;
@@ -29,17 +27,17 @@ public class MainActivity extends AppCompatActivity {
         dbHelper.insertDummyItem();
         OnlineShoppingSystem system = OnlineShoppingSystem.getInstance();
         system.loadUsersFromDatabase(dbHelper);
+        system.loadItemsFromDatabase(dbHelper);
         system.InitializeAppData(dbHelper);
         Item i = new Item();
-        ArrayList<String> kandeel = new ArrayList<>();
-        kandeel.add("Ahmed");
-        kandeel.add("Kandeelo");
+
         i.setItemName("Iphone 15 pro ekhs");
         system.getItemsList().add(i);
-        ListView lv = findViewById(R.id.testinglist);
-        //ItemAdapter ouradapter = new ItemAdapter(kandeel);
-        ArrayAdapter<String> testingadapter =new ArrayAdapter<String>(this,R.layout.activity_main,kandeel);
-        lv.setAdapter(testingadapter);
+        ListView lv = findViewById(R.id.itemslist);
+        ItemAdapter ouradapter = new ItemAdapter(system.getItemsList());
+        lv.setAdapter(ouradapter);
 
+        Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+        startActivity(intent);
     }
 }
