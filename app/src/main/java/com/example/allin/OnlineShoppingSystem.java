@@ -32,6 +32,18 @@ public class OnlineShoppingSystem {
     private static OnlineShoppingSystem instance = new OnlineShoppingSystem();
     private OnlineShoppingSystem(){}
 
+    //private List<String> categoriesnames;
+
+    String shit;
+    public  List<String> getCateogriesNames()
+    {
+        List<String> categoriesnames=new ArrayList<>();
+        for (Category cat:categories) {
+            categoriesnames.add(cat.getCategoryName());
+        }
+        return categoriesnames;
+    }
+
 
     //Singelton pattern for instances creation
     public static OnlineShoppingSystem getInstance(){

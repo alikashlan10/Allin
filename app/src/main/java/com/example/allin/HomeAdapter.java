@@ -85,7 +85,7 @@ public class HomeAdapter extends BaseAdapter {
             public void onClick(View v) {
                 String stringValue = ChosenQuantityTextView.getText().toString();
                 int x = Integer.parseInt(stringValue);
-                if(x!=0) {
+                if(x!=1) {
                     ChosenQuantityTextView.setText(String.valueOf(--x));
                 }
             }

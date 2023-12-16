@@ -55,19 +55,20 @@ public class CartAdapter extends BaseAdapter {
         ImageView Quantityminusicon = v.findViewById(R.id.cartitemminusicon);
 
 
-        CartItem cart = getItem(position);
-        itemNameTextView.setText(cart.getItem().getItemName());
-        itemDescriptionTextView.setText(cart.getItem().getDescription());
-        itemPriceTextView.setText(String.format(Locale.getDefault(), "$%.2f", cart.getItem().getPrice()));
-        itemQuantityTextView.setText(String.valueOf("Stock Quantity: "+ cart.getItem().getStockQuantity()));
-        ChosenQuantityTextView.setText(cart.getQuantity());
+        CartItem cartItem = getItem(position);
+        itemNameTextView.setText(cartItem.getItem().getItemName());
+        itemDescriptionTextView.setText(cartItem.getItem().getDescription());
+        itemPriceTextView.setText(String.format(Locale.getDefault(), "$%.2f", cartItem.getItem().getPrice()));
+        itemQuantityTextView.setText(String.valueOf("Stock Quantity: "+ cartItem.getItem().getStockQuantity()));
+        ChosenQuantityTextView.setText(String.valueOf(cartItem.getQuantity()));
+        CartItemTotalPrice.setText(String.valueOf(cartItem.CalculateSubTotal()));
 
         Quantityplusicon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String stringValue = ChosenQuantityTextView.getText().toString();
                 int x = Integer.parseInt(stringValue);
-                if(x<(cart.getItem().getStockQuantity())) {
+                if(x<(cartItem.getItem().getStockQuantity())) {
                     ChosenQuantityTextView.setText(String.valueOf(++x));
                 }
 

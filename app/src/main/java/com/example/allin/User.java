@@ -33,6 +33,14 @@ public class User extends Person{
     }
 
 
+    public double getCartTotalPrice()
+    {
+        double total = 0;
+        for (CartItem cartItem:Cart) {
+            total += cartItem.CalculateSubTotal();
+        }
+        return total;
+    }
 
 
 

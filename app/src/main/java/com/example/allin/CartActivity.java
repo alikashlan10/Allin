@@ -3,7 +3,10 @@ package com.example.allin;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,5 +29,28 @@ public class CartActivity extends AppCompatActivity {
         //List<Item> testing = new ArrayList<>();
         CartAdapter testadapter = new CartAdapter(this,R.layout.cart_design,((User)system.getCurrentPerson()).getCart());
         lv.setAdapter(testadapter);
+
+        Button checkoutbtn = findViewById(R.id.checkout_button);
+        Button placeorderbtn = findViewById(R.id.placeorder_button);
+        TextView totalpricetext = findViewById(R.id.checkoutprice);
+
+        checkoutbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                totalpricetext.setText(String.valueOf(((User)system.getCurrentPerson()).getCartTotalPrice()));
+                checkoutbtn.setVisibility(View.GONE);
+                placeorderbtn.setVisibility(View.VISIBLE);
+            }
+
+        });
+
+        placeorderbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                system.placeOrder(((User)system.getCurrentPerson()), dbHelper);
+            }
+
+        });
+
     }
 }

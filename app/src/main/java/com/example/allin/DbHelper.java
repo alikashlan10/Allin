@@ -616,7 +616,7 @@ public class DbHelper extends SQLiteOpenHelper {
             db.beginTransaction();
 
             // Raw SQL query to delete the item by ID
-            String deleteQuery = "DELETE FROM CartItem WHERE ID = ?";
+            String deleteQuery = "DELETE FROM CartItem WHERE CartItemID = ?";
             db.execSQL(deleteQuery, new Object[]{CartItemID});
 
             db.setTransactionSuccessful();
