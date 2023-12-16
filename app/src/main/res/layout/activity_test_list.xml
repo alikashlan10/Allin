@@ -7,13 +7,47 @@
     tools:context=".TestList">
 
     <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_marginTop="100dp"
+        android:orientation="vertical"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <ListView
             android:id="@+id/test_list"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
     </LinearLayout>
+
+    <ImageView
+        android:id="@+id/Searchicon"
+        android:layout_width="49dp"
+        android:layout_height="43dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="?android:attr/actionModeWebSearchDrawable" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/Searchbar"
+        android:layout_width="421dp"
+        android:layout_height="53dp"
+        android:layout_marginTop="4dp"
+        android:hint="Search"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Spinner
+        android:id="@+id/Catspinner"
+        android:layout_width="381dp"
+        android:layout_height="38dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="55dp"
+        android:layout_weight="1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

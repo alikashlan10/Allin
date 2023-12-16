@@ -59,12 +59,9 @@ public class ItemAdapter2 extends BaseAdapter {
             public void onClick(View view) {
                 // Handle the button click event
                 OnlineShoppingSystem system=OnlineShoppingSystem.getInstance();
-                User user = new User();
                 DbHelper dphelper = new DbHelper(c);
-                user.setUserName("Ali");
-                user.setPersonID(123);
-                system.users.add(user);
-                user.AddItemsToCart(i, 3, user.getPersonID(), dphelper);
+                ((User)system.getCurrentPerson()).AddItemsToCart(i, 3, system.getCurrentPerson().getPersonID(), dphelper);
+
             }
 
         });

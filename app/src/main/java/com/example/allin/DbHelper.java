@@ -195,6 +195,18 @@ public class DbHelper extends SQLiteOpenHelper {
 
     }
 
+    void insertDummyAdmin() {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put("Username", "ali");
+        values.put("Password", "snakeass");
+
+        db.insert("Admin",null,values);
+        db.close();
+
+    }
+
 
 
 

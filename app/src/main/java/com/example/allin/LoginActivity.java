@@ -13,6 +13,8 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        OnlineShoppingSystem sys=OnlineShoppingSystem.getInstance();
+
         Button loginbtn=findViewById(R.id.login_button);
         Button regbtn=findViewById(R.id.reg_button);
 
@@ -20,24 +22,39 @@ public class LoginActivity extends AppCompatActivity {
         EditText username=findViewById(R.id.un_tb);
         EditText pass=findViewById(R.id.pass_tb);
 
-        RadioButton userbutton=findViewById(R.id.UserradioButton);
-        RadioButton Adminbutton=findViewById(R.id.AdminradioButton);
-        userbutton.setChecked(true);
+        RadioButton userRadiobutton=findViewById(R.id.UserradioButton);
+        RadioButton AdminRadiobutton=findViewById(R.id.AdminradioButton);
+        userRadiobutton.setChecked(true);
 
         loginbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                // Set logined person object
+
                 Person person;
-                if(userbutton.isChecked()){
-                    person = PersonFactory.GetPerson("user");}
+                if(userRadiobutton.isChecked()){
+                    person = PersonFactory.GetPerson(userRadiobutton.getText().toString());
+                }
                 else {
-                    person = PersonFactory.GetPerson("admin");
+                    person = PersonFactory.GetPerson(AdminRadiobutton.getText().toString());
                 }
 
-                if(person.login(username.getText().toString(),pass.getText().toString(),dbHelper))
-                    loginbtn.setText("ALOOOO");
-                else
-                    loginbtn.setText("ad5555looo");
+
+                if(person.login(username.getText().toString(),pass.getText().toString(),dbHelper) && person instanceof User) {
+                    Intent i = new Intent(LoginActivity.this, TestList.class);
+                    startActivity(i);
+                }
+                else if (person.login(username.getText().toString(),pass.getText().toString(),dbHelper) && person instanceof Admin)
+                {
+                    Toast toast = Toast.makeText(LoginActivity.this, "enta Admin", Toast.LENGTH_SHORT);
+                    toast.show();
+                }
+                else {
+                    Toast toast = Toast.makeText(LoginActivity.this, "Failed login !!! ", Toast.LENGTH_LONG);
+                    toast.show();
+                }
+
 
             }
         });

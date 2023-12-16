@@ -25,17 +25,11 @@ public class MainActivity extends AppCompatActivity {
         DbHelper dbHelper = new DbHelper(this);
         dbHelper.insertDummyUserData();
         dbHelper.insertDummyItem();
+        dbHelper.insertDummyAdmin();
         OnlineShoppingSystem system = OnlineShoppingSystem.getInstance();
-        system.loadUsersFromDatabase(dbHelper);
-        system.loadItemsFromDatabase(dbHelper);
+        //system.loadUsersFromDatabase(dbHelper)
+        // system.loadItemsFromDatabase(dbHelper);
         system.InitializeAppData(dbHelper);
-        Item i = new Item();
-
-        i.setItemName("Iphone 15 pro ekhs");
-        system.getItemsList().add(i);
-        ListView lv = findViewById(R.id.itemslist);
-        ItemAdapter ouradapter = new ItemAdapter(system.getItemsList());
-        lv.setAdapter(ouradapter);
 
         Intent intent = new Intent(MainActivity.this, LoginActivity.class);
         startActivity(intent);
