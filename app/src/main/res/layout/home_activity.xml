@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".TestList">
+    tools:context=".HomeActivity">
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -49,5 +49,11 @@
         android:layout_weight="1"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/lol"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Button" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -22,14 +22,15 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        OnlineShoppingSystem system = OnlineShoppingSystem.getInstance();
         DbHelper dbHelper = new DbHelper(this);
         dbHelper.insertDummyUserData();
         dbHelper.insertDummyItem();
         dbHelper.insertDummyAdmin();
-        OnlineShoppingSystem system = OnlineShoppingSystem.getInstance();
-        //system.loadUsersFromDatabase(dbHelper)
+        system.loadUsersFromDatabase(dbHelper);
         // system.loadItemsFromDatabase(dbHelper);
-        system.InitializeAppData(dbHelper);
+        system.loadItemsFromDatabase(dbHelper);
+
 
         Intent intent = new Intent(MainActivity.this, LoginActivity.class);
         startActivity(intent);

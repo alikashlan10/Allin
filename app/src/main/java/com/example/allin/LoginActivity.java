@@ -42,7 +42,7 @@ public class LoginActivity extends AppCompatActivity {
 
 
                 if(person.login(username.getText().toString(),pass.getText().toString(),dbHelper) && person instanceof User) {
-                    Intent i = new Intent(LoginActivity.this, TestList.class);
+                    Intent i = new Intent(LoginActivity.this, HomeActivity.class);
                     startActivity(i);
                 }
                 else if (person.login(username.getText().toString(),pass.getText().toString(),dbHelper) && person instanceof Admin)

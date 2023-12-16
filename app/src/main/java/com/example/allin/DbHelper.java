@@ -155,27 +155,7 @@ public class DbHelper extends SQLiteOpenHelper {
 
     ////////////////////////////////////////////////////////////////////////////////////////////////
     //Initialized data for testing
-    public void insertDummyUserData() {
-        SQLiteDatabase db = this.getWritableDatabase();
 
-        ContentValues values = new ContentValues();
-        values.put("Username", "testuser");
-        values.put("Password", "testpassword");
-        values.put("FullName", "Test User");
-        values.put("SSN", "123-45-6789");
-        values.put("CreditCardNumber", "1234-5678-9012-3456");
-        values.put("Email", "testuser@example.com");
-        values.put("AddressID", 1); // Assuming you have an AddressID of 1 for testing
-
-        db.insert("User", null, values);
-
-        ContentValues adValues = new ContentValues();
-        adValues.put("Username", "testadmin");
-        adValues.put("Password", "testadmin");
-
-        db.insert("Admin", null, adValues);
-        db.close();
-    }
 
 
     void insertDummyItem() {
@@ -195,6 +175,27 @@ public class DbHelper extends SQLiteOpenHelper {
 
     }
 
+    public void insertDummyUserData() {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put("Username", "user");
+        values.put("Password", "user");
+        values.put("FullName", "Test User");
+        values.put("SSN", "123-45-6789");
+        values.put("CreditCardNumber", "1234-5678-9012-3456");
+        values.put("Email", "testuser@example.com");
+        values.put("AddressID", 1); // Assuming you have an AddressID of 1 for testing
+
+        db.insert("User", null, values);
+
+        ContentValues adValues = new ContentValues();
+        adValues.put("Username", "admin");
+        adValues.put("Password", "admin");
+
+        db.insert("Admin", null, adValues);
+        db.close();
+    }
     void insertDummyAdmin() {
         SQLiteDatabase db = this.getWritableDatabase();
 

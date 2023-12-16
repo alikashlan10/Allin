@@ -76,7 +76,7 @@ public class OnlineShoppingSystem {
         // Call the getAllUsers method from DbHelper to get all users from the database
         List<User> usersFromDatabase = dbHelper.getAllUsers();
         // Clear the existing list and add users from the database
-        users.clear();
+        //users.clear();
         users.addAll(usersFromDatabase);
     }
 

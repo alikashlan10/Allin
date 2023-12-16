@@ -24,6 +24,10 @@ public class User extends Person{
     private String creditCard;
     private UserAddress userAddress;
     private List<CartItem> Cart  = new ArrayList<>();
+
+
+
+    //empty constructor
     public List<CartItem> getCart() {
         return Cart;
     }

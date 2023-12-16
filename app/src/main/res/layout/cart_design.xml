@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-             android:layout_height="match_parent">
+    android:layout_height="match_parent">
 
     <RelativeLayout
         android:layout_width="411dp"
@@ -13,7 +13,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/pricetext"
+            android:id="@+id/cartitemprice"
             android:layout_width="110dp"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
@@ -23,7 +23,7 @@
             android:text="TextView" />
 
         <TextView
-            android:id="@+id/titletext"
+            android:id="@+id/cartitemtitle"
             android:layout_width="202dp"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
@@ -34,7 +34,7 @@
             android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
 
         <TextView
-            android:id="@+id/descriptiontext"
+            android:id="@+id/cartitemdesc"
             android:layout_width="242dp"
             android:layout_height="45dp"
             android:layout_alignParentTop="true"
@@ -43,20 +43,10 @@
             android:layout_marginEnd="18dp"
             android:text="TextView" />
 
-        <Button
-            android:id="@+id/addtocartbtn"
-            android:layout_width="wrap_content"
-            android:layout_height="59dp"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginEnd="17dp"
-            android:layout_marginBottom="6dp"
-            android:text="Add to cart"
-            android:textAlignment="viewStart"
-            android:textAppearance="@style/TextAppearance.AppCompat.Small" />
+
 
         <ImageView
-            android:id="@+id/imageView4"
+            android:id="@+id/cartitemimage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
@@ -68,7 +58,7 @@
             tools:srcCompat="@tools:sample/avatars" />
 
         <TextView
-            android:id="@+id/quantitytext"
+            android:id="@+id/cartitemstockquantity"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
@@ -78,7 +68,7 @@
             android:text="TextView" />
 
         <TextView
-            android:id="@+id/chosenquantity"
+            android:id="@+id/cartitemchosenquantity"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
@@ -91,17 +81,17 @@
             android:textStyle="bold" />
 
         <ImageView
-            android:id="@+id/plusicon"
+            android:id="@+id/cartitemplusicon"
             android:layout_width="23dp"
             android:layout_height="20dp"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            android:layout_marginStart="360dp"
-            android:layout_marginTop="74dp"
+            android:layout_marginStart="358dp"
+            android:layout_marginTop="73dp"
             app:srcCompat="@drawable/plus_icon" />
 
         <ImageView
-            android:id="@+id/minusicon"
+            android:id="@+id/cartitemminusicon"
             android:layout_width="24dp"
             android:layout_height="23dp"
             android:layout_alignParentStart="true"
@@ -110,9 +100,17 @@
             android:layout_marginTop="72dp"
             app:srcCompat="@drawable/minus" />
 
+        <TextView
+            android:id="@+id/cartitemtotalprice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginEnd="34dp"
+            android:layout_marginBottom="13dp"
+            android:text="TextView"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
     </RelativeLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-
-
