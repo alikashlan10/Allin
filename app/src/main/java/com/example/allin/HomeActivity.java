@@ -22,7 +22,7 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home_activity);
         lv = findViewById(R.id.test_list);
-        Button b = findViewById(R.id.lol);
+        Button b = findViewById(R.id.gotocartbtn);
 
 
 
@@ -44,7 +44,7 @@ public class HomeActivity extends AppCompatActivity {
         });
 
 
-        Spinner yourSpinner = findViewById(R.id.Catspinner);
+        Spinner catspinner = findViewById(R.id.Catspinner);
 
         // Create an ArrayAdapter using the ArrayList
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, system.getCateogriesNames());
@@ -53,9 +53,9 @@ public class HomeActivity extends AppCompatActivity {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         // Apply the adapter to the spinner
-        yourSpinner.setAdapter(adapter);
+        catspinner.setAdapter(adapter);
 
-        yourSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        catspinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
                 // Perform the action when an item is selected
