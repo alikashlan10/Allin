@@ -276,6 +276,20 @@ public class OnlineShoppingSystem {
         SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         return date.format(new Date());
     }
+
+    public void UpdatePassword(String username,String newpass,DbHelper dbHelper)
+    {
+        for (User user:users) {
+            if(user.getUserName().equals(username))
+                user.setPassword(newpass);
+
+        }
+
+        dbHelper.UpdatePassword(username,newpass);
+
+
+    }
+
     ////////////////////////////////////////////////////////////////////////
 
 }

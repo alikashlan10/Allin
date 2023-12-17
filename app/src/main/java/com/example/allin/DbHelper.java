@@ -634,6 +634,26 @@ public class DbHelper extends SQLiteOpenHelper {
         }
     }
     // Delete Cart item
+    public void UpdatePassword(String username,String newpass)
+    {
+        SQLiteDatabase db = getWritableDatabase();
+
+        try {
+            db.beginTransaction();
+
+            // Raw SQL query to update CartItems table
+            String Query = "UPDATE User SET Password = ? WHERE Username = ?";
+            db.execSQL(Query, new Object[]{newpass,username});
+
+            db.setTransactionSuccessful();
+
+
+        } finally {
+            db.endTransaction();
+            db.close();
+        }
+    }
+
     public void DeleteCartItem(int CartItemID) {
         SQLiteDatabase db = getWritableDatabase();
 

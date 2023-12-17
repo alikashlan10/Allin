@@ -1,6 +1,6 @@
 package com.example.allin;
 
-public class EnailAuthentecationStrategy implements AuthenticationStrategy{
+public class EmailAuthentecationStrategy implements AuthenticationStrategy{
 
 
     @Override
