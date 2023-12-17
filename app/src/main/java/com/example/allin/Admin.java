@@ -68,7 +68,7 @@ public class Admin extends Person {
     }
 
     public void DeleteUser(User user)
-    {
+    {//
         //Instance of system
         OnlineShoppingSystem system=OnlineShoppingSystem.getInstance();
 
