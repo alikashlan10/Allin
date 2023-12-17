@@ -233,6 +233,23 @@ public class DbHelper extends SQLiteOpenHelper {
 
     }
 
+    public void insertDummyOrders() {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put("OrderID", 11);
+        values.put("UserID", 22);
+        values.put("OrderDate", "17-12-2023");
+        values.put("TotalAmount", 12500);
+        values.put("DeliveryDate", "20-12-2023");
+        values.put("Status", "In Progress");
+
+        db.insert("User", null, values);
+        db.close();
+    }
+
+
+
 
 
 

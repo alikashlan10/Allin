@@ -8,6 +8,7 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.List;
 import java.util.Locale;
@@ -53,9 +54,11 @@ public class CartAdapter extends BaseAdapter {
         TextView CartItemTotalPrice = v.findViewById(R.id.cartitemtotalprice);
         ImageView Quantityplusicon = v.findViewById(R.id.cartitemplusicon);
         ImageView Quantityminusicon = v.findViewById(R.id.cartitemminusicon);
+        ImageView cancelbtn = v.findViewById(R.id.cancelbtn);
 
 
         CartItem cartItem = getItem(position);
+
         itemNameTextView.setText(cartItem.getItem().getItemName());
         itemDescriptionTextView.setText(cartItem.getItem().getDescription());
         itemPriceTextView.setText(String.format(Locale.getDefault(), "$%.2f", cartItem.getItem().getPrice()));
@@ -83,6 +86,16 @@ public class CartAdapter extends BaseAdapter {
                 if(x!=0) {
                     ChosenQuantityTextView.setText(String.valueOf(--x));
                 }
+            }
+        });
+
+        cancelbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                 DbHelper dbHelper = new DbHelper(c);
+                 OnlineShoppingSystem system = OnlineShoppingSystem.getInstance();
+                 ((User)system.getCurrentPerson()).CancelItem(cartItem.getCartItemID(),dbHelper);
+                 Toast.makeText(c, "Iteam has been deleted, Refresh", Toast.LENGTH_SHORT).show();
             }
         });
 
