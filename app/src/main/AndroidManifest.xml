@@ -17,10 +17,9 @@
             android:name=".AdminOrderActivity"
             android:exported="false" />
         <activity
-            android:name=".AdminActivity"
+            android:name=".OrderActivity"
             android:exported="false" />
         <activity
-            android:name=".OrderActivity"
             android:name=".AddCategoryActivity"
             android:exported="false" />
         <activity
