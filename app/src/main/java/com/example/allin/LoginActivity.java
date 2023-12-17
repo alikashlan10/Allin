@@ -15,6 +15,8 @@ public class LoginActivity extends AppCompatActivity {
 
         OnlineShoppingSystem sys=OnlineShoppingSystem.getInstance();
 
+        TextView forgotpass=findViewById(R.id.forgotpass);
+
         Button loginbtn=findViewById(R.id.login_button);
         Button regbtn=findViewById(R.id.reg_button);
 
@@ -66,6 +68,16 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
+        forgotpass.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent toAuthentication=new Intent(LoginActivity.this,AuthenticationActivity.class);
+                toAuthentication.putExtra("usernamefromlogin",username.getText().toString());
+                startActivity(toAuthentication);
+
+            }
+        });
 
     }
 }
