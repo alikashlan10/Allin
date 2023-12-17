@@ -1,6 +1,7 @@
 package com.example.allin;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -52,12 +53,24 @@ public class CategoryAdapter extends BaseAdapter {
         Category category = getItem(position);
         categoryName.setText(category.getCategoryName());
         categoryID.setText(String.valueOf(category.getCategoryId()));
+        categoryEditButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //go to "AddCategoryActivity"
+                Intent intent = new Intent(c, AddCategoryActivity.class);
+                //Sent the desire category's name with the intent
+                intent.putExtra("categoryName",categoryName.getText().toString());
+                c.startActivity(intent);
+            }
+        });
         categoryDeleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 DbHelper dbHelper = new DbHelper(c);
                 dbHelper.DeleteCategory(category.getCategoryId());
                 categories.remove(position);
+                //refresh
+                notifyDataSetChanged();
             }
         });
 
