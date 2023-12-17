@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
         system.loadUsersFromDatabase(dbHelper);
         // system.loadItemsFromDatabase(dbHelper);
         system.loadItemsFromDatabase(dbHelper);
+        system.InitializeAppData(dbHelper);
 
 
         Intent intent = new Intent(MainActivity.this, LoginActivity.class);
