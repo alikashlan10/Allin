@@ -20,10 +20,16 @@ public class AddCategoryActivity extends AppCompatActivity {
         String categoryName = intent.getStringExtra("categoryName");
 
         EditText addCategoryEditText = findViewById(R.id.addCategoryEditText);
-        //EDIT case
-        if(categoryName != null)
-            addCategoryEditText.setHint(categoryName);
         Button addCategorySubmitButton = findViewById(R.id.addCategorySubmitButton);
+        TextView addcategorytextview = findViewById(R.id.addCategoryTextView);
+
+        //EDIT case
+        if(categoryName != null) {
+            addCategoryEditText.setHint(categoryName);
+            addcategorytextview.setText("Edit Category");
+            addCategorySubmitButton.setText("Edit");
+        }
+
 
         OnlineShoppingSystem system = OnlineShoppingSystem.getInstance();
         DbHelper dbHelper = new DbHelper(this);

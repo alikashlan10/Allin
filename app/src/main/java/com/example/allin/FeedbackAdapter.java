@@ -47,7 +47,7 @@ public class FeedbackAdapter extends BaseAdapter {
         TextView commentTextView = v.findViewById(R.id.feedback_comment);
 
         Feedback feedback = getItem(position);
-        usernameTextView.setText(String.valueOf(feedback.getUser()));
+        usernameTextView.setText(String.valueOf("User ID: "+feedback.getUser()));
         commentTextView.setText(feedback.getComment());
 
         return v;

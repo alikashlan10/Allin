@@ -52,7 +52,7 @@ public class CategoryAdapter extends BaseAdapter {
 
         Category category = getItem(position);
         categoryName.setText(category.getCategoryName());
-        categoryID.setText(String.valueOf(category.getCategoryId()));
+        categoryID.setText(String.valueOf("Category ID: "+category.getCategoryId()));
         categoryEditButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

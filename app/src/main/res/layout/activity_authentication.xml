@@ -8,11 +8,11 @@
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/ChoosenInput"
-        android:layout_width="312dp"
-        android:layout_height="49dp"
-        android:layout_marginStart="45dp"
+        android:layout_width="318dp"
+        android:layout_height="51dp"
+        android:layout_marginStart="50dp"
         android:layout_marginTop="256dp"
-        android:layout_marginEnd="54dp"
+        android:layout_marginEnd="50dp"
         android:hint="E-mail"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -20,11 +20,11 @@
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/ResetPass"
-        android:layout_width="309dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="45dp"
+        android:layout_width="317dp"
+        android:layout_height="56dp"
+        android:layout_marginStart="50dp"
         android:layout_marginTop="26dp"
-        android:layout_marginEnd="57dp"
+        android:layout_marginEnd="50dp"
         android:hint="Reset-Password"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -34,12 +34,10 @@
         android:id="@+id/radioGroup2"
         android:layout_width="169dp"
         android:layout_height="99dp"
-        android:layout_marginStart="122dp"
-        android:layout_marginTop="3dp"
-        android:layout_marginEnd="120dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView">
+        android:layout_marginStart="60dp"
+        android:layout_marginBottom="140dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
 
         <RadioButton
             android:id="@+id/EmailradioButton"
@@ -58,30 +56,39 @@
         android:id="@+id/textView"
         android:layout_width="229dp"
         android:layout_height="28dp"
-        android:layout_marginStart="123dp"
-        android:layout_marginTop="55dp"
-        android:layout_marginEnd="134dp"
-        android:layout_marginBottom="3dp"
-        android:text="Authenticate by :"
+        android:layout_marginStart="60dp"
+        android:layout_marginBottom="250dp"
+        android:text="Authenticate by "
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        app:layout_constraintBottom_toTopOf="@+id/radioGroup2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.013"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ResetPass" />
+        android:textColor="#6200ED"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/SubmitButton"
-        android:layout_width="126dp"
-        android:layout_height="54dp"
+        android:layout_width="355dp"
+        android:layout_height="59dp"
         android:layout_marginStart="142dp"
-        android:layout_marginTop="76dp"
         android:layout_marginEnd="143dp"
-        android:layout_marginBottom="37dp"
-        android:text="submit"
+        android:layout_marginBottom="15dp"
+        android:text="Authenticate"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="303dp"
+        android:layout_height="121dp"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="60dp"
+        android:text="Recover Your Account"
+        android:textColor="#6200ED"
+        android:textSize="48sp"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/radioGroup2" />
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
