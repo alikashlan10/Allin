@@ -25,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
         OnlineShoppingSystem system = OnlineShoppingSystem.getInstance();
         DbHelper dbHelper = new DbHelper(this);
         dbHelper.insertDummyUserData();
+        dbHelper.insertDummyCategories();
         dbHelper.insertDummyItem();
         dbHelper.insertDummyAdmin();
         system.loadUsersFromDatabase(dbHelper);

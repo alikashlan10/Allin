@@ -60,8 +60,8 @@ public class HomeActivity extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
                 // Perform the action when an item is selected
                 String selectedValue = (String) parentView.getItemAtPosition(position);
-
-                //showToast("Selected: " + selectedValue);
+                HomeAdapter filteredadapter = new HomeAdapter(HomeActivity.this,R.layout.itemdesign,system.getItemByCategory(selectedValue));
+                lv.setAdapter(filteredadapter);
             }
 
             @Override

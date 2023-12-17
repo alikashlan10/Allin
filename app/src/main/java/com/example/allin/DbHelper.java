@@ -167,10 +167,20 @@ public class DbHelper extends SQLiteOpenHelper {
         values.put("Price", 10000);
         values.put("StockQuantity", 20);
         values.put("SoldQuantity", 10);
-        values.put("CategoryID", 1000);
+        values.put("CategoryID", 1);
         values.put("SaleID", 122); //
 
+        ContentValues values1 = new ContentValues();
+        values1.put("Label", "Hoody");
+        values1.put("ItemInfo", "this is a hoody");
+        values1.put("Price", 10000);
+        values1.put("StockQuantity", 20);
+        values1.put("SoldQuantity", 10);
+        values1.put("CategoryID", 2);
+        values1.put("SaleID", 122); //
+
         db.insert("Item",null,values);
+        db.insert("Item",null,values1);
         db.close();
 
     }
@@ -204,6 +214,21 @@ public class DbHelper extends SQLiteOpenHelper {
         values.put("Password", "snakeass");
 
         db.insert("Admin",null,values);
+        db.close();
+
+    }
+
+    void insertDummyCategories() {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values1 = new ContentValues();
+        values1.put("CategoryName", "Electronics");
+        ContentValues values2 = new ContentValues();
+        values2.put("CategoryName", "Clothes");
+
+
+        db.insert("Category",null,values1);
+        db.insert("Category",null,values2);
         db.close();
 
     }
