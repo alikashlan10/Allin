@@ -25,6 +25,8 @@ public class Item {
     private float sale;
     private List<byte[]> images;
 
+    public Item(){}
+
     public Item(int itemId, String itemName, String description, double price, int stockQuantity,int soldQuantity,Category category,List<byte[]> images) {
         this.itemId = itemId;
         this.itemName = itemName;

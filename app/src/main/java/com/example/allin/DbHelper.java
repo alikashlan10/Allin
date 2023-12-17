@@ -119,7 +119,6 @@ public class DbHelper extends SQLiteOpenHelper {
             "Quantity INTEGER, " +
             "OrderID INTEGER, " +
             "ItemID INTEGER, " +
-            "FOREIGN KEY (SaleID) REFERENCES Sale(SaleID),"+
             "FOREIGN KEY (OrderID) REFERENCES Orders(OrderID), " +
             "FOREIGN KEY (ItemID) REFERENCES Item(ItemID))";
 
@@ -142,7 +141,7 @@ public class DbHelper extends SQLiteOpenHelper {
         db.execSQL(CREATE_ORDER_ITEM);
         db.execSQL(CREATE_ADMIN);
         db.execSQL(CREATE_FEEDBACK);
-        db.execSQL(CREATE_ITEM_IMAGES);
+
 
 
     }
@@ -156,27 +155,7 @@ public class DbHelper extends SQLiteOpenHelper {
 
     ////////////////////////////////////////////////////////////////////////////////////////////////
     //Initialized data for testing
-    public void insertDummyUserData() {
-        SQLiteDatabase db = this.getWritableDatabase();
 
-        ContentValues values = new ContentValues();
-        values.put("Username", "testuser");
-        values.put("Password", "testpassword");
-        values.put("FullName", "Test User");
-        values.put("SSN", "123-45-6789");
-        values.put("CreditCardNumber", "1234-5678-9012-3456");
-        values.put("Email", "testuser@example.com");
-        values.put("AddressID", 1); // Assuming you have an AddressID of 1 for testing
-
-        db.insert("User", null, values);
-
-        ContentValues adValues = new ContentValues();
-        adValues.put("Username", "testadmin");
-        adValues.put("Password", "testadmin");
-
-        db.insert("Admin", null, adValues);
-        db.close();
-    }
 
 
     void insertDummyItem() {
@@ -188,10 +167,68 @@ public class DbHelper extends SQLiteOpenHelper {
         values.put("Price", 10000);
         values.put("StockQuantity", 20);
         values.put("SoldQuantity", 10);
-        values.put("CategoryID", 1000);
+        values.put("CategoryID", 1);
         values.put("SaleID", 122); //
 
+        ContentValues values1 = new ContentValues();
+        values1.put("Label", "Hoody");
+        values1.put("ItemInfo", "this is a hoody");
+        values1.put("Price", 10000);
+        values1.put("StockQuantity", 20);
+        values1.put("SoldQuantity", 10);
+        values1.put("CategoryID", 2);
+        values1.put("SaleID", 122); //
+
         db.insert("Item",null,values);
+        db.insert("Item",null,values1);
+        db.close();
+
+    }
+
+    public void insertDummyUserData() {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put("Username", "user");
+        values.put("Password", "user");
+        values.put("FullName", "Test User");
+        values.put("SSN", "123-45-6789");
+        values.put("CreditCardNumber", "1234-5678-9012-3456");
+        values.put("Email", "testuser@example.com");
+        values.put("AddressID", 1); // Assuming you have an AddressID of 1 for testing
+
+        db.insert("User", null, values);
+
+        ContentValues adValues = new ContentValues();
+        adValues.put("Username", "admin");
+        adValues.put("Password", "admin");
+
+        db.insert("Admin", null, adValues);
+        db.close();
+    }
+    void insertDummyAdmin() {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put("Username", "ali");
+        values.put("Password", "snakeass");
+
+        db.insert("Admin",null,values);
+        db.close();
+
+    }
+
+    void insertDummyCategories() {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values1 = new ContentValues();
+        values1.put("CategoryName", "Electronics");
+        ContentValues values2 = new ContentValues();
+        values2.put("CategoryName", "Clothes");
+
+
+        db.insert("Category",null,values1);
+        db.insert("Category",null,values2);
         db.close();
 
     }
@@ -604,7 +641,7 @@ public class DbHelper extends SQLiteOpenHelper {
             db.beginTransaction();
 
             // Raw SQL query to delete the item by ID
-            String deleteQuery = "DELETE FROM CartItem WHERE ID = ?";
+            String deleteQuery = "DELETE FROM CartItem WHERE CartItemID = ?";
             db.execSQL(deleteQuery, new Object[]{CartItemID});
 
             db.setTransactionSuccessful();

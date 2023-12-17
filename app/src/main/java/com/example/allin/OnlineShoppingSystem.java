@@ -32,6 +32,18 @@ public class OnlineShoppingSystem {
     private static OnlineShoppingSystem instance = new OnlineShoppingSystem();
     private OnlineShoppingSystem(){}
 
+    //private List<String> categoriesnames;
+
+    String shit;
+    public  List<String> getCateogriesNames()
+    {
+        List<String> categoriesnames=new ArrayList<>();
+        for (Category cat:categories) {
+            categoriesnames.add(cat.getCategoryName());
+        }
+        return categoriesnames;
+    }
+
 
     //Singelton pattern for instances creation
     public static OnlineShoppingSystem getInstance(){
@@ -76,7 +88,7 @@ public class OnlineShoppingSystem {
         // Call the getAllUsers method from DbHelper to get all users from the database
         List<User> usersFromDatabase = dbHelper.getAllUsers();
         // Clear the existing list and add users from the database
-        users.clear();
+        //users.clear();
         users.addAll(usersFromDatabase);
     }
 

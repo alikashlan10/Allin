@@ -6,11 +6,13 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <Button
-        android:id="@+id/button"
-        android:layout_width="214dp"
-        android:layout_height="130dp"
-        android:text="Alooo"
-        tools:layout_editor_absoluteX="121dp"
-        tools:layout_editor_absoluteY="223dp" />
+
+    <ListView
+        android:id="@+id/itemslist"
+        android:layout_width="409dp"
+        android:layout_height="729dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="1dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
