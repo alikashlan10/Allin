@@ -269,7 +269,7 @@ public class OnlineShoppingSystem {
             Total += cartItem.CalculateSubTotal();
         }
         return Total;
-    }
+    }//
 
     //Date
     private String getDate() {
