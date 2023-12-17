@@ -23,11 +23,6 @@ public class CartActivity extends AppCompatActivity {
 
         DbHelper dbHelper = new DbHelper(this);
         OnlineShoppingSystem system = OnlineShoppingSystem.getInstance();
-        //system.loadUsersFromDatabase(dbHelper);
-        //system.InitializeAppData(dbHelper);
-        //system.loadItemsFromDatabase(dbHelper);
-
-        //List<Item> testing = new ArrayList<>();
         CartAdapter testadapter = new CartAdapter(this,R.layout.cartdesign,((User)system.getCurrentPerson()).getCart());
         lv.setAdapter(testadapter);
 
