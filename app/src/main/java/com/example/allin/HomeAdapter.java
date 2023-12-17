@@ -1,6 +1,7 @@
 package com.example.allin;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -113,7 +114,15 @@ public class HomeAdapter extends BaseAdapter {
         salebtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                if(i.getSale() == 0){
+                    i.setSale(0.2F);
+                    salebtn.setText("Remove Sale");
+                }
+                else{
+                    i.setSale(0.0F);
+                    salebtn.setText("Add Sale");
+                }
+                notifyDataSetChanged();
             }
         });
 
