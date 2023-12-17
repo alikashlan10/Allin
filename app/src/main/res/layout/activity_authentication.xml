@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AuthenticationActivity">
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/ChoosenInput"
+        android:layout_width="312dp"
+        android:layout_height="49dp"
+        android:layout_marginStart="45dp"
+        android:layout_marginTop="256dp"
+        android:layout_marginEnd="54dp"
+        android:hint="E-mail"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/ResetPass"
+        android:layout_width="309dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="45dp"
+        android:layout_marginTop="26dp"
+        android:layout_marginEnd="57dp"
+        android:hint="Reset-Password"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ChoosenInput" />
+
+    <RadioGroup
+        android:id="@+id/radioGroup2"
+        android:layout_width="169dp"
+        android:layout_height="99dp"
+        android:layout_marginStart="122dp"
+        android:layout_marginTop="3dp"
+        android:layout_marginEnd="120dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView">
+
+        <RadioButton
+            android:id="@+id/EmailradioButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="E-mail" />
+
+        <RadioButton
+            android:id="@+id/SsnRadioButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="SSN" />
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="229dp"
+        android:layout_height="28dp"
+        android:layout_marginStart="123dp"
+        android:layout_marginTop="55dp"
+        android:layout_marginEnd="134dp"
+        android:layout_marginBottom="3dp"
+        android:text="Authenticate by :"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        app:layout_constraintBottom_toTopOf="@+id/radioGroup2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.013"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ResetPass" />
+
+    <Button
+        android:id="@+id/SubmitButton"
+        android:layout_width="126dp"
+        android:layout_height="54dp"
+        android:layout_marginStart="142dp"
+        android:layout_marginTop="76dp"
+        android:layout_marginEnd="143dp"
+        android:layout_marginBottom="37dp"
+        android:text="submit"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/radioGroup2" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

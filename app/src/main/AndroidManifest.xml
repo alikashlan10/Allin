@@ -21,6 +21,16 @@
             android:exported="false" />
         <activity
             android:name=".OrderActivity"
+            android:name=".AddCategoryActivity"
+            android:exported="false" />
+        <activity
+            android:name=".CategoryActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AuthenticationActivity"
+            android:exported="true" />
+        <activity
+            android:name=".FeedbackActivity"
             android:exported="true" />
         <activity
             android:name=".CartActivity"
