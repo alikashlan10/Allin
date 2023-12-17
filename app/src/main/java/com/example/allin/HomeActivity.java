@@ -8,8 +8,11 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -54,7 +57,7 @@ public class HomeActivity extends AppCompatActivity {
 
         // Apply the adapter to the spinner
         catspinner.setAdapter(adapter);
-
+        catspinner.setSelection(-1);
         catspinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
@@ -68,6 +71,18 @@ public class HomeActivity extends AppCompatActivity {
             public void onNothingSelected(AdapterView<?> parentView) {
                 // Do nothing when nothing is selected
             }
+        });
+
+        ImageView searchicon = findViewById(R.id.Searchicon);
+        EditText searchbar = findViewById(R.id.Searchbar);
+        searchicon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String x = searchbar.getText().toString();
+                HomeAdapter filteredadapter = new HomeAdapter(HomeActivity.this,R.layout.itemdesign, system.SearchByText(x));
+                lv.setAdapter(filteredadapter);
+            }
+
         });
 
 
