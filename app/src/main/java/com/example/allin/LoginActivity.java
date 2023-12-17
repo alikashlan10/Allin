@@ -47,8 +47,8 @@ public class LoginActivity extends AppCompatActivity {
                 }
                 else if (person.login(username.getText().toString(),pass.getText().toString(),dbHelper) && person instanceof Admin)
                 {
-                    Toast toast = Toast.makeText(LoginActivity.this, "enta Admin", Toast.LENGTH_SHORT);
-                    toast.show();
+                    Intent i = new Intent(LoginActivity.this, AdminOrderActivity.class);
+                    startActivity(i);
                 }
                 else {
                     Toast toast = Toast.makeText(LoginActivity.this, "Failed login !!! ", Toast.LENGTH_LONG);

@@ -106,11 +106,21 @@
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginEnd="34dp"
+            android:layout_marginEnd="32dp"
             android:layout_marginBottom="13dp"
             android:text="TextView"
             android:textSize="16sp"
             android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/cancelbtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="19dp"
+            android:layout_marginEnd="26dp"
+            app:srcCompat="@drawable/cancel" />
 
     </RelativeLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
