@@ -55,6 +55,19 @@
             android:textAlignment="viewStart"
             android:textAppearance="@style/TextAppearance.AppCompat.Small" />
 
+        <Button
+            android:id="@+id/addsalebtn"
+            android:layout_width="wrap_content"
+            android:layout_height="59dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginEnd="17dp"
+            android:layout_marginBottom="6dp"
+            android:text="Add Sale"
+            android:textAlignment="viewStart"
+            android:textAppearance="@style/TextAppearance.AppCompat.Small"
+            android:visibility="gone" />
+
         <ImageView
             android:id="@+id/imageView4"
             android:layout_width="wrap_content"

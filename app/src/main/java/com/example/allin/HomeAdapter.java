@@ -1,9 +1,6 @@
 package com.example.allin;
 
-import static androidx.core.content.ContextCompat.startActivity;
-
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,9 +8,6 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import androidx.appcompat.app.AppCompatActivity;
 
 
 import java.util.List;
@@ -24,11 +18,14 @@ public class HomeAdapter extends BaseAdapter {
     private int resource;
     private List<Item> items;
 
-    public HomeAdapter(Context c, int resource, List<Item> items)
+    String person;
+
+    public HomeAdapter(Context c, int resource, List<Item> items, String person)
         {
             this.c = c;
             this.resource=resource;
             this.items=items;
+            this.person=person;
         }
     @Override
     public int getCount() {
@@ -60,6 +57,7 @@ public class HomeAdapter extends BaseAdapter {
         ImageView Quantityplusicon = v.findViewById(R.id.plusicon);
         ImageView Quantityminusicon = v.findViewById(R.id.minusicon);
         Button cartbtn = v.findViewById(R.id.addtocartbtn);
+        Button salebtn = v.findViewById(R.id.addsalebtn);
 
 
         Item i = getItem(position);
@@ -79,6 +77,15 @@ public class HomeAdapter extends BaseAdapter {
 
             }
         });
+
+        if(person!="user")
+        {
+            cartbtn.setVisibility(View.GONE);
+            Quantityplusicon.setVisibility(View.GONE);
+            Quantityminusicon.setVisibility(View.GONE);
+            ChosenQuantityTextView.setVisibility(View.GONE);
+            salebtn.setVisibility(View.VISIBLE);
+        }
 
         Quantityminusicon.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -101,6 +108,13 @@ public class HomeAdapter extends BaseAdapter {
                 ((User)system.getCurrentPerson()).AddItemsToCart(i, Integer.parseInt(ChosenQuantityTextView.getText().toString()), system.getCurrentPerson().getPersonID(), dphelper);
             }
 
+        });
+
+        salebtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
         });
 
         return v;
