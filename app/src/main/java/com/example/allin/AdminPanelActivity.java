@@ -22,8 +22,8 @@ public class AdminPanelActivity extends AppCompatActivity {
         usersbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               // Intent i=new Intent(AdminPanelActivity.this,CartActivity.class);
-               // startActivity(i);
+               Intent i=new Intent(AdminPanelActivity.this,UserActivity.class);
+               startActivity(i);
             }
         });
 
