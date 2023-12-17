@@ -44,6 +44,13 @@ public class AuthenticationActivity extends AppCompatActivity {
                 input.setHint("SSN");
             }
         });
+        emailRadio.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Perform your action when radioButton1 is selected
+                input.setHint("E-mail");
+            }
+        });
 
         Intent fromLoginIntent = getIntent();
         String receivedUsername = fromLoginIntent.getStringExtra("usernamefromlogin");
