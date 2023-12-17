@@ -290,6 +290,18 @@ public class OnlineShoppingSystem {
 
     }
 
+
+    public List<Item> SearchByText(String label)
+    {
+        List<Item> Searchitems=new ArrayList<>();
+        for (Item item:items) {
+            if(item.getItemName().equals(label))
+                Searchitems.add(item);
+
+        }
+        return Searchitems;
+    }
+
     ////////////////////////////////////////////////////////////////////////
 
 }
