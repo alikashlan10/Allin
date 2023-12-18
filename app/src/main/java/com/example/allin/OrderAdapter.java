@@ -54,6 +54,10 @@ public class OrderAdapter extends BaseAdapter {
         {
             v = LayoutInflater.from(c).inflate(resource, null, false);
         }
+
+        OnlineShoppingSystem sys=OnlineShoppingSystem.getInstance();
+        DbHelper dbHelper=new DbHelper(c);
+
         TextView OrderTitleID = v.findViewById(R.id.ordertitleid);
         TextView OrderStatus = v.findViewById(R.id.orderstatus);
         TextView OrderStartDate = v.findViewById(R.id.orderstartdate);
@@ -90,6 +94,9 @@ public class OrderAdapter extends BaseAdapter {
         OrderReorderbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                int id=(int)dbHelper.InsertReOrder(o.getClone(0));
+                sys.getOrders().add(o.getClone(id));
 
             }
         });

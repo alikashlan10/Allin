@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
         dbHelper.insertDummyCategories();
         dbHelper.insertDummyItem();
         dbHelper.insertDummyAdmin();
-        system.loadItemsFromDatabase(dbHelper);
+        //system.loadItemsFromDatabase(dbHelper);
         system.InitializeAppData(dbHelper);
 
 

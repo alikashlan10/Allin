@@ -397,7 +397,7 @@ public class DbHelper extends SQLiteOpenHelper {
             order.setDeliveryDate(cursor.getString(cursor.getColumnIndex("DeliveryDate")));
             order.setStatus(cursor.getString(cursor.getColumnIndex("Status")));
 
-            // Fetch the associated CartItems for this order
+            //Fetch the associated CartItems for this order
             List<CartItem> cartItems = getCartItemsForOrder(order.getOrderId());
             order.setItems(cartItems);
 
@@ -460,7 +460,7 @@ public class DbHelper extends SQLiteOpenHelper {
 
                     cursor.getString(cursor.getColumnIndex("Label")),
                     cursor.getString(cursor.getColumnIndex("ItemInfo")),
-                    cursor.getDouble(cursor.getColumnIndex("Price")),
+                    cursor.getInt(cursor.getColumnIndex("Price")),
                     cursor.getInt(cursor.getColumnIndex("StockQuantity")),
                     cursor.getInt(cursor.getColumnIndex("SoldQuantity")),
                     category,
@@ -468,7 +468,7 @@ public class DbHelper extends SQLiteOpenHelper {
                     cursor.getInt(cursor.getColumnIndex("Sale"))
             );
         }
-        item.setItemId(cursor.getInt(cursor.getColumnIndex("ItemID")));
+        //item.setItemId(cursor.getInt(cursor.getColumnIndex("ItemID")));
         // Close the cursor
         cursor.close();
 
@@ -832,7 +832,23 @@ public class DbHelper extends SQLiteOpenHelper {
         }
     }
 
+    public long InsertReOrder(Order order)
+    {
+        SQLiteDatabase db = getWritableDatabase();
+        ContentValues values = new ContentValues();
 
+        //set values of order
+        values.put("UserID", order.getUserID() );
+        values.put("OrderDate",order.getOrderDate());
+        values.put("TotalAmount",order.getTotalAmount());
+        values.put("DeliveryDate",order.getDeliveryDate());
+        values.put("Status",order.getStatus());
+
+        //isert order in Order table
+        long orderid = db.insert("ORDERS", null, values);
+
+        return orderid;
+    }
 
     // Add order
     public long InsertNewOrder(int userID,String date,double total,String deliveryDate,String status,List<CartItem> items)
@@ -874,7 +890,7 @@ public class DbHelper extends SQLiteOpenHelper {
             db.beginTransaction();
 
             // Raw SQL query to update order status in Order table
-            String updateQuery = "UPDATE Orders SET Status = 'Canceled' WHERE OrderID = " + orderId;
+            String updateQuery = "UPDATE ORDERS SET Status = 'Canceled' WHERE OrderID = " + orderId;
             db.execSQL(updateQuery, new Object[]{orderId});
 
             db.setTransactionSuccessful();

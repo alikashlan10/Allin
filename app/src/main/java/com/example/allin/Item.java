@@ -36,7 +36,7 @@ public class Item {
         this.soldQuantity=soldQuantity;
         this.category=category;
         this.images= images;
-        this.sale=sale;
+        this.sale=0;
     }
 
     public List<byte[]> getImages() {
@@ -49,8 +49,8 @@ public class Item {
     public int getItemId() {
         return itemId;
     }
-    public void setItemId(int itemId) {
-        this.itemId = itemId;
+    public void setItemId(int id) {
+        this.itemId = id;
     }
 
     public String getItemName() {

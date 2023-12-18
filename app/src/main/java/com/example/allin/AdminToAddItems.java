@@ -36,7 +36,7 @@ public class AdminToAddItems extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                ((Admin)sys.getCurrentPerson()).addItem(label.getText().toString(), info.getText().toString(),Double.parseDouble(price.getText().toString()),Integer.parseInt( stockQuantity.getText().toString()),1,category.getText().toString(),dbhelper,null);
+                ((Admin)sys.getCurrentPerson()).addItem(label.getText().toString(), info.getText().toString(),Double.parseDouble(price.getText().toString()),Integer.parseInt( stockQuantity.getText().toString()),0,category.getText().toString(),dbhelper,null);
             }});
 
 

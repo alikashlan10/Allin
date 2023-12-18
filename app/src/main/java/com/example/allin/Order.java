@@ -32,6 +32,13 @@ public class Order {
         this.totalAmount = totalAmount;
     }
 
+    public Order getClone(int id)
+    {
+        return new Order(id,this.userID,this.items,this.orderDate,this.status,this.deliveryDate,this.totalAmount);
+    }
+
+
+
     public Order(){}
 
     public int getOrderId() {
