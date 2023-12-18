@@ -45,11 +45,13 @@
 
         <Button
             android:id="@+id/addtocartbtn"
-            android:layout_width="wrap_content"
+            android:layout_width="103dp"
             android:layout_height="59dp"
+            android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginEnd="17dp"
+            android:layout_marginStart="285dp"
+            android:layout_marginEnd="23dp"
             android:layout_marginBottom="6dp"
             android:text="Add to cart"
             android:textAlignment="viewStart"
@@ -84,7 +86,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            android:layout_marginStart="335dp"
+            android:layout_marginStart="326dp"
             android:layout_marginTop="67dp"
             android:text="1"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
@@ -92,24 +94,26 @@
             android:textStyle="bold" />
 
         <ImageView
-            android:id="@+id/plusicon"
-            android:layout_width="23dp"
-            android:layout_height="20dp"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginStart="360dp"
-            android:layout_marginTop="74dp"
-            app:srcCompat="@drawable/plus_icon" />
-
-        <ImageView
             android:id="@+id/minusicon"
             android:layout_width="24dp"
             android:layout_height="23dp"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            android:layout_marginStart="304dp"
+            android:layout_marginStart="295dp"
             android:layout_marginTop="72dp"
             app:srcCompat="@drawable/minus" />
+
+        <ImageView
+            android:id="@+id/plusicon"
+            android:layout_width="23dp"
+            android:layout_height="20dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="351dp"
+            android:layout_marginTop="74dp"
+            android:layout_marginEnd="37dp"
+            app:srcCompat="@drawable/plus_icon" />
 
         <ImageView
             android:id="@+id/minusicon2"

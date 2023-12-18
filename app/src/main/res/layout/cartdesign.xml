@@ -116,10 +116,12 @@
             android:id="@+id/cancelbtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
+            android:layout_marginStart="346dp"
             android:layout_marginTop="19dp"
-            android:layout_marginEnd="26dp"
+            android:layout_marginEnd="29dp"
             app:srcCompat="@drawable/cancel" />
 
     </RelativeLayout>
