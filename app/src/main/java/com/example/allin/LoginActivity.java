@@ -49,7 +49,7 @@ public class LoginActivity extends AppCompatActivity {
                 }
                 else if (person.login(username.getText().toString(),pass.getText().toString(),dbHelper) && person instanceof Admin)
                 {
-                    Intent i = new Intent(LoginActivity.this, AdminOrderActivity.class);
+                    Intent i = new Intent(LoginActivity.this, AdminPanelActivity.class);
                     startActivity(i);
                 }
                 else {

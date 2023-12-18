@@ -4,17 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
-
+    tools:context=".AdminItemsActivity">
 
     <TextView
-        android:id="@+id/textView12"
+        android:id="@+id/textView9"
         android:layout_width="236dp"
         android:layout_height="52dp"
         android:layout_marginStart="50dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="50dp"
-        android:text="All feedbacks"
+        android:text="All items"
         android:textAlignment="center"
         android:textColor="#6200ED"
         android:textSize="30sp"
@@ -23,12 +22,31 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ListView
-        android:id="@+id/feedbackList"
-        android:layout_width="409dp"
-        android:layout_height="659dp"
-        android:layout_marginTop="70dp"
+    <LinearLayout
+        android:layout_width="425dp"
+        android:layout_height="603dp"
+        android:layout_marginTop="60dp"
+        android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ListView
+            android:id="@+id/Adminitemslist"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/adminadditembtn"
+        android:layout_width="368dp"
+        android:layout_height="51dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginBottom="7dp"
+        android:text="Add item"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

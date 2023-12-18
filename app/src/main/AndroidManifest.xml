@@ -14,7 +14,17 @@
         android:theme="@style/Theme.AllIn"
         tools:targetApi="31">
         <activity
+ h3ml_el_add_items
             android:name=".AdminToAddItems"
+
+            android:name=".UserActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AdminItemsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AdminPanelActivity"
+ master
             android:exported="false" />
         <activity
             android:name=".AdminOrderActivity"

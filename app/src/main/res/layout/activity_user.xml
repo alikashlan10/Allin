@@ -3,18 +3,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".MainActivity">
-
+    android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/textView12"
+        android:id="@+id/textView11"
         android:layout_width="236dp"
         android:layout_height="52dp"
         android:layout_marginStart="50dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="50dp"
-        android:text="All feedbacks"
+        android:text="All users"
         android:textAlignment="center"
         android:textColor="#6200ED"
         android:textSize="30sp"
@@ -24,10 +22,12 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ListView
-        android:id="@+id/feedbackList"
-        android:layout_width="409dp"
+        android:id="@+id/userList"
+        android:layout_width="406dp"
         android:layout_height="659dp"
+        android:layout_marginStart="1dp"
         android:layout_marginTop="70dp"
+        android:layout_marginEnd="1dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

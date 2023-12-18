@@ -6,4 +6,45 @@
     android:layout_height="match_parent"
     tools:context=".AddCategoryActivity">
 
+    <EditText
+        android:id="@+id/addCategoryEditText"
+        android:layout_width="286dp"
+        android:layout_height="39dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="30dp"
+        android:ems="10"
+        android:hint="Category Name"
+        android:inputType="text"
+        app:layout_constraintBottom_toTopOf="@+id/addCategorySubmitButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/addCategorySubmitButton"
+        android:layout_width="316dp"
+        android:layout_height="58dp"
+        android:layout_marginStart="160dp"
+        android:layout_marginEnd="160dp"
+        android:layout_marginBottom="290dp"
+        android:text="Add"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/addCategoryTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="100dp"
+        android:layout_marginEnd="103dp"
+        android:layout_marginBottom="30dp"
+        android:text="Add Category"
+        android:textColor="#6200ED"
+        android:textSize="34sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/addCategoryEditText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

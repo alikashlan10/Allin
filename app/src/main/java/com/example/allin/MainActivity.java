@@ -28,8 +28,6 @@ public class MainActivity extends AppCompatActivity {
         dbHelper.insertDummyCategories();
         dbHelper.insertDummyItem();
         dbHelper.insertDummyAdmin();
-        system.loadUsersFromDatabase(dbHelper);
-        // system.loadItemsFromDatabase(dbHelper);
         system.loadItemsFromDatabase(dbHelper);
         system.InitializeAppData(dbHelper);
 

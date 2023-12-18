@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AdminPanelActivity">
+
+    <TextView
+        android:id="@+id/Adminpaneltitle"
+        android:layout_width="213dp"
+        android:layout_height="47dp"
+        android:layout_marginTop="50dp"
+        android:text="Admin Panel"
+        android:textAlignment="center"
+        android:textColor="#6200EE"
+        android:textSize="34sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/adminpanelsubtitle"
+        android:layout_width="246dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="200dp"
+        android:text="Choose your activity"
+        android:textAlignment="center"
+        android:textColor="#858585"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/adminpanelfeedbtn"
+        android:layout_width="319dp"
+        android:layout_height="56dp"
+        android:layout_marginStart="46dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="46dp"
+        android:text="feedback"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/adminpanelitemsbtn" />
+
+    <Button
+        android:id="@+id/adminpanelitemsbtn"
+        android:layout_width="319dp"
+        android:layout_height="56dp"
+        android:layout_marginStart="46dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="46dp"
+        android:text="items"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/adminpanelcatsbtn" />
+
+    <Button
+        android:id="@+id/adminpanelusersbtn"
+        android:layout_width="319dp"
+        android:layout_height="56dp"
+        android:layout_marginTop="250dp"
+        android:text="USERS"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/adminpanelcatsbtn"
+        android:layout_width="319dp"
+        android:layout_height="56dp"
+        android:layout_marginStart="46dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="46dp"
+        android:text="categories"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/adminpanelordersbtn" />
+
+    <Button
+        android:id="@+id/adminpanelordersbtn"
+        android:layout_width="319dp"
+        android:layout_height="56dp"
+        android:layout_marginStart="46dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="46dp"
+        android:text="orders"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/adminpanelusersbtn" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

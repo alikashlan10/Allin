@@ -36,7 +36,7 @@ public class HomeActivity extends AppCompatActivity {
         system.loadItemsFromDatabase(dbHelper);
 
         List<Item> testing = new ArrayList<>();
-        HomeAdapter testadapter = new HomeAdapter(this,R.layout.itemdesign,system.getItemsList());
+        HomeAdapter testadapter = new HomeAdapter(this,R.layout.itemdesign,system.getItemsList(), "user");
         lv.setAdapter(testadapter);
         Gotocartbtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -71,7 +71,7 @@ public class HomeActivity extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
                 // Perform the action when an item is selected
                 String selectedValue = (String) parentView.getItemAtPosition(position);
-                HomeAdapter filteredadapter = new HomeAdapter(HomeActivity.this,R.layout.itemdesign,system.getItemByCategory(selectedValue));
+                HomeAdapter filteredadapter = new HomeAdapter(HomeActivity.this,R.layout.itemdesign,system.getItemByCategory(selectedValue), "user");
                 lv.setAdapter(filteredadapter);
             }
 
@@ -87,7 +87,7 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String x = searchbar.getText().toString();
-                HomeAdapter filteredadapter = new HomeAdapter(HomeActivity.this,R.layout.itemdesign, system.SearchByText(x));
+                HomeAdapter filteredadapter = new HomeAdapter(HomeActivity.this,R.layout.itemdesign, system.SearchByText(x), "user");
                 lv.setAdapter(filteredadapter);
             }
 

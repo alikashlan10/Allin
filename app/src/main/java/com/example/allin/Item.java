@@ -68,11 +68,11 @@ public class Item {
     }
 
     public double getPrice() {
-        return price;
+        return price*(1-sale);
     }
     public double setPrice(double price) {
         this.price = price;
-        return price;
+        return getPrice();
     }
 
     public int getStockQuantity() {

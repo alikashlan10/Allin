@@ -44,18 +44,18 @@
             android:text="TextView" />
 
 
-
         <ImageView
             android:id="@+id/cartitemimage"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="153dp"
+            android:layout_height="141dp"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginStart="13dp"
-            android:layout_marginTop="14dp"
+            android:layout_marginStart="-3dp"
+            android:layout_marginTop="7dp"
             android:layout_marginBottom="12dp"
-            tools:srcCompat="@tools:sample/avatars" />
+            app:srcCompat="@drawable/screenshot_1"
+            tools:srcCompat="@drawable/screenshot_1" />
 
         <TextView
             android:id="@+id/cartitemstockquantity"
@@ -116,10 +116,12 @@
             android:id="@+id/cancelbtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
+            android:layout_marginStart="346dp"
             android:layout_marginTop="19dp"
-            android:layout_marginEnd="26dp"
+            android:layout_marginEnd="29dp"
             app:srcCompat="@drawable/cancel" />
 
     </RelativeLayout>
