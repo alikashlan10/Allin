@@ -22,12 +22,12 @@ public class Item {
     private int stockQuantity;
     private int soldQuantity;
     private Category category;
-    private float sale;
+    private double sale;
     private List<byte[]> images;
 
     public Item(){}
 
-    public Item(int itemId, String itemName, String description, double price, int stockQuantity,int soldQuantity,Category category,List<byte[]> images) {
+    public Item(int itemId, String itemName, String description, double price, int stockQuantity,int soldQuantity,Category category,List<byte[]> images,double sale) {
         this.itemId = itemId;
         this.itemName = itemName;
         this.description = description;
@@ -36,6 +36,7 @@ public class Item {
         this.soldQuantity=soldQuantity;
         this.category=category;
         this.images= images;
+        this.sale=sale;
     }
 
     public List<byte[]> getImages() {
@@ -81,7 +82,7 @@ public class Item {
         this.stockQuantity = stockQuantity;
     }
 
-    public float getSale() {
+    public double getSale() {
         return sale;
     }
     public void setSale(float sale) {

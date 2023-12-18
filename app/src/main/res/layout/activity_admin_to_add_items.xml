@@ -34,6 +34,15 @@
         tools:layout_editor_absoluteY="377dp" />
 
     <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/Category"
+        android:layout_width="297dp"
+        android:layout_height="61dp"
+        android:layout_alignParentBottom="true"
+        android:hint="Category"
+        tools:layout_editor_absoluteX="47dp"
+        tools:layout_editor_absoluteY="483dp" />
+
+    <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/Price"
         android:layout_width="297dp"
         android:layout_height="61dp"
@@ -41,5 +50,13 @@
         android:hint="Price"
         tools:layout_editor_absoluteX="47dp"
         tools:layout_editor_absoluteY="271dp" />
+
+    <Button
+        android:id="@+id/addbtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add"
+        tools:layout_editor_absoluteX="147dp"
+        tools:layout_editor_absoluteY="654dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
