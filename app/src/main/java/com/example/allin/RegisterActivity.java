@@ -16,6 +16,8 @@ public class RegisterActivity extends AppCompatActivity {
 
         Intent i=getIntent();
 
+        OnlineShoppingSystem sys=OnlineShoppingSystem.getInstance();
+        DbHelper dbHelper=new DbHelper(this);
 
         EditText username = findViewById(R.id.RegUsername);
         EditText name = findViewById(R.id.RegFullName);
@@ -34,10 +36,16 @@ public class RegisterActivity extends AppCompatActivity {
         if (source.equals("fromHome"))
         {
             registerButton.setText("Edit info");
+            registerButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    ((User)sys.getCurrentPerson()).UpdatePersonalInfo(username.getText().toString(),pass.getText().toString(),"","","","","","",dbHelper);
+                    Intent tologin=new Intent(RegisterActivity.this,LoginActivity.class);
+                    startActivity(tologin);
+                }
+            });
         }
-
-
-        DbHelper dbHelper = new DbHelper(this);
+        else if(source.equals("fromLogin")){
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -60,6 +68,7 @@ public class RegisterActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        }
 
     }
 }

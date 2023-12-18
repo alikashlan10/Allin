@@ -281,9 +281,11 @@ public class User extends Person{
     }
 
 
-    public void UpdatePersonalInfo(String newName, String newEmail, String newCity,
+    public void UpdatePersonalInfo(String username,String password,String newName, String newEmail, String newCity,
                                    String newStreet, String newBuildingNum, String newFlatNum, DbHelper dbHelper) {
         //set New Info
+        this.UserName=username;
+        this.password=password;
         this.fullName = newName;
         this.Email = newEmail;
         this.userAddress.setCity(newCity);
@@ -293,6 +295,8 @@ public class User extends Person{
 
         //ContentValues
         ContentValues values = new ContentValues();
+        //values.put("Username",username);
+        values.put("Password",password);
         values.put("FullName", newName);
         values.put("Email", newEmail);
         values.put("City", newCity);
