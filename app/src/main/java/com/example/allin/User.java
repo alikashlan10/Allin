@@ -7,6 +7,7 @@ package com.example.allin;
 
 
 import android.content.ContentValues;
+import android.database.sqlite.SQLiteDatabase;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,7 +23,7 @@ public class User extends Person{
     private String Email;
     private int AddressID;
     private String creditCard;
-    private UserAddress userAddress;
+    private UserAddress userAddress = new UserAddress();
     private List<CartItem> Cart  = new ArrayList<>();
 
 
@@ -281,28 +282,20 @@ public class User extends Person{
     }
 
 
-    public void UpdatePersonalInfo(String newName, String newEmail, String newCity,
-                                   String newStreet, String newBuildingNum, String newFlatNum, DbHelper dbHelper) {
+    public void UpdatePersonalInfo(String username,String pass,String fullName,String email,String ssn,String country
+            ,String City,String street,String buildingNum,String flatNum,DbHelper dbHelper) {
         //set New Info
-        this.fullName = newName;
-        this.Email = newEmail;
-        this.userAddress.setCity(newCity);
-        this.userAddress.setStreet(newStreet);
-        this.userAddress.setBuildingNum(newBuildingNum);
-        this.userAddress.setFlatNum(newFlatNum);
-
-        //ContentValues
-        ContentValues values = new ContentValues();
-        values.put("FullName", newName);
-        values.put("Email", newEmail);
-        values.put("City", newCity);
-        values.put("Street", newStreet);
-        values.put("BuildingNum", newBuildingNum);
-        values.put("FlatNum", newFlatNum);
-
-        //Update DB
-        dbHelper.getWritableDatabase().update("User", values, "UserID = ?",
-                new String[]{String.valueOf(this.getPersonID())});
+        this.UserName = username;
+        this.password = pass;
+        this.fullName = fullName;
+        this.Email = email;
+        this.SSN = ssn;
+        this.userAddress.setCountry(country);
+        this.userAddress.setCity(City);
+        this.userAddress.setStreet(street);
+        this.userAddress.setBuildingNum(buildingNum);
+        this.userAddress.setFlatNum(flatNum);
+        dbHelper.UpdateUser(this);
     }
 
 

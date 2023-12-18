@@ -27,7 +27,7 @@ public class DbHelper extends SQLiteOpenHelper {
     private static final String CREATE_USER = "CREATE TABLE User (" +
             "UserID INTEGER PRIMARY KEY AUTOINCREMENT, " +
             "Username TEXT UNIQUE, " +
-            "Password TEXT, " +
+            " TEXT, " +
             "FullName TEXT, " +
             "SSN TEXT UNIQUE, " +
             "CreditCardNumber TEXT UNIQUE, " +
@@ -188,6 +188,14 @@ public class DbHelper extends SQLiteOpenHelper {
     public void insertDummyUserData() {
         SQLiteDatabase db = this.getWritableDatabase();
 
+        ContentValues addValue = new ContentValues();
+        addValue.put("Country", "country");
+        addValue.put("City", "City");
+        addValue.put("Street", "street");
+        addValue.put("BuildingNum", "buildingNum");
+        addValue.put("FlatNum", "flatNum");
+        db.insert("UserAddress", null, addValue);
+
         ContentValues values = new ContentValues();
         values.put("Username", "user");
         values.put("Password", "user");
@@ -196,14 +204,13 @@ public class DbHelper extends SQLiteOpenHelper {
         values.put("CreditCardNumber", "1234-5678-9012-3456");
         values.put("Email", "testuser@example.com");
         values.put("AddressID", 1); // Assuming you have an AddressID of 1 for testing
-
         db.insert("User", null, values);
 
         ContentValues adValues = new ContentValues();
         adValues.put("Username", "admin");
         adValues.put("Password", "admin");
-
         db.insert("Admin", null, adValues);
+
         db.close();
     }
     void insertDummyAdmin() {
@@ -938,5 +945,44 @@ public class DbHelper extends SQLiteOpenHelper {
         cursor.close();
         db.close();
         return userId;
+    }
+
+    public void updateCategory(Category toBeEditCategory) {
+        ContentValues values = new ContentValues();
+        values.put("CategoryName", toBeEditCategory.getCategoryName());
+        //Update DB
+        this.getWritableDatabase().update("Category", values, "CategoryID = ?",
+                new String[]{String.valueOf(toBeEditCategory.getCategoryId())});
+    }
+
+    public void UpdateUser(User user) {
+        SQLiteDatabase db = getWritableDatabase();
+        try {
+            db.beginTransaction();
+            //ContentValues
+            ContentValues values = new ContentValues();
+            values.put("Username", user.getUserName());
+            values.put("Password", user.getPassword());
+            values.put("FullName", user.getFullName());
+            values.put("Email", user.getEmail());
+            values.put("SSN", user.getSSN());
+            //Update DB
+            int up = db.update("User", values, "UserID = ?",
+                    new String[]{String.valueOf(user.getPersonID())});
+            //Address
+            ContentValues addValue = new ContentValues();
+            addValue.put("Country", user.getUserAddress().getCountry());
+            addValue.put("City", user.getUserAddress().getCity());
+            addValue.put("Street", user.getUserAddress().getStreet());
+            addValue.put("BuildingNum", user.getUserAddress().getBuildingNum());
+            addValue.put("FlatNum", user.getUserAddress().getFlatNum());
+            //Update DB
+            db.update("UserAddress", values, "AddressID = ?",
+                    new String[]{String.valueOf(user.getAddressID())});
+            db.setTransactionSuccessful();
+        } finally {
+            db.endTransaction();
+            db.close();
+        }
     }
 }

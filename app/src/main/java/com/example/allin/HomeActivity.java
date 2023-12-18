@@ -27,6 +27,7 @@ public class HomeActivity extends AppCompatActivity {
         lv = findViewById(R.id.test_list);
         Button Gotocartbtn = findViewById(R.id.gotocartbtn);
         Button Yourordersbtn = findViewById(R.id.yourordersbtn);
+        Button update = findViewById(R.id.update);
 
 
         DbHelper dbHelper = new DbHelper(this);
@@ -38,6 +39,15 @@ public class HomeActivity extends AppCompatActivity {
         List<Item> testing = new ArrayList<>();
         HomeAdapter testadapter = new HomeAdapter(this,R.layout.itemdesign,system.getItemsList(), "user");
         lv.setAdapter(testadapter);
+
+        update.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i=new Intent(HomeActivity.this,RegisterActivity.class);
+                i.putExtra("update","update");
+                startActivity(i);
+            }
+        });
         Gotocartbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
