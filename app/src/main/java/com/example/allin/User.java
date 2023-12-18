@@ -295,18 +295,19 @@ public class User extends Person{
 
         //ContentValues
         ContentValues values = new ContentValues();
-        //values.put("Username",username);
+        values.put("Username",username);
         values.put("Password",password);
         values.put("FullName", newName);
         values.put("Email", newEmail);
-        values.put("City", newCity);
-        values.put("Street", newStreet);
-        values.put("BuildingNum", newBuildingNum);
-        values.put("FlatNum", newFlatNum);
-
+       // values.put("City", newCity);
+        //values.put("Street", newStreet);
+        //values.put("BuildingNum", newBuildingNum);
+        //values.put("FlatNum", newFlatNum);
+        OnlineShoppingSystem sys=OnlineShoppingSystem.getInstance();
         //Update DB
         dbHelper.getWritableDatabase().update("User", values, "UserID = ?",
-                new String[]{String.valueOf(this.getPersonID())});
+                new String[]{String.valueOf(sys.getCurrentPerson().getPersonID())}
+        );
     }
 
 

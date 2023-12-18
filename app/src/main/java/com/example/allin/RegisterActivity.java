@@ -33,19 +33,7 @@ public class RegisterActivity extends AppCompatActivity {
 
         Intent Choiceintent = getIntent();
         String source = Choiceintent.getStringExtra("Source");
-        if (source.equals("fromHome"))
-        {
-            registerButton.setText("Edit info");
-            registerButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    ((User)sys.getCurrentPerson()).UpdatePersonalInfo(username.getText().toString(),pass.getText().toString(),"","","","","","",dbHelper);
-                    Intent tologin=new Intent(RegisterActivity.this,LoginActivity.class);
-                    startActivity(tologin);
-                }
-            });
-        }
-        else if(source.equals("fromLogin")){
+
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -68,7 +56,7 @@ public class RegisterActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        }
+
 
     }
 }

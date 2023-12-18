@@ -88,6 +88,8 @@ public class OrderAdapter extends BaseAdapter {
                 OnlineShoppingSystem system = OnlineShoppingSystem.getInstance();
                 DbHelper dbHelper = new DbHelper(c);
                 ((User)system.getCurrentPerson()).CancelOrder(o.getOrderId(),dbHelper);
+                Toast.makeText(c, "Order is canceled", Toast.LENGTH_SHORT).show();
+                notifyDataSetChanged();
             }
         });
 
@@ -97,6 +99,8 @@ public class OrderAdapter extends BaseAdapter {
 
                 int id=(int)dbHelper.InsertReOrder(o.getClone(0));
                 sys.getOrders().add(o.getClone(id));
+                Toast.makeText(c, "Re-ordered successfully", Toast.LENGTH_SHORT).show();
+                notifyDataSetChanged();
 
             }
         });
