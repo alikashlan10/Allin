@@ -252,12 +252,20 @@ public class OnlineShoppingSystem {
     public List<Item> getItemByCategory(String CategoryName)
     {
         List<Item> CatItems =new ArrayList<>();
+        if (CategoryName.equals("All categories"))
+        {
+            return items;
+        }
+
 
         for (Item item:items) {
 
         if (item.getCategory().getCategoryName().equals(CategoryName))
             CatItems.add(item);
         }
+
+
+
         return CatItems;
     }
 

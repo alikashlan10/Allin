@@ -14,7 +14,10 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        EditText username = findViewById(R.id.RegFullName);
+        Intent i=getIntent();
+
+
+        EditText username = findViewById(R.id.RegUsername);
         EditText name = findViewById(R.id.RegFullName);
         EditText ssn = findViewById(R.id.RegSSN);
         EditText email = findViewById(R.id.RegEmail);
@@ -25,6 +28,14 @@ public class RegisterActivity extends AppCompatActivity {
         EditText buildingNum = findViewById(R.id.RegBuilding);
         EditText flatNum = findViewById(R.id.RegApartment);
         Button registerButton = findViewById(R.id.Regsubmitbtn);
+
+        Intent Choiceintent = getIntent();
+        String source = Choiceintent.getStringExtra("Source");
+        if (source.equals("fromHome"))
+        {
+            registerButton.setText("Edit info");
+        }
+
 
         DbHelper dbHelper = new DbHelper(this);
         registerButton.setOnClickListener(new View.OnClickListener() {

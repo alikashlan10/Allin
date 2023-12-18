@@ -26,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
         DbHelper dbHelper = new DbHelper(this);
         dbHelper.insertDummyUserData();
         dbHelper.insertDummyCategories();
+        dbHelper.insertInitialCategory();
         dbHelper.insertDummyItem();
         dbHelper.insertDummyAdmin();
         //system.loadItemsFromDatabase(dbHelper);

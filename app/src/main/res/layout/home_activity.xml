@@ -66,10 +66,22 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
+        android:layout_marginEnd="14dp"
         android:layout_marginBottom="10dp"
         android:text="Your Orders"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/editInfo"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/editInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="21dp"
+        android:layout_marginBottom="12dp"
+        android:text="Button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/gotocartbtn" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

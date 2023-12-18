@@ -817,6 +817,15 @@ public class DbHelper extends SQLiteOpenHelper {
         db.close();  // Close the database after insertion
         return CategoryID;
     }
+    public void insertInitialCategory() {
+        SQLiteDatabase db = getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("CategoryName", "All categories");
+        // Insert the values into the Item table
+        long CategoryID = db.insert("Category", null, values);
+        db.close();  // Close the database after insertion
+        //return CategoryID;
+    }
     // Delete category
     public void DeleteCategory(int categoryId) {
         SQLiteDatabase db = getWritableDatabase();
