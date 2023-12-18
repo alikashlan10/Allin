@@ -27,8 +27,8 @@ public class Item {
 
     public Item(){}
 
-    public Item(int itemId, String itemName, String description, double price, int stockQuantity,int soldQuantity,Category category,List<byte[]> images,double sale) {
-        this.itemId = itemId;
+    public Item(String itemName, String description, double price, int stockQuantity,int soldQuantity,Category category,List<byte[]> images,double sale) {
+        //this.itemId = itemId;
         this.itemName = itemName;
         this.description = description;
         this.price = price;

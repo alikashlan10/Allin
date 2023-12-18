@@ -21,6 +21,9 @@ public class AdminToAddItems extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_authentication);
 
+        OnlineShoppingSystem sys=OnlineShoppingSystem.getInstance();
+        DbHelper dbhelper=new DbHelper(this);
+
         EditText label=findViewById(R.id.ItemName);
         EditText info=findViewById(R.id.ItemInfo);
         EditText price=findViewById(R.id.Price);
@@ -33,7 +36,7 @@ public class AdminToAddItems extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-            }
+                ((Admin)sys.getCurrentPerson()).addItem(label.getText().toString(), info.getText().toString(),Double.parseDouble(price.getText().toString()),Integer.parseInt( stockQuantity.getText().toString()),1,category.getText().toString(),dbhelper,null);}
         });
 
 
