@@ -890,7 +890,7 @@ public class DbHelper extends SQLiteOpenHelper {
             db.beginTransaction();
 
             // Raw SQL query to update order status in Order table
-            String updateQuery = "UPDATE ORDERS SET Status = 'Canceled' WHERE OrderID = " + orderId;
+            String updateQuery = "UPDATE ORDERS SET Status = 'Canceled' WHERE OrderID = ?";
             db.execSQL(updateQuery, new Object[]{orderId});
 
             db.setTransactionSuccessful();
