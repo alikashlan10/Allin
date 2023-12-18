@@ -59,6 +59,7 @@ public class HomeAdapter extends BaseAdapter {
         ImageView Quantityminusicon = v.findViewById(R.id.minusicon);
         Button cartbtn = v.findViewById(R.id.addtocartbtn);
         Button salebtn = v.findViewById(R.id.addsalebtn);
+        //ImageView ItemImage = v.findViewById(R.id.ItemImage);
 
 
         Item i = getItem(position);
@@ -66,6 +67,7 @@ public class HomeAdapter extends BaseAdapter {
         itemDescriptionTextView.setText(i.getDescription());
         itemPriceTextView.setText(String.format(Locale.getDefault(), "$%.2f", i.getPrice()));
         itemQuantityTextView.setText(String.valueOf("Stock Quantity: "+i.getStockQuantity()));
+       // ItemImage.setImageDrawable(R.drawable.screenshot_1);
 
         Quantityplusicon.setOnClickListener(new View.OnClickListener() {
             @Override

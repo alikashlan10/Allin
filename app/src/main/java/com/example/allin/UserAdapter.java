@@ -50,8 +50,8 @@ public class UserAdapter extends BaseAdapter {
         Button categoryDeleteButton = v.findViewById(R.id.categoryDeleteButton);
 
         User user = getItem(position);
-        username.setText(user.getUserName());
-        userID.setText(String.valueOf(user.getPersonID()));
+        username.setText("Username: "+user.getUserName());
+        userID.setText(String.valueOf("User ID: "+user.getPersonID()));
         categoryDeleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

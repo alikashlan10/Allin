@@ -112,9 +112,21 @@
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
-            android:layout_marginTop="19dp"
-            android:layout_marginEnd="26dp"
+            android:layout_marginTop="18dp"
+            android:layout_marginEnd="24dp"
+            android:visibility="visible"
             app:srcCompat="@drawable/cancel" />
+
+        <ImageView
+            android:id="@+id/reorderbtn"
+            android:layout_width="50dp"
+            android:layout_height="46dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="13dp"
+            android:layout_marginEnd="74dp"
+            android:visibility="visible"
+            app:srcCompat="@drawable/reorder" />
 
     </RelativeLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

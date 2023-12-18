@@ -61,6 +61,7 @@ public class OrderAdapter extends BaseAdapter {
         TextView OrderUserID = v.findViewById(R.id.orderuserid);
         TextView OrderTotalAmount = v.findViewById(R.id.ordertotalamount);
         ImageView OrderCancelButton = v.findViewById(R.id.cancelbtn2);
+        ImageView OrderReorderbtn = v.findViewById(R.id.reorderbtn);
 
         Order o = getItem(position);
 
@@ -74,6 +75,7 @@ public class OrderAdapter extends BaseAdapter {
         if(!person.equals("user"))
         {
             OrderCancelButton.setVisibility(View.GONE);
+            OrderReorderbtn.setVisibility(View.GONE);
         }
 
         OrderCancelButton.setOnClickListener(new View.OnClickListener() {
@@ -82,6 +84,13 @@ public class OrderAdapter extends BaseAdapter {
                 OnlineShoppingSystem system = OnlineShoppingSystem.getInstance();
                 DbHelper dbHelper = new DbHelper(c);
                 ((User)system.getCurrentPerson()).CancelOrder(o.getOrderId(),dbHelper);
+            }
+        });
+
+        OrderReorderbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
             }
         });
 

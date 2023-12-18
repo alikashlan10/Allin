@@ -35,7 +35,7 @@
         android:layout_width="169dp"
         android:layout_height="99dp"
         android:layout_marginStart="60dp"
-        android:layout_marginBottom="140dp"
+        android:layout_marginBottom="170dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
@@ -57,7 +57,7 @@
         android:layout_width="229dp"
         android:layout_height="28dp"
         android:layout_marginStart="60dp"
-        android:layout_marginBottom="250dp"
+        android:layout_marginBottom="280dp"
         android:text="Authenticate by "
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textColor="#6200ED"
