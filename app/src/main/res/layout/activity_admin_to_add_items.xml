@@ -1,0 +1,62 @@
+<!-- activity_main.xml -->
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/ItemName"
+        android:layout_width="301dp"
+        android:layout_height="61dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:hint="Label"
+        tools:layout_editor_absoluteX="47dp"
+        tools:layout_editor_absoluteY="73dp" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/ItemInfo"
+        android:layout_width="297dp"
+        android:layout_height="61dp"
+        android:layout_alignParentBottom="true"
+        android:hint="Description"
+        tools:layout_editor_absoluteX="47dp"
+        tools:layout_editor_absoluteY="167dp" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/StockQuantity"
+        android:layout_width="297dp"
+        android:layout_height="61dp"
+        android:layout_alignParentBottom="true"
+        android:hint="Stock Quantity"
+        tools:layout_editor_absoluteX="47dp"
+        tools:layout_editor_absoluteY="377dp" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/Category"
+        android:layout_width="297dp"
+        android:layout_height="61dp"
+        android:layout_alignParentBottom="true"
+        android:hint="Category"
+        tools:layout_editor_absoluteX="47dp"
+        tools:layout_editor_absoluteY="483dp" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/Price"
+        android:layout_width="297dp"
+        android:layout_height="61dp"
+        android:layout_alignParentBottom="true"
+        android:hint="Price"
+        tools:layout_editor_absoluteX="47dp"
+        tools:layout_editor_absoluteY="271dp" />
+
+    <Button
+        android:id="@+id/addbtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add"
+        tools:layout_editor_absoluteX="147dp"
+        tools:layout_editor_absoluteY="654dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

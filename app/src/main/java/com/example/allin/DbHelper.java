@@ -457,17 +457,18 @@ public class DbHelper extends SQLiteOpenHelper {
         if (cursor.moveToFirst()) {
             Category category = getCategoryById(cursor.getInt(cursor.getColumnIndex("CategoryID")));
             item = new Item(
-                    cursor.getInt(cursor.getColumnIndex("ItemID")),
+
                     cursor.getString(cursor.getColumnIndex("Label")),
                     cursor.getString(cursor.getColumnIndex("ItemInfo")),
                     cursor.getDouble(cursor.getColumnIndex("Price")),
                     cursor.getInt(cursor.getColumnIndex("StockQuantity")),
                     cursor.getInt(cursor.getColumnIndex("SoldQuantity")),
                     category,
-                    null // Images are not fetched in this example; you may modify it to fetch images
+                    null, // Images are not fetched in this example; you may modify it to fetch images
+                    cursor.getInt(cursor.getColumnIndex("Sale"))
             );
         }
-
+        item.setItemId(cursor.getInt(cursor.getColumnIndex("ItemID")));
         // Close the cursor
         cursor.close();
 
@@ -518,12 +519,13 @@ public class DbHelper extends SQLiteOpenHelper {
             int stockQuantity = cursor.getInt(cursor.getColumnIndex("StockQuantity"));
             int soldQuantity = cursor.getInt(cursor.getColumnIndex("SoldQuantity"));
             int categoryId = cursor.getInt(cursor.getColumnIndex("CategoryID"));
+            double sale=cursor.getDouble(cursor.getColumnIndex("CategoryID"));
 
             // Fetch the associated Category for this Item
             Category category = getCategoryById(categoryId);
 
             // Create the Item object
-            Item item = new Item(itemId, itemName, description, price, stockQuantity,soldQuantity, category, null);
+            Item item = new Item(itemName, description, price, stockQuantity,soldQuantity, category, null,sale);
 
             // Add the Item to the list
             itemList.add(item);
@@ -722,6 +724,13 @@ public class DbHelper extends SQLiteOpenHelper {
         db.close();  // Close the database after insertion
 
         return ItemID;
+    }
+    public void updateCategory(Category toBeEditCategory) {
+        ContentValues values = new ContentValues();
+        values.put("CategoryName", toBeEditCategory.getCategoryName());
+        //Update DB
+        this.getWritableDatabase().update("Category", values, "CategoryID = ?",
+                new String[]{String.valueOf(toBeEditCategory.getCategoryId())});
     }
     // Delete item
     public void DeleteItem(int ItemID) {

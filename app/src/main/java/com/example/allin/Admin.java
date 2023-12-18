@@ -24,20 +24,21 @@ public class Admin extends Person {
         return false;
     }
 
-    public void addItem(int itemId, String itemName, String description, double price, int stockQuantity, float sale, String CatName, DbHelper dbHelper, List<byte[]> images) {
+    public void addItem(String itemName, String description, double price, int stockQuantity, double sale, String CatName, DbHelper dbHelper, List<byte[]> images) {
         //instance of System
         OnlineShoppingSystem system = OnlineShoppingSystem.getInstance();
         //getting category object corresponding to its name
         Category category= system.getCategoryIdByName(CatName);
         //setting item info
-        Item newItem = new Item(itemId, itemName, description, price, stockQuantity,0,category,images);
-        newItem.setSale(sale);
+        Item newItem = new Item(itemName, description, price, stockQuantity,0,category,images,sale);
+        //newItem.setSale(sale);
         //---> Add item to the database
         long ItemID=dbHelper.insertNewItem(newItem);
         //---> Add item to items list
         newItem.setItemId((int)ItemID);
         system.getItemsList().add(newItem);
     }
+
     public void DeleteItem(Item item,DbHelper dbHelper){
         //instance of System
         OnlineShoppingSystem system = OnlineShoppingSystem.getInstance();
@@ -81,7 +82,5 @@ public class Admin extends Person {
     }
 
     public void ShowOrdersInPeriod(){}
-    public void AddSale(){
-
-    }
+    public void AddSale(){}
 }
