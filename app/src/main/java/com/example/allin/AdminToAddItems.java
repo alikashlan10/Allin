@@ -19,7 +19,7 @@ public class AdminToAddItems extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_authentication);
+        setContentView(R.layout.activity_admin_to_add_items);
 
         OnlineShoppingSystem sys=OnlineShoppingSystem.getInstance();
         DbHelper dbhelper=new DbHelper(this);
@@ -36,14 +36,8 @@ public class AdminToAddItems extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                ((Admin)sys.getCurrentPerson()).addItem(label.getText().toString(), info.getText().toString(),Double.parseDouble(price.getText().toString()),Integer.parseInt( stockQuantity.getText().toString()),1,category.getText().toString(),dbhelper,null);}
-        });
-
-
-
-
-
-
+                ((Admin)sys.getCurrentPerson()).addItem(label.getText().toString(), info.getText().toString(),Double.parseDouble(price.getText().toString()),Integer.parseInt( stockQuantity.getText().toString()),1,category.getText().toString(),dbhelper,null);
+            }});
 
 
     }

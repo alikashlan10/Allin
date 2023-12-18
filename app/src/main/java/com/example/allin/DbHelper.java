@@ -710,7 +710,7 @@ public class DbHelper extends SQLiteOpenHelper {
 
 
         // Handling images insertion
-        if (ItemID != -1) {
+        /*if (ItemID != -1) {
             List<byte[]> images = item.getImages();
             for (byte[] image : images) {
                 ContentValues valuesImage = new ContentValues();
@@ -720,7 +720,7 @@ public class DbHelper extends SQLiteOpenHelper {
                 // Insert the values into the ItemImages table for each image
                 db.insert("ItemImages", null, valuesImage);
             }
-        }
+        }*/
         db.close();  // Close the database after insertion
 
         return ItemID;

@@ -28,9 +28,9 @@ public class Admin extends Person {
         //instance of System
         OnlineShoppingSystem system = OnlineShoppingSystem.getInstance();
         //getting category object corresponding to its name
-        Category category= system.getCategoryIdByName(CatName);
+        //Category category= system.getCategoryIdByName(CatName);
         //setting item info
-        Item newItem = new Item(itemName, description, price, stockQuantity,0,category,images,sale);
+        Item newItem = new Item(itemName, description, price, stockQuantity,0,system.getCategoryIdByName(CatName),images,sale);
         //newItem.setSale(sale);
         //---> Add item to the database
         long ItemID=dbHelper.insertNewItem(newItem);
