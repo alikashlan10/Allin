@@ -17,12 +17,14 @@ public class CartAdapter extends BaseAdapter {
     private Context c;
     private int resource;
     private List<CartItem> UserCart;
+    private String type;
 
-    public CartAdapter(Context c, int resource, List<CartItem> cartitems)
+    public CartAdapter(Context c, int resource, List<CartItem> cartitems,String type)
     {
         this.c = c;
         this.resource=resource;
         this.UserCart=cartitems;
+        this.type=type;
     }
     @Override
     public int getCount() {
@@ -56,6 +58,14 @@ public class CartAdapter extends BaseAdapter {
         ImageView Quantityminusicon = v.findViewById(R.id.cartitemminusicon);
         ImageView cancelbtn = v.findViewById(R.id.cancelbtn);
 
+        //After checkout user cant modify the order any more
+        if(type.equals("aftercheckout"))
+        {
+            Quantityplusicon.setVisibility(View.GONE);
+            Quantityminusicon.setVisibility(View.GONE);
+            cancelbtn.setVisibility(View.GONE);
+        }
+
 
         CartItem cartItem = getItem(position);
 
@@ -73,6 +83,8 @@ public class CartAdapter extends BaseAdapter {
                 int x = Integer.parseInt(stringValue);
                 if(x<(cartItem.getItem().getStockQuantity())) {
                     ChosenQuantityTextView.setText(String.valueOf(++x));
+                    cartItem.setQuantity(x);
+                    notifyDataSetChanged();
                 }
 
             }
@@ -85,6 +97,8 @@ public class CartAdapter extends BaseAdapter {
                 int x = Integer.parseInt(stringValue);
                 if(x!=0) {
                     ChosenQuantityTextView.setText(String.valueOf(--x));
+                    cartItem.setQuantity(x);
+                    notifyDataSetChanged();
                 }
             }
         });
@@ -95,7 +109,9 @@ public class CartAdapter extends BaseAdapter {
                  DbHelper dbHelper = new DbHelper(c);
                  OnlineShoppingSystem system = OnlineShoppingSystem.getInstance();
                  ((User)system.getCurrentPerson()).CancelItem(cartItem.getCartItemID(),dbHelper);
+                CartItemTotalPrice.setText(String.valueOf(cartItem.CalculateSubTotal()));
                  Toast.makeText(c, "Iteam has been deleted, Refresh", Toast.LENGTH_SHORT).show();
+
             }
         });
 

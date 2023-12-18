@@ -16,6 +16,8 @@ public class CategoryAdapter extends BaseAdapter {
     private int resource;
     private List<Category> categories;
 
+    DbHelper dbHelper=new DbHelper(c);
+
     public CategoryAdapter(Context c, int resource, List<Category> categories)
     {
         this.c = c;
@@ -60,6 +62,7 @@ public class CategoryAdapter extends BaseAdapter {
                 Intent intent = new Intent(c, AddCategoryActivity.class);
                 //Sent the desire category's name with the intent
                 intent.putExtra("categoryName",categoryName.getText().toString());
+                dbHelper.updateCategory(category);
                 c.startActivity(intent);
             }
         });

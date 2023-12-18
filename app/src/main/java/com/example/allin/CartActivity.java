@@ -23,8 +23,10 @@ public class CartActivity extends AppCompatActivity {
 
         DbHelper dbHelper = new DbHelper(this);
         OnlineShoppingSystem system = OnlineShoppingSystem.getInstance();
-        CartAdapter testadapter = new CartAdapter(this,R.layout.cartdesign,((User)system.getCurrentPerson()).getCart());
-        lv.setAdapter(testadapter);
+        CartAdapter beforeCheckOutAdapter = new CartAdapter(this,R.layout.cartdesign,((User)system.getCurrentPerson()).getCart(),"beforeCheckOut");
+        lv.setAdapter(beforeCheckOutAdapter);
+        CartAdapter afterCheckoutAdapter = new CartAdapter(this,R.layout.cartdesign,((User)system.getCurrentPerson()).getCart(),"aftercheckout");
+
 
         Button checkoutbtn = findViewById(R.id.checkout_button);
         Button placeorderbtn = findViewById(R.id.placeorder_button);
@@ -36,6 +38,7 @@ public class CartActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(((User)system.getCurrentPerson()).getCart().size()!=0) {
+                    lv.setAdapter(afterCheckoutAdapter);
                     totalpricetext.setText(String.valueOf(((User) system.getCurrentPerson()).getCartTotalPrice()));
                     checkoutbtn.setVisibility(View.GONE);
                     placeorderbtn.setVisibility(View.VISIBLE);
@@ -52,8 +55,8 @@ public class CartActivity extends AppCompatActivity {
         placeorderbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                lv.setAdapter(testadapter);
-                if(totalpricetext.getText().toString() != "-" && testadapter.getCount()!=0) {
+                lv.setAdapter(beforeCheckOutAdapter);
+                if(!totalpricetext.getText().toString().equals("-") && beforeCheckOutAdapter.getCount()!=0) {
                     system.placeOrder(((User) system.getCurrentPerson()), dbHelper);
                     Toast.makeText(getApplicationContext(), "Order placed successfuly", Toast.LENGTH_LONG).show();
                 }
@@ -70,7 +73,7 @@ public class CartActivity extends AppCompatActivity {
         refreshbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                lv.setAdapter(testadapter);
+                lv.setAdapter(beforeCheckOutAdapter);
             }
         });
 
