@@ -22,7 +22,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editTextTextMultiLine3"
+        android:id="@+id/feedbackcomment"
         android:layout_width="318dp"
         android:layout_height="209dp"
         android:layout_marginTop="64dp"
@@ -36,7 +36,7 @@
         app:layout_constraintTop_toBottomOf="@+id/Userfeedbacktitle" />
 
     <RatingBar
-        android:id="@+id/ratingBar2"
+        android:id="@+id/ratingbar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
@@ -57,10 +57,10 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextMultiLine3" />
+        app:layout_constraintTop_toBottomOf="@+id/feedbackcomment" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/submitfeedbtn"
         android:layout_width="347dp"
         android:layout_height="53dp"
         android:layout_marginBottom="16dp"
@@ -68,7 +68,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ratingBar2"
+        app:layout_constraintTop_toBottomOf="@+id/ratingbar"
         app:layout_constraintVertical_bias="1.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

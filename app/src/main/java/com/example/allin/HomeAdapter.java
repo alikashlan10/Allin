@@ -20,6 +20,8 @@ public class HomeAdapter extends BaseAdapter {
     private int resource;
     private List<Item> items;
 
+    Item i;
+
     String person;
 
     public HomeAdapter(Context c, int resource, List<Item> items, String person)
@@ -63,7 +65,7 @@ public class HomeAdapter extends BaseAdapter {
         Button AddFeedBackbtn = v.findViewById(R.id.addfeedbackbtn);
 
 
-        Item i = getItem(position);
+        i = getItem(position);
         itemNameTextView.setText(i.getItemName());
         itemDescriptionTextView.setText(i.getDescription());
         itemPriceTextView.setText(String.format(Locale.getDefault(), "$%.2f", i.getPrice()));
@@ -133,8 +135,9 @@ public class HomeAdapter extends BaseAdapter {
         AddFeedBackbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i=new Intent(c,UserFeedBackActivity.class);
-                c.startActivity(i);
+                Intent intent=new Intent(c,UserFeedBackActivity.class);
+                intent.putExtra("id", i.getItemId());
+                c.startActivity(intent);
             }
         });
 
