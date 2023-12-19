@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Register">
+    tools:context=".RegisterActivity">
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/RegFullName"
@@ -28,7 +28,9 @@
         app:layout_constraintBottom_toTopOf="@+id/RegFullName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.505"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
 
     <EditText
         android:id="@+id/RegEmail"
@@ -44,30 +46,16 @@
         app:layout_constraintHorizontal_bias="0.505"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <EditText
-        android:id="@+id/RegRePassword"
-        android:layout_width="318dp"
-        android:layout_height="40dp"
-        android:layout_marginBottom="15dp"
-        android:ems="10"
-        android:hint="Re-Password"
-        android:inputType="textPassword"
-        android:textColorHint="#9E9E9E"
-        app:layout_constraintBottom_toTopOf="@+id/RegSSN"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.505"
-        app:layout_constraintStart_toStartOf="parent" />
-
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/RegSSN"
         android:layout_width="318dp"
         android:layout_height="49dp"
-        android:layout_marginBottom="15dp"
+        android:layout_marginBottom="24dp"
         android:hint="SSN"
         android:textColorHint="#9E9E9E"
-        app:layout_constraintBottom_toTopOf="@+id/RegCity"
+        app:layout_constraintBottom_toTopOf="@+id/birthdate"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.505"
+        app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent" />
 
     <com.google.android.material.textfield.TextInputEditText
@@ -78,6 +66,7 @@
         android:layout_marginBottom="105dp"
         android:hint="Apt No."
         android:textColorHint="#9E9E9E"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
@@ -89,6 +78,7 @@
         android:layout_marginBottom="105dp"
         android:hint="Building No."
         android:textColorHint="#9E9E9E"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -101,6 +91,7 @@
         android:layout_marginBottom="15dp"
         android:hint="City"
         android:textColorHint="#9E9E9E"
+        android:visibility="gone"
         app:layout_constraintBottom_toTopOf="@+id/RegStreet"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/RegCountry" />
@@ -113,6 +104,7 @@
         android:layout_marginBottom="15dp"
         android:hint="Country"
         android:textColorHint="#9E9E9E"
+        android:visibility="gone"
         app:layout_constraintBottom_toTopOf="@+id/RegStreet"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -125,6 +117,7 @@
         android:layout_marginBottom="15dp"
         android:hint="Street"
         android:textColorHint="#9E9E9E"
+        android:visibility="gone"
         app:layout_constraintBottom_toTopOf="@+id/RegApartment"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
@@ -134,12 +127,12 @@
         android:id="@+id/RegPassword"
         android:layout_width="318dp"
         android:layout_height="40dp"
-        android:layout_marginBottom="15dp"
+        android:layout_marginBottom="8dp"
         android:ems="10"
         android:hint="Password"
         android:inputType="textPassword"
         android:textColorHint="#9E9E9E"
-        app:layout_constraintBottom_toTopOf="@+id/RegRePassword"
+        app:layout_constraintBottom_toTopOf="@+id/RegSSN"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.505"
         app:layout_constraintStart_toStartOf="parent" />
@@ -148,7 +141,7 @@
         android:id="@+id/RegTitle"
         android:layout_width="270dp"
         android:layout_height="49dp"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="8dp"
         android:text="Registeration Form"
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
@@ -156,7 +149,7 @@
         android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -166,10 +159,29 @@
         android:layout_height="49dp"
         android:layout_marginStart="50dp"
         android:layout_marginEnd="50dp"
-        android:layout_marginBottom="30dp"
+        android:layout_marginBottom="16dp"
         android:text="Submit"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <CalendarView
+        android:id="@+id/birthdate"
+        android:layout_width="346dp"
+        android:layout_height="302dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginBottom="12dp"
+        android:visibility="visible"
+        app:layout_constraintBottom_toTopOf="@+id/Regsubmitbtn"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="64dp"
+        android:layout_height="19dp"
+        android:layout_marginStart="32dp"
+        android:text="BirthDate"
+        app:layout_constraintBottom_toTopOf="@+id/birthdate"
         app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

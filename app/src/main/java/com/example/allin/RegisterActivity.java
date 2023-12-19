@@ -7,6 +7,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.*;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+
 public class RegisterActivity extends AppCompatActivity {
 
     @Override
@@ -29,6 +33,7 @@ public class RegisterActivity extends AppCompatActivity {
         EditText street = findViewById(R.id.RegStreet);
         EditText buildingNum = findViewById(R.id.RegBuilding);
         EditText flatNum = findViewById(R.id.RegApartment);
+        CalendarView birthdate = findViewById(R.id.birthdate);
         Button registerButton = findViewById(R.id.Regsubmitbtn);
 
         Intent Choiceintent = getIntent();
@@ -37,8 +42,11 @@ public class RegisterActivity extends AppCompatActivity {
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Person person = PersonFactory.GetPerson("user");}
                 User user = new User();
+
+                Date date = new Date(birthdate.getDate());
+                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+                String formattedDate = dateFormat.format(date);
 
                 user.Register(username.getText().toString(),
                             pass.getText().toString(),
