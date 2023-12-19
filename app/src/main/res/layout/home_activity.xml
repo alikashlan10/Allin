@@ -33,8 +33,8 @@
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/Searchbar"
-        android:layout_width="323dp"
-        android:layout_height="44dp"
+        android:layout_width="266dp"
+        android:layout_height="47dp"
         android:layout_marginStart="12dp"
         android:layout_marginTop="16dp"
         android:hint="Search"
@@ -50,6 +50,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="?android:attr/actionModeWebSearchDrawable" />
+
+    <ImageView
+        android:id="@+id/micIcon"
+        android:layout_width="49dp"
+        android:layout_height="43dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="72dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/gray_mic" />
 
     <Button
         android:id="@+id/gotocartbtn"
