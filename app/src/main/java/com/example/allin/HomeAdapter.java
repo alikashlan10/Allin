@@ -20,7 +20,7 @@ public class HomeAdapter extends BaseAdapter {
     private int resource;
     private List<Item> items;
 
-    Item i;
+
 
     String person;
 
@@ -65,7 +65,7 @@ public class HomeAdapter extends BaseAdapter {
         Button AddFeedBackbtn = v.findViewById(R.id.addfeedbackbtn);
 
 
-        i = getItem(position);
+        Item i = getItem(position);
         itemNameTextView.setText(i.getItemName());
         itemDescriptionTextView.setText(i.getDescription());
         itemPriceTextView.setText(String.format(Locale.getDefault(), "$%.2f", i.getPrice()));
