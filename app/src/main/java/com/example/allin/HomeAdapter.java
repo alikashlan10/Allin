@@ -9,6 +9,7 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 import java.util.List;
@@ -59,7 +60,7 @@ public class HomeAdapter extends BaseAdapter {
         ImageView Quantityminusicon = v.findViewById(R.id.minusicon);
         Button cartbtn = v.findViewById(R.id.addtocartbtn);
         Button salebtn = v.findViewById(R.id.addsalebtn);
-        //ImageView ItemImage = v.findViewById(R.id.ItemImage);
+        Button AddFeedBackbtn = v.findViewById(R.id.addfeedbackbtn);
 
 
         Item i = getItem(position);
@@ -109,6 +110,7 @@ public class HomeAdapter extends BaseAdapter {
                 OnlineShoppingSystem system=OnlineShoppingSystem.getInstance();
                 DbHelper dphelper = new DbHelper(c);
                 ((User)system.getCurrentPerson()).AddItemsToCart(i, Integer.parseInt(ChosenQuantityTextView.getText().toString()), system.getCurrentPerson().getPersonID(), dphelper);
+                Toast.makeText(c, "Item has been added to cart.", Toast.LENGTH_SHORT).show();
             }
 
         });
@@ -125,6 +127,14 @@ public class HomeAdapter extends BaseAdapter {
                     salebtn.setText("Add Sale");
                 }
                 notifyDataSetChanged();
+            }
+        });
+
+        AddFeedBackbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i=new Intent(c,UserFeedBackActivity.class);
+                c.startActivity(i);
             }
         });
 

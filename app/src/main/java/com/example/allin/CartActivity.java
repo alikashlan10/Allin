@@ -31,7 +31,6 @@ public class CartActivity extends AppCompatActivity {
         Button checkoutbtn = findViewById(R.id.checkout_button);
         Button placeorderbtn = findViewById(R.id.placeorder_button);
         TextView totalpricetext = findViewById(R.id.checkoutprice);
-        //ImageView refreshbtn = findViewById(R.id.refreshbtn);
 
 
         checkoutbtn.setOnClickListener(new View.OnClickListener() {

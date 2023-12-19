@@ -34,7 +34,7 @@
 
     <Button
         android:id="@+id/checkout_button"
-        android:layout_width="321dp"
+        android:layout_width="366dp"
         android:layout_height="48dp"
         android:layout_marginStart="50dp"
         android:layout_marginEnd="50dp"
@@ -46,10 +46,23 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
+        android:id="@+id/checkouttitle"
+        android:layout_width="157dp"
+        android:layout_height="36dp"
+        android:layout_marginBottom="4dp"
+        android:text="Total price"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        android:visibility="visible"
+        app:layout_constraintBottom_toTopOf="@+id/checkoutprice"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
         android:id="@+id/checkoutprice"
-        android:layout_width="match_parent"
-        android:layout_height="29dp"
-        android:layout_marginBottom="10dp"
+        android:layout_width="155dp"
+        android:layout_height="33dp"
+        android:layout_marginBottom="8dp"
         android:text="-"
         android:textAlignment="center"
         android:textColor="#6200ee"
@@ -59,32 +72,21 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <TextView
-        android:id="@+id/checkouttitle"
-        android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:text="Total price"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        android:visibility="visible"
-        app:layout_constraintBottom_toTopOf="@+id/checkoutprice"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
     <LinearLayout
         android:id="@+id/linearLayout2"
-        android:layout_width="409dp"
-        android:layout_height="638dp"
-        android:layout_marginTop="65dp"
+        android:layout_width="419dp"
+        android:layout_height="516dp"
+        android:layout_marginTop="60dp"
         android:orientation="vertical"
         android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <ListView
             android:id="@+id/test_list2"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="504dp">
 
         </ListView>
 

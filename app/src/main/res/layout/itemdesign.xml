@@ -6,9 +6,10 @@
              android:layout_height="match_parent">
 
     <RelativeLayout
-        android:layout_width="411dp"
-        android:layout_height="160dp"
+        android:layout_width="414dp"
+        android:layout_height="212dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.666"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -16,10 +17,12 @@
             android:id="@+id/pricetext"
             android:layout_width="110dp"
             android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginEnd="147dp"
-            android:layout_marginBottom="15dp"
+            android:layout_above="@+id/addfeedbackbtn"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="126dp"
+            android:layout_marginBottom="27dp"
+            android:layout_toEndOf="@+id/minusicon2"
             android:text="TextView" />
 
         <TextView
@@ -27,34 +30,50 @@
             android:layout_width="202dp"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="58dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="14dp"
+            android:layout_toEndOf="@+id/minusicon2"
             android:text="TextView"
             android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
 
         <TextView
             android:id="@+id/descriptiontext"
-            android:layout_width="242dp"
-            android:layout_height="45dp"
+            android:layout_width="161dp"
+            android:layout_height="46dp"
             android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginTop="43dp"
-            android:layout_marginEnd="18dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="47dp"
+            android:layout_toEndOf="@+id/minusicon2"
             android:text="TextView" />
 
         <Button
             android:id="@+id/addtocartbtn"
-            android:layout_width="103dp"
-            android:layout_height="59dp"
+            android:layout_width="122dp"
+            android:layout_height="40dp"
+            android:layout_above="@+id/addfeedbackbtn"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="128dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="0dp"
+            android:layout_toEndOf="@+id/pricetext"
+            android:text="Add to cart"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Small" />
+
+        <Button
+            android:id="@+id/addfeedbackbtn"
+            android:layout_width="393dp"
+            android:layout_height="41dp"
             android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginStart="285dp"
-            android:layout_marginEnd="23dp"
-            android:layout_marginBottom="6dp"
-            android:text="Add to cart"
-            android:textAlignment="viewStart"
+            android:layout_marginStart="11dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="0dp"
+            android:text="Add Feedback"
+            android:textAlignment="center"
             android:textAppearance="@style/TextAppearance.AppCompat.Small" />
 
         <Button
@@ -74,21 +93,34 @@
             android:id="@+id/quantitytext"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            android:layout_marginStart="154dp"
-            android:layout_marginTop="103dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="100dp"
+            android:layout_toEndOf="@+id/minusicon2"
             android:text="TextView" />
+
+        <ImageView
+            android:id="@+id/plusicon"
+            android:layout_width="23dp"
+            android:layout_height="20dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="93dp"
+            android:layout_marginEnd="29dp"
+            android:layout_toEndOf="@+id/chosenquantity"
+            app:srcCompat="@drawable/plus_icon" />
 
         <TextView
             android:id="@+id/chosenquantity"
-            android:layout_width="wrap_content"
+            android:layout_width="36dp"
             android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            android:layout_marginStart="326dp"
-            android:layout_marginTop="67dp"
+            android:layout_marginStart="6dp"
+            android:layout_marginTop="85dp"
+            android:layout_toEndOf="@+id/minusicon"
             android:text="1"
+            android:textAlignment="center"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:textSize="24sp"
             android:textStyle="bold" />
@@ -99,30 +131,18 @@
             android:layout_height="23dp"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            android:layout_marginStart="295dp"
-            android:layout_marginTop="72dp"
+            android:layout_marginStart="289dp"
+            android:layout_marginTop="92dp"
             app:srcCompat="@drawable/minus" />
 
         <ImageView
-            android:id="@+id/plusicon"
-            android:layout_width="23dp"
-            android:layout_height="20dp"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginStart="351dp"
-            android:layout_marginTop="74dp"
-            android:layout_marginEnd="37dp"
-            app:srcCompat="@drawable/plus_icon" />
-
-        <ImageView
             android:id="@+id/minusicon2"
-            android:layout_width="145dp"
-            android:layout_height="match_parent"
+            android:layout_width="131dp"
+            android:layout_height="129dp"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            android:layout_marginStart="0dp"
-            android:layout_marginTop="-5dp"
+            android:layout_marginStart="9dp"
+            android:layout_marginTop="20dp"
             app:srcCompat="@drawable/screenshot_1"
             tools:srcCompat="@drawable/screenshot_1" />
 
