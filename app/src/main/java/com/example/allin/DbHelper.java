@@ -726,11 +726,23 @@ public class DbHelper extends SQLiteOpenHelper {
         return ItemID;
     }
     public void updateCategory(Category toBeEditCategory) {
-        ContentValues values = new ContentValues();
-        values.put("CategoryName", toBeEditCategory.getCategoryName());
-        //Update DB
-        this.getWritableDatabase().update("Category", values, "CategoryID = ?",
-                new String[]{String.valueOf(toBeEditCategory.getCategoryId())});
+
+        SQLiteDatabase db = getWritableDatabase();
+
+        try {
+            db.beginTransaction();
+
+            // Raw SQL query to update CartItems table
+            String Query = "UPDATE Category SET CategoryName = ? WHERE CategoryID = ?";
+            db.execSQL(Query, new Object[]{toBeEditCategory.getCategoryName(),toBeEditCategory.getCategoryId()});
+
+            db.setTransactionSuccessful();
+
+
+        } finally {
+            db.endTransaction();
+            db.close();
+        }
     }
     // Delete item
     public void DeleteItem(int ItemID) {

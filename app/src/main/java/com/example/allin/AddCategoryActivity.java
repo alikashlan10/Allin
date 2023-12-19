@@ -47,7 +47,7 @@ public class AddCategoryActivity extends AppCompatActivity {
                 else{ //EDIT case
                     Category toBeEditCategory = system.getCategoryIdByName(categoryName);
                     toBeEditCategory.setCategoryName(addCategoryEditText.getText().toString());
-                    //dbHelper.updateCategory();
+                    dbHelper.updateCategory(toBeEditCategory);
                 }
                 //go back to "CategoryActivity"
                 Intent intent = new Intent(AddCategoryActivity.this, CategoryActivity.class);

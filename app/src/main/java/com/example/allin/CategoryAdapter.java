@@ -62,7 +62,6 @@ public class CategoryAdapter extends BaseAdapter {
                 Intent intent = new Intent(c, AddCategoryActivity.class);
                 //Sent the desire category's name with the intent
                 intent.putExtra("categoryName",categoryName.getText().toString());
-                dbHelper.updateCategory(category);
                 c.startActivity(intent);
             }
         });
