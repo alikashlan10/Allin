@@ -17,11 +17,9 @@ public class FeedbackActivity extends AppCompatActivity {
         setContentView(R.layout.activity_feedback);
         lv = findViewById(R.id.feedbackList);
 
-
-        List<Feedback> fdbkLst = new ArrayList<>();
-        Feedback fd = new Feedback(3,3,3,"aaaaaas",3);
-        fdbkLst.add(fd);
-        fdbkLst.add(fd);
+        OnlineShoppingSystem system=OnlineShoppingSystem.getInstance();
+        system.loadFeedBacksFromDatabase(new DbHelper(this));
+        List<Feedback> fdbkLst = system.getFeedbacks();
 
         FeedbackAdapter testadapter = new FeedbackAdapter(this,R.layout.feedback_design,fdbkLst);
         lv.setAdapter(testadapter);

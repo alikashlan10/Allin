@@ -229,19 +229,15 @@ public class User extends Person{
 
 
     // Add feedback
-    public void AddFeedBack(User user,Item item,String comment,int rating,DbHelper dbhelper)
+    public void AddFeedBack(int itemID,String comment,int rating,DbHelper dbhelper)
     {
-        OnlineShoppingSystem system=OnlineShoppingSystem.getInstance();
-
         int FeedbackID;
-
         //Add feedback to database
-        FeedbackID=(int)dbhelper.insertNewFeedback(comment,rating,user.getPersonID(), item.getItemId());
-
+        FeedbackID=(int)dbhelper.insertNewFeedback(comment,rating,this.PersonID, itemID);
         //Add Feedback to feedback list
-        system.getFeedbacks().add(new Feedback(FeedbackID,user.getPersonID(),item.getItemId(),comment,rating));
+        OnlineShoppingSystem system=OnlineShoppingSystem.getInstance();
+        system.getFeedbacks().add(new Feedback(FeedbackID,this.PersonID,itemID,comment,rating));
 
-        //system.getFeedbacks().add(new Feedback())
 
     }
 

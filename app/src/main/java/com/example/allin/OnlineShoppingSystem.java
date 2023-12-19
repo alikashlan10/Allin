@@ -180,7 +180,6 @@ public class OnlineShoppingSystem {
     ////////////////////////////////////////////////////////////////////////
 
 
-
     // ------------- Custom functions
     ////////////////////////////////////////////////////////////////////////
     //Place an Order
@@ -311,6 +310,16 @@ public class OnlineShoppingSystem {
     }
 
     ////////////////////////////////////////////////////////////////////////
+
+    //load all feedbacks from database into the feedbacks list
+    public void loadFeedBacksFromDatabase(DbHelper dbHelper)
+    {
+        // Call the getAllFeedbacks method from DbHelper to get all users from the database
+        List<Feedback> FeedbacksFromDatabase = dbHelper.getAllFeedbacks();
+        // Clear the existing list and add feedbacks from the database
+        feedbacks.clear();
+        feedbacks.addAll(FeedbacksFromDatabase);
+    }
 
 }
 
