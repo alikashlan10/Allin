@@ -281,33 +281,21 @@ public class User extends Person{
     }
 
 
-    public void UpdatePersonalInfo(String username,String password,String newName, String newEmail, String newCity,
-                                   String newStreet, String newBuildingNum, String newFlatNum, DbHelper dbHelper) {
+    public void UpdatePersonalInfo(String username,String password,String fullName, String email,String ssn,String country, String newCity,
+                                   String newStreet, String newBuildingNum, String newFlatNum) {
         //set New Info
         this.UserName=username;
         this.password=password;
-        this.fullName = newName;
-        this.Email = newEmail;
+        this.fullName = fullName;
+        this.Email = email;
+        this.SSN = ssn;
+        this.userAddress.setCountry(country);
         this.userAddress.setCity(newCity);
         this.userAddress.setStreet(newStreet);
         this.userAddress.setBuildingNum(newBuildingNum);
         this.userAddress.setFlatNum(newFlatNum);
 
-        //ContentValues
-        ContentValues values = new ContentValues();
-        values.put("Username",username);
-        values.put("Password",password);
-        values.put("FullName", newName);
-        values.put("Email", newEmail);
-       // values.put("City", newCity);
-        //values.put("Street", newStreet);
-        //values.put("BuildingNum", newBuildingNum);
-        //values.put("FlatNum", newFlatNum);
-        OnlineShoppingSystem sys=OnlineShoppingSystem.getInstance();
-        //Update DB
-        dbHelper.getWritableDatabase().update("User", values, "UserID = ?",
-                new String[]{String.valueOf(sys.getCurrentPerson().getPersonID())}
-        );
+
     }
 
 

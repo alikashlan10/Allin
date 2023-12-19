@@ -54,7 +54,15 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
-        //Button b=findViewById(R.id.editInfo);
+        Button b=findViewById(R.id.editInfo);
+        b.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i5=new Intent(HomeActivity.this,RegisterActivity.class);
+                i5.putExtra("Source","fromHome");
+                startActivity(i5);
+            }
+        });
 
 
 

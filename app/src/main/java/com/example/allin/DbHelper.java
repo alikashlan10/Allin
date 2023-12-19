@@ -744,6 +744,49 @@ public class DbHelper extends SQLiteOpenHelper {
             db.close();
         }
     }
+    public void updateUser(User user) {
+        SQLiteDatabase db = getWritableDatabase();
+        try {
+            db.beginTransaction();
+            // Raw SQL query to update CartItems table
+            String Query = "UPDATE User SET " +
+                    "Username = ?," +
+                    " Password = ?," +
+                    " FullName = ?," +
+                    " SSN = ?," +
+                    " CreditCardNumber = ?," +
+                    " Email = ?" +
+                    " WHERE UserID = ?\n";
+            db.execSQL(Query, new Object[]{
+                    user.getUserName(),
+                    user.getPassword(),
+                    user.getFullName(),
+                    user.getSSN(),
+                    user.getCreditCard(),
+                    user.getEmail(),
+                    user.getPersonID()
+            });
+            String addressQuery = "UPDATE UserAddress SET " +
+                    "Country = ?," +
+                    " City = ?," +
+                    " Street = ?," +
+                    " BuildingNum = ?," +
+                    " FlatNum = ?" +
+                    " WHERE AddresID = ?\n";
+            db.execSQL(addressQuery, new Object[]{
+                    user.getUserAddress().getCountry(),
+                    user.getUserAddress().getCity(),
+                    user.getUserAddress().getStreet(),
+                    user.getUserAddress().getBuildingNum(),
+                    user.getUserAddress().getFlatNum(),
+                    user.getAddressID(),
+            });
+            db.setTransactionSuccessful();
+        } finally {
+            db.endTransaction();
+            db.close();
+        }
+    }
     // Delete item
     public void DeleteItem(int ItemID) {
         SQLiteDatabase db = getWritableDatabase();
