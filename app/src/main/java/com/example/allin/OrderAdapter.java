@@ -99,6 +99,7 @@ public class OrderAdapter extends BaseAdapter {
 
                 int id=(int)dbHelper.InsertReOrder(o.getClone(0));
                 sys.getOrders().add(o.getClone(id));
+                orders.add(o.getClone(id));
                 Toast.makeText(c, "Re-ordered successfully", Toast.LENGTH_SHORT).show();
                 notifyDataSetChanged();
 

@@ -303,7 +303,7 @@ public class OnlineShoppingSystem {
     {
         List<Item> Searchitems=new ArrayList<>();
         for (Item item:items) {
-            if(item.getItemName().equals(label))
+            if(item.getItemName().equalsIgnoreCase(label))
                 Searchitems.add(item);
 
         }

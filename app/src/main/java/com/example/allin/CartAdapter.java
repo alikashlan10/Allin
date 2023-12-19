@@ -109,9 +109,9 @@ public class CartAdapter extends BaseAdapter {
                  DbHelper dbHelper = new DbHelper(c);
                  OnlineShoppingSystem system = OnlineShoppingSystem.getInstance();
                  ((User)system.getCurrentPerson()).CancelItem(cartItem.getCartItemID(),dbHelper);
-                CartItemTotalPrice.setText(String.valueOf(cartItem.CalculateSubTotal()));
+                 CartItemTotalPrice.setText(String.valueOf(cartItem.CalculateSubTotal()));
                  Toast.makeText(c, "Iteam has been deleted, Refresh", Toast.LENGTH_SHORT).show();
-
+                notifyDataSetChanged();
             }
         });
 

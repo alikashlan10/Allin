@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.speech.RecognizerIntent;
+import android.speech.SpeechRecognizer;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -12,13 +14,11 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Spinner;
-import android.widget.TextView;
-
 import java.util.ArrayList;
 import java.util.List;
 
 public class HomeActivity extends AppCompatActivity {
-
+    private EditText searchbar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         ListView lv;
@@ -61,14 +61,16 @@ public class HomeActivity extends AppCompatActivity {
         Spinner catspinner = findViewById(R.id.Catspinner);
 
         // Create an ArrayAdapter using the ArrayList
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, system.getCateogriesNames());
+        List<String> categories = system.getCateogriesNames();
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, categories);
 
         // Specify the layout to use when the list of choices appears
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         // Apply the adapter to the spinner
         catspinner.setAdapter(adapter);
-        catspinner.setSelection(-1);
+        int position = categories.indexOf("All categories");
+        catspinner.setSelection(position);
         catspinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
@@ -85,7 +87,7 @@ public class HomeActivity extends AppCompatActivity {
         });
 
         ImageView searchicon = findViewById(R.id.Searchicon);
-        EditText searchbar = findViewById(R.id.Searchbar);
+        searchbar = findViewById(R.id.Searchbar);
         searchicon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -93,9 +95,26 @@ public class HomeActivity extends AppCompatActivity {
                 HomeAdapter filteredadapter = new HomeAdapter(HomeActivity.this,R.layout.itemdesign, system.SearchByText(x), "user");
                 lv.setAdapter(filteredadapter);
             }
-
         });
 
-
+        ImageView rec = findViewById(R.id.micIcon);
+        rec.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startVoiceRecognition();
+            }
+        });
     }
+
+
+    private void startVoiceRecognition() {
+        searchbar.setText("Talk");
+        Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
+        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
+        intent.putExtra(RecognizerIntent.EXTRA_PROMPT, "Speak something");
+        SpeechRecognizer recognizer = SpeechRecognizer.createSpeechRecognizer(this);
+        recognizer.setRecognitionListener(new SearchRecognitionListener(HomeActivity.this,searchbar));
+        recognizer.startListening(intent);
+    }
+
 }
