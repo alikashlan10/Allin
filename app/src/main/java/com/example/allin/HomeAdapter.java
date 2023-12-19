@@ -90,6 +90,7 @@ public class HomeAdapter extends BaseAdapter {
             Quantityplusicon.setVisibility(View.GONE);
             Quantityminusicon.setVisibility(View.GONE);
             ChosenQuantityTextView.setVisibility(View.GONE);
+            AddFeedBackbtn.setVisibility(View.GONE);
             salebtn.setVisibility(View.VISIBLE);
         }
 
