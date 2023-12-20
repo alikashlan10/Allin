@@ -1,8 +1,10 @@
 package com.example.allin;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.speech.RecognizerIntent;
 import android.speech.SpeechRecognizer;
@@ -25,19 +27,20 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home_activity);
         lv = findViewById(R.id.test_list);
-        Button Gotocartbtn = findViewById(R.id.gotocartbtn);
-        Button Yourordersbtn = findViewById(R.id.yourordersbtn);
+        ImageView Gotocartbtn = findViewById(R.id.gotocartbtn);
+        ImageView Yourordersbtn = findViewById(R.id.yourordersbtn);
 
 
         DbHelper dbHelper = new DbHelper(this);
         OnlineShoppingSystem system = OnlineShoppingSystem.getInstance();
-        system.loadUsersFromDatabase(dbHelper);
-        system.InitializeAppData(dbHelper);
-        system.loadItemsFromDatabase(dbHelper);
+        //system.loadUsersFromDatabase(dbHelper);
+        //system.InitializeAppData(dbHelper);
+        //system.loadItemsFromDatabase(dbHelper);
 
         List<Item> testing = new ArrayList<>();
         HomeAdapter testadapter = new HomeAdapter(this,R.layout.itemdesign,system.getItemsList(), "user");
         lv.setAdapter(testadapter);
+
         Gotocartbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -104,6 +107,22 @@ public class HomeActivity extends AppCompatActivity {
                 startVoiceRecognition();
             }
         });
+
+
+        Button BestSellersBtn=findViewById(R.id.button);
+        BestSellersBtn.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.N)
+            @Override
+            public void onClick(View view) {
+                List<Item> best=new ArrayList<>();
+                system.setTopSoldItems(system.getItemsList(), system.getBestSellers(), 3);
+                HomeAdapter BestSellers=new HomeAdapter(HomeActivity.this,R.layout.itemdesign,system.getBestSellers(),"user");
+                lv.setAdapter(BestSellers);
+            }
+        });
+
+
+
     }
 
 
@@ -116,5 +135,9 @@ public class HomeActivity extends AppCompatActivity {
         recognizer.setRecognitionListener(new SearchRecognitionListener(HomeActivity.this,searchbar));
         recognizer.startListening(intent);
     }
+
+
+
+
 
 }

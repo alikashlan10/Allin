@@ -71,8 +71,7 @@ public class DbHelper extends SQLiteOpenHelper {
             "StockQuantity INTEGER, " +
             "SoldQuantity INTEGER,"+
             "CategoryID INTEGER, " +
-            "SaleID INTEGER ,"+
-            "FOREIGN KEY (SaleID) REFERENCES Sale(SaleID),"+
+            "Sale REAL,"+
             "FOREIGN KEY (CategoryID) REFERENCES Category(CategoryID))";
 
 
@@ -703,7 +702,7 @@ public class DbHelper extends SQLiteOpenHelper {
         values.put("StockQuantity", item.getStockQuantity());
         values.put("SoldQuantity",item.getSoldQuantity());
         values.put("CategoryID", item.getCategory().getCategoryId());
-        values.put("SaleID", item.getSale());  // Assuming SaleID is a foreign key in the Item table
+        values.put("Sale", item.getSale());  // Assuming SaleID is a foreign key in the Item table
 
         // Insert the values into the Item table
         long ItemID = db.insert("Item", null, values);
@@ -780,6 +779,29 @@ public class DbHelper extends SQLiteOpenHelper {
         // Close the database
         db.close();
     }
+    public void PutSale(int itemID,double val)
+    {
+        SQLiteDatabase db = getWritableDatabase();
+
+        // Use a raw query to update the REAL column
+        String query = "UPDATE Item SET Sale = 10.0";
+
+        db.execSQL(query);
+    }
+
+    public void RemoveSale(int itemID,double val)
+    {
+        SQLiteDatabase db=getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("Sale", val);
+
+        // Update the item in the database
+        db.update("Item", values, "ItemID = ?", new String[]{String.valueOf(itemID)});
+
+        db.close();
+    }
+
+
     // get the value of any Item attribute (helper function to get the current Stock and sold quantities)
     @SuppressLint("Range")
     private int getCurrentItemValue(SQLiteDatabase db, int itemId, String attributeName) {

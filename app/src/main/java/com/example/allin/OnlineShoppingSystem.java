@@ -27,6 +27,11 @@ public class OnlineShoppingSystem {
     private List<Order> orders  = new ArrayList<>();
     private List<Item> items  = new ArrayList<>();
     private List<Feedback> feedbacks= new ArrayList<>();
+
+    public List<Item> getBestSellers() {
+        return bestSellers;
+    }
+
     private List<Item> bestSellers =new ArrayList<>();
     private Person CurrentPerson;
     private static OnlineShoppingSystem instance = new OnlineShoppingSystem();
@@ -198,10 +203,10 @@ public class OnlineShoppingSystem {
 
 
         //Update sold and stock quantities in items list and database
-        for (CartItem item  :user.getCart()) {
+        for (CartItem cartItem  :user.getCart()) {
 
-                UpdateItemQuantities(item.getItem().getItemId(), item.getQuantity());
-                dbHelper.updateItemQuantities(item.getItem().getItemId(), item.getQuantity());
+                UpdateItemQuantities(cartItem.getItem().getItemId(), cartItem.getQuantity());
+                dbHelper.updateItemQuantities(cartItem.getItem().getItemId(), cartItem.getQuantity());
 
         }
 

@@ -53,6 +53,9 @@ public class HomeAdapter extends BaseAdapter {
         {
             v = LayoutInflater.from(c).inflate(resource, null, false);
         }
+
+        OnlineShoppingSystem sys=OnlineShoppingSystem.getInstance();
+
         TextView itemNameTextView = v.findViewById(R.id.titletext);
         TextView itemDescriptionTextView = v.findViewById(R.id.descriptiontext);
         TextView itemPriceTextView = v.findViewById(R.id.pricetext);
@@ -64,8 +67,13 @@ public class HomeAdapter extends BaseAdapter {
         Button salebtn = v.findViewById(R.id.addsalebtn);
         Button AddFeedBackbtn = v.findViewById(R.id.addfeedbackbtn);
 
+        DbHelper dbHelper=new DbHelper(c);
 
         Item i = getItem(position);
+        if(i.getSale()!=0)
+        {
+            itemPriceTextView.setTextColor(c.getResources().getColor(android.R.color.holo_green_dark));
+        }
         itemNameTextView.setText(i.getItemName());
         itemDescriptionTextView.setText(i.getDescription());
         itemPriceTextView.setText(String.format(Locale.getDefault(), "$%.2f", i.getPrice()));
@@ -122,11 +130,23 @@ public class HomeAdapter extends BaseAdapter {
             @Override
             public void onClick(View v) {
                 if(i.getSale() == 0){
-                    i.setSale(0.2F);
+                    //i.setSale(0.2F);
+                    for (Item item:sys.getItemsList())
+                    {
+                        if (item.getItemId()==i.getItemId())
+                            item.setSale(0.2F);
+                    }
+                    dbHelper.PutSale(i.getItemId(),0.2F);
                     salebtn.setText("Remove Sale");
                 }
                 else{
-                    i.setSale(0.0F);
+                    //i.setSale(0.0F);
+                    for (Item item:sys.getItemsList())
+                    {
+                        if (item.getItemId()==i.getItemId())
+                            item.setSale(0.0F);
+                    }
+                    dbHelper.RemoveSale(i.getItemId(),0.0F);
                     salebtn.setText("Add Sale");
                 }
                 notifyDataSetChanged();
