@@ -64,7 +64,7 @@ public class HomeAdapter extends BaseAdapter {
         ImageView Quantityplusicon = v.findViewById(R.id.plusicon);
         ImageView Quantityminusicon = v.findViewById(R.id.minusicon);
         Button cartbtn = v.findViewById(R.id.addtocartbtn);
-        Button salebtn = v.findViewById(R.id.addsalebtn);
+        Button deleteItembtn = v.findViewById(R.id.deleteItembtn);
         Button AddFeedBackbtn = v.findViewById(R.id.addfeedbackbtn);
 
         DbHelper dbHelper=new DbHelper(c);
@@ -99,7 +99,7 @@ public class HomeAdapter extends BaseAdapter {
             Quantityminusicon.setVisibility(View.GONE);
             ChosenQuantityTextView.setVisibility(View.GONE);
             AddFeedBackbtn.setVisibility(View.GONE);
-            salebtn.setVisibility(View.VISIBLE);
+            deleteItembtn.setVisibility(View.VISIBLE);
         }
 
         Quantityminusicon.setOnClickListener(new View.OnClickListener() {
@@ -126,29 +126,13 @@ public class HomeAdapter extends BaseAdapter {
 
         });
 
-        salebtn.setOnClickListener(new View.OnClickListener() {
+        deleteItembtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(i.getSale() == 0){
-                    //i.setSale(0.2F);
-                    for (Item item:sys.getItemsList())
-                    {
-                        if (item.getItemId()==i.getItemId())
-                            item.setSale(0.2F);
-                    }
-                    dbHelper.PutSale(i.getItemId(),0.2F);
-                    salebtn.setText("Remove Sale");
-                }
-                else{
-                    //i.setSale(0.0F);
-                    for (Item item:sys.getItemsList())
-                    {
-                        if (item.getItemId()==i.getItemId())
-                            item.setSale(0.0F);
-                    }
-                    dbHelper.RemoveSale(i.getItemId(),0.0F);
-                    salebtn.setText("Add Sale");
-                }
+                DbHelper dbHelper = new DbHelper(c);
+                dbHelper.DeleteItem(i.getItemId());
+                items.remove(position);
+                //refresh
                 notifyDataSetChanged();
             }
         });

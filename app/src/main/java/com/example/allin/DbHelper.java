@@ -749,7 +749,7 @@ public class DbHelper extends SQLiteOpenHelper {
         try {
             db.beginTransaction();
             // Raw SQL query to delete the item by ID
-            String deleteQuery = "DELETE FROM Item WHERE ID = ?";
+            String deleteQuery = "DELETE FROM Item WHERE ItemID = ?";
             db.execSQL(deleteQuery, new Object[]{ItemID});
             db.setTransactionSuccessful();
         } finally {

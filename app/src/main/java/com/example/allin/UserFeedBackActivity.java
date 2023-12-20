@@ -28,7 +28,7 @@ public class UserFeedBackActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String comment = usercomment.getText().toString();
-                int rating = ratingbar.getNumStars();
+                int rating = (int)ratingbar.getRating();
                 ((User)system.getCurrentPerson()).AddFeedBack(itemID,comment,rating,new DbHelper(UserFeedBackActivity.this));
                 finish();
             }

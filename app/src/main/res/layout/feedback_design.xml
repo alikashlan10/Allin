@@ -6,12 +6,24 @@
     android:layout_height="match_parent">
 
     <RelativeLayout
+        android:id="@+id/relativeLayout"
         android:layout_width="406dp"
         android:layout_height="121dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.4"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/feedback_rating"
+            android:layout_width="361dp"
+            android:layout_height="22dp"
+            android:layout_below="@+id/feedback_comment"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="12dp"
+            android:text="TextView"
+            android:textSize="16sp" />
 
         <TextView
             android:id="@+id/username_feedback"
@@ -27,9 +39,22 @@
             android:textSize="20sp" />
 
         <TextView
+            android:id="@+id/ItemIdTextView"
+            android:layout_width="158dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="208dp"
+            android:layout_marginTop="16dp"
+            android:text="TextView"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+            android:textColor="#6200EE"
+            android:textSize="20sp" />
+
+        <TextView
             android:id="@+id/feedback_comment"
-            android:layout_width="363dp"
-            android:layout_height="64dp"
+            android:layout_width="364dp"
+            android:layout_height="wrap_content"
             android:layout_below="@+id/username_feedback"
             android:layout_alignParentStart="true"
             android:layout_marginStart="31dp"
@@ -39,6 +64,7 @@
 
 
     </RelativeLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
 
 
